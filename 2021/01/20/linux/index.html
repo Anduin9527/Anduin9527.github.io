@@ -6,16 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://lapras.xyz">
-  <title>Archives: 2021 | Anduin9527的博客</title>
+  <title>linux 学习笔记（一） | Anduin9527的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="南邮摸鱼ing">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Anduin9527的博客">
-<meta property="og:url" content="http://lapras.xyz/archives/2021/index.html">
+  <meta name="description" content="个人配置WSL+Windows terminal+ubuntu 20.04 LTS 资料参考：《鸟哥的linux私房菜 第四版》《linux手册》 重点回顾 在终端环境中 $ 表示一般账号， # 表示root账号。 显示语系支持：  1echo $LANG or locale	  显示日期 —date 显示日历 —cal 计算器 —bc linux系统的大小写严格区分  组合按键 [Tab]  命">
+<meta property="og:type" content="article">
+<meta property="og:title" content="linux 学习笔记（一）">
+<meta property="og:url" content="http://lapras.xyz/2021/01/20/linux/index.html">
 <meta property="og:site_name" content="Anduin9527的博客">
-<meta property="og:description" content="南邮摸鱼ing">
+<meta property="og:description" content="个人配置WSL+Windows terminal+ubuntu 20.04 LTS 资料参考：《鸟哥的linux私房菜 第四版》《linux手册》 重点回顾 在终端环境中 $ 表示一般账号， # 表示root账号。 显示语系支持：  1echo $LANG or locale	  显示日期 —date 显示日历 —cal 计算器 —bc linux系统的大小写严格区分  组合按键 [Tab]  命">
 <meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2021-01-20T00:58:29.000Z">
+<meta property="article:modified_time" content="2021-01-20T02:20:15.786Z">
 <meta property="article:author" content="Anduin">
+<meta property="article:tag" content="linux">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternative" href="/atom.xml" title="Anduin9527的博客" type="application/atom+xml">
@@ -148,36 +151,69 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-linux" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2021" class="archive-year">2021</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/01/20/linux/" class="archive-article-date">
-  	<time datetime="2021-01-20T00:58:29.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-01-20</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2021/01/20/linux/">linux 学习笔记（一）</a>
+    <h1 class="article-title" itemprop="name">
+      linux 学习笔记（一）
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
+        
+        <a href="/2021/01/20/linux/" class="archive-article-date">
+  	<time datetime="2021-01-20T00:58:29.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-01-20</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="个人配置"><a href="#个人配置" class="headerlink" title="个人配置"></a>个人配置</h1><p>WSL+Windows terminal+ubuntu 20.04 LTS</p>
+<p>资料参考：《鸟哥的linux私房菜 第四版》《linux手册》</p>
+<h1 id="重点回顾"><a href="#重点回顾" class="headerlink" title="重点回顾"></a>重点回顾</h1><ul>
+<li>在终端环境中 $ 表示一般账号， # 表示root账号。</li>
+<li>显示语系支持：</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">echo $LANG or locale	</span><br></pre></td></tr></table></figure>
+<ul>
+<li>显示日期 —date</li>
+<li>显示日历 —cal</li>
+<li>计算器 —bc</li>
+<li>linux系统的大小写严格区分</li>
+</ul>
+<h3 id="组合按键"><a href="#组合按键" class="headerlink" title="组合按键"></a>组合按键</h3><ul>
+<li>[Tab] <ul>
+<li>命令补齐</li>
+<li>文件名补齐</li>
+<li>参数补齐</li>
+</ul>
+</li>
+<li>[Ctrl]+[C] — 中断命令</li>
+</ul>
+<h3 id="查询帮助"><a href="#查询帮助" class="headerlink" title="查询帮助"></a>查询帮助</h3><ul>
+<li>man</li>
+<li>info</li>
+</ul>
+<h1 id="简答"><a href="#简答" class="headerlink" title="简答"></a>简答</h1><h2 id="Q-console-and-terminal"><a href="#Q-console-and-terminal" class="headerlink" title="Q:console and terminal?"></a><strong>Q</strong>:console and terminal?</h2><h3 id="控制台-Console"><a href="#控制台-Console" class="headerlink" title="控制台(Console)"></a>控制台(Console)</h3><p>控制台(Console)是物理设备，用于输入输出，它直接连接在计算机上，是计算机系统的一部分。计算机输出的信息会显示在控制台上，例如BIOS的输出，内核的输出。</p>
+<h3 id="终端-Terminal"><a href="#终端-Terminal" class="headerlink" title="终端(Terminal)"></a>终端(Terminal)</h3><p>终端(Terminal)也是一台物理设备，只用于输入输出，本身没有强大的计算能力。一台计算机只有一个控制台，在计算资源紧张的时代，人们想共享一台计算机，可以通过终端连接到计算机上，将指令输入终端，终端传送给计算机，计算机完成指令后，将输出传送给终端，终端将结果显示给用户。</p>
+<h3 id="虚拟控制台-Virtual-Console-，虚拟终端-Virtual-Terminal"><a href="#虚拟控制台-Virtual-Console-，虚拟终端-Virtual-Terminal" class="headerlink" title="虚拟控制台(Virtual Console)，虚拟终端(Virtual Terminal)"></a>虚拟控制台(Virtual Console)，虚拟终端(Virtual Terminal)</h3><p>虚拟控制台(Virtual Console)和虚拟终端是一样的。我们只有一台终端（物理设备），这是我们与计算机之间的用户接口。假如有一天，我们想拥有多个用户接口，那么，一方面我们可以增加终端数目（物理设备），另一方面，还可以在同一台终端（物理设备）上虚拟出多个终端，它们之间互相不影响，至少看起来互相不影响。这些终端就是虚拟终端。</p>
+<p>在Ubuntu中，我们按下Ctrl+Alt+Fx时，会进入第x个虚拟终端，一共有七个虚拟终端，其中第七个虚拟终端，就是我们默认使用的图形用户界面。</p>
+<h2 id="Q：2015年的5月2日是星期几？"><a href="#Q：2015年的5月2日是星期几？" class="headerlink" title="Q：2015年的5月2日是星期几？"></a>Q：2015年的5月2日是星期几？</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cal 5 2</span><br></pre></td></tr></table></figure>
+<h2 id="Q：用man-date-构建-YYYY-mm-dd-HH-MM"><a href="#Q：用man-date-构建-YYYY-mm-dd-HH-MM" class="headerlink" title="Q：用man date 构建 YYYY/mm/dd-HH:MM"></a>Q：用man date 构建 YYYY/mm/dd-HH:MM</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">date -d &quot;2015-10-16 20:03&quot; +&quot;%Y/%m/%d-%H:%M&quot;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>-d 解析字符串并按照指定格式输出</li>
+</ul>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -189,57 +225,119 @@
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://lapras.xyz/2021/01/20/linux/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/01/17/%E6%82%B2%E4%BC%A4%E7%9A%84%E5%BC%80%E5%A7%8B/" class="archive-article-date">
-  	<time datetime="2021-01-17T14:21:13.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-01-17</time>
-</a>
+<nav id="article-nav">
+  
+  
+    <a href="/2021/01/17/%E6%82%B2%E4%BC%A4%E7%9A%84%E5%BC%80%E5%A7%8B/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">悲伤的开始</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2021/01/17/%E6%82%B2%E4%BC%A4%E7%9A%84%E5%BC%80%E5%A7%8B/">悲伤的开始</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">杂谈</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
+        
+        
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%AA%E4%BA%BA%E9%85%8D%E7%BD%AE"><span class="toc-number">1.</span> <span class="toc-text">个人配置</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E9%87%8D%E7%82%B9%E5%9B%9E%E9%A1%BE"><span class="toc-number">2.</span> <span class="toc-text">重点回顾</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BB%84%E5%90%88%E6%8C%89%E9%94%AE"><span class="toc-number">2.0.1.</span> <span class="toc-text">组合按键</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9F%A5%E8%AF%A2%E5%B8%AE%E5%8A%A9"><span class="toc-number">2.0.2.</span> <span class="toc-text">查询帮助</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%AE%80%E7%AD%94"><span class="toc-number">3.</span> <span class="toc-text">简答</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Q-console-and-terminal"><span class="toc-number">3.1.</span> <span class="toc-text">Q:console and terminal?</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8E%A7%E5%88%B6%E5%8F%B0-Console"><span class="toc-number">3.1.1.</span> <span class="toc-text">控制台(Console)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BB%88%E7%AB%AF-Terminal"><span class="toc-number">3.1.2.</span> <span class="toc-text">终端(Terminal)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%99%9A%E6%8B%9F%E6%8E%A7%E5%88%B6%E5%8F%B0-Virtual-Console-%EF%BC%8C%E8%99%9A%E6%8B%9F%E7%BB%88%E7%AB%AF-Virtual-Terminal"><span class="toc-number">3.1.3.</span> <span class="toc-text">虚拟控制台(Virtual Console)，虚拟终端(Virtual Terminal)</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Q%EF%BC%9A2015%E5%B9%B4%E7%9A%845%E6%9C%882%E6%97%A5%E6%98%AF%E6%98%9F%E6%9C%9F%E5%87%A0%EF%BC%9F"><span class="toc-number">3.2.</span> <span class="toc-text">Q：2015年的5月2日是星期几？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Q%EF%BC%9A%E7%94%A8man-date-%E6%9E%84%E5%BB%BA-YYYY-mm-dd-HH-MM"><span class="toc-number">3.3.</span> <span class="toc-text">Q：用man date 构建 YYYY&#x2F;mm&#x2F;dd-HH:MM</span></a></li></ol></li></ol>
+                    </div>
+                </span>
+            </div>
         </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
+        
+    </div>
+</aside>
+
+
+
   
   
-    </div></section>
   
 
-    
+  
+
+  
+
+  
 
 
           </div>
@@ -262,8 +360,8 @@
 	var yiliaConfig = {
 		mathjax: true,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
