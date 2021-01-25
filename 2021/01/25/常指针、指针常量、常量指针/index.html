@@ -6,16 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://lapras.xyz">
-  <title>Anduin9527的博客</title>
+  <title>指针常量与常量指针 | Anduin9527的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="南邮摸鱼ing">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Anduin9527的博客">
-<meta property="og:url" content="http://lapras.xyz/index.html">
+  <meta name="description" content="前言最新在重新学cpp，水篇博客也顺便练练$markdown$ 基本概念指针（pointer）的两个属性  指针变量本身（pointer variable） 指向的数据（data）  那么，基于以上两个属性，可以将指针分为四类：     指针 被指数据 名称     variable variable 指针变量   variable constant 常量指针   constant variabl">
+<meta property="og:type" content="article">
+<meta property="og:title" content="指针常量与常量指针">
+<meta property="og:url" content="http://lapras.xyz/2021/01/25/%E5%B8%B8%E6%8C%87%E9%92%88%E3%80%81%E6%8C%87%E9%92%88%E5%B8%B8%E9%87%8F%E3%80%81%E5%B8%B8%E9%87%8F%E6%8C%87%E9%92%88/index.html">
 <meta property="og:site_name" content="Anduin9527的博客">
-<meta property="og:description" content="南邮摸鱼ing">
+<meta property="og:description" content="前言最新在重新学cpp，水篇博客也顺便练练$markdown$ 基本概念指针（pointer）的两个属性  指针变量本身（pointer variable） 指向的数据（data）  那么，基于以上两个属性，可以将指针分为四类：     指针 被指数据 名称     variable variable 指针变量   variable constant 常量指针   constant variabl">
 <meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2021-01-25T07:02:46.000Z">
+<meta property="article:modified_time" content="2021-01-25T08:09:13.686Z">
 <meta property="article:author" content="Anduin">
+<meta property="article:tag" content="c&#x2F;c++">
+<meta property="article:tag" content="语法">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternative" href="/atom.xml" title="Anduin9527的博客" type="application/atom+xml">
@@ -148,16 +152,14 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-    <article id="post-常指针、指针常量、常量指针" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+            <article id="post-常指针、指针常量、常量指针" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2021/01/25/%E5%B8%B8%E6%8C%87%E9%92%88%E3%80%81%E6%8C%87%E9%92%88%E5%B8%B8%E9%87%8F%E3%80%81%E5%B8%B8%E9%87%8F%E6%8C%87%E9%92%88/">指针常量与常量指针</a>
+    <h1 class="article-title" itemprop="name">
+      指针常量与常量指针
     </h1>
   
 
@@ -256,16 +258,75 @@
       
 
       
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2021/01/25/%E5%B8%B8%E6%8C%87%E9%92%88%E3%80%81%E6%8C%87%E9%92%88%E5%B8%B8%E9%87%8F%E3%80%81%E5%B8%B8%E9%87%8F%E6%8C%87%E9%92%88/">展开全文 >></a>
-        </p>
-      
 
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
+        </div>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://lapras.xyz/2021/01/25/%E5%B8%B8%E6%8C%87%E9%92%88%E3%80%81%E6%8C%87%E9%92%88%E5%B8%B8%E9%87%8F%E3%80%81%E5%B8%B8%E9%87%8F%E6%8C%87%E9%92%88/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
       
       <div class="clearfix"></div>
     </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
+  
+  
+    <a href="/2021/01/20/linux/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">linux 学习笔记（一）</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
 
 <aside class="wrap-side-operation">
     <div class="mod-side-operation">
@@ -280,201 +341,32 @@
         </div>
         
         
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-linux" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2021/01/20/linux/">linux 学习笔记（一）</a>
-    </h1>
-  
-
-        
-        <a href="/2021/01/20/linux/" class="archive-article-date">
-  	<time datetime="2021-01-20T00:58:29.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-01-20</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="个人配置"><a href="#个人配置" class="headerlink" title="个人配置"></a>个人配置</h1><p>WSL+Windows terminal+ubuntu 20.04 LTS</p>
-<p>资料参考：《鸟哥的linux私房菜 第四版》《linux手册》</p>
-<h1 id="重点回顾"><a href="#重点回顾" class="headerlink" title="重点回顾"></a>重点回顾</h1><ul>
-<li>在终端环境中 $ 表示一般账号， # 表示root账号。</li>
-<li>显示语系支持：</li>
-</ul>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">echo $LANG or locale	</span><br></pre></td></tr></table></figure>
-<ul>
-<li>显示日期 —date</li>
-<li>显示日历 —cal</li>
-<li>计算器 —bc</li>
-<li>linux系统的大小写严格区分</li>
-</ul>
-<h3 id="组合按键"><a href="#组合按键" class="headerlink" title="组合按键"></a>组合按键</h3><ul>
-<li>[Tab] <ul>
-<li>命令补齐</li>
-<li>文件名补齐</li>
-<li>参数补齐</li>
-</ul>
-</li>
-<li>[Ctrl]+[C] — 中断命令</li>
-</ul>
-<h3 id="查询帮助"><a href="#查询帮助" class="headerlink" title="查询帮助"></a>查询帮助</h3><ul>
-<li>man</li>
-<li>info</li>
-</ul>
-<h1 id="简答"><a href="#简答" class="headerlink" title="简答"></a>简答</h1><h2 id="Q-console-and-terminal"><a href="#Q-console-and-terminal" class="headerlink" title="Q:console and terminal?"></a><strong>Q</strong>:console and terminal?</h2><h3 id="控制台-Console"><a href="#控制台-Console" class="headerlink" title="控制台(Console)"></a>控制台(Console)</h3><p>控制台(Console)是物理设备，用于输入输出，它直接连接在计算机上，是计算机系统的一部分。计算机输出的信息会显示在控制台上，例如BIOS的输出，内核的输出。</p>
-<h3 id="终端-Terminal"><a href="#终端-Terminal" class="headerlink" title="终端(Terminal)"></a>终端(Terminal)</h3><p>终端(Terminal)也是一台物理设备，只用于输入输出，本身没有强大的计算能力。一台计算机只有一个控制台，在计算资源紧张的时代，人们想共享一台计算机，可以通过终端连接到计算机上，将指令输入终端，终端传送给计算机，计算机完成指令后，将输出传送给终端，终端将结果显示给用户。</p>
-<h3 id="虚拟控制台-Virtual-Console-，虚拟终端-Virtual-Terminal"><a href="#虚拟控制台-Virtual-Console-，虚拟终端-Virtual-Terminal" class="headerlink" title="虚拟控制台(Virtual Console)，虚拟终端(Virtual Terminal)"></a>虚拟控制台(Virtual Console)，虚拟终端(Virtual Terminal)</h3><p>虚拟控制台(Virtual Console)和虚拟终端是一样的。我们只有一台终端（物理设备），这是我们与计算机之间的用户接口。假如有一天，我们想拥有多个用户接口，那么，一方面我们可以增加终端数目（物理设备），另一方面，还可以在同一台终端（物理设备）上虚拟出多个终端，它们之间互相不影响，至少看起来互相不影响。这些终端就是虚拟终端。</p>
-<p>在Ubuntu中，我们按下Ctrl+Alt+Fx时，会进入第x个虚拟终端，一共有七个虚拟终端，其中第七个虚拟终端，就是我们默认使用的图形用户界面。</p>
-<h2 id="Q：2015年的5月2日是星期几？"><a href="#Q：2015年的5月2日是星期几？" class="headerlink" title="Q：2015年的5月2日是星期几？"></a>Q：2015年的5月2日是星期几？</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cal 5 2</span><br></pre></td></tr></table></figure>
-<h2 id="Q：用man-date-构建-YYYY-mm-dd-HH-MM"><a href="#Q：用man-date-构建-YYYY-mm-dd-HH-MM" class="headerlink" title="Q：用man date 构建 YYYY/mm/dd-HH:MM"></a>Q：用man date 构建 YYYY/mm/dd-HH:MM</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">date -d &quot;2015-10-16 20:03&quot; +&quot;%Y/%m/%d-%H:%M&quot;</span><br></pre></td></tr></table></figure>
-<ul>
-<li>-d 解析字符串并按照指定格式输出</li>
-</ul>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">linux</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2021/01/20/linux/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%89%8D%E8%A8%80"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5"><span class="toc-number"></span> <span class="toc-text">基本概念</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%B7%E4%BD%93%E4%BB%8B%E7%BB%8D"><span class="toc-number"></span> <span class="toc-text">具体介绍</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B8%B8%E9%87%8F%E6%8C%87%E9%92%88%E3%80%81%E5%B8%B8%E6%8C%87%E9%92%88%EF%BC%88Pointer-to-Constant%EF%BC%89"><span class="toc-number">1.</span> <span class="toc-text">常量指针、常指针（Pointer to Constant）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8C%87%E9%92%88%E5%B8%B8%E9%87%8F-%EF%BC%88Pointer-Constant%EF%BC%89"><span class="toc-number">2.</span> <span class="toc-text">指针常量 （Pointer Constant）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B8%B8%E6%8C%87%E9%92%88%E5%B8%B8%E9%87%8F"><span class="toc-number">3.</span> <span class="toc-text">常指针常量</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8%E6%80%BB%E7%BB%93"><span class="toc-number"></span> <span class="toc-text">使用总结</span></a>
+                    </div>
+                </span>
             </div>
         </div>
         
-        
     </div>
 </aside>
 
 
 
-
   
-    <article id="post-悲伤的开始" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2021/01/17/%E6%82%B2%E4%BC%A4%E7%9A%84%E5%BC%80%E5%A7%8B/">悲伤的开始</a>
-    </h1>
   
 
-        
-        <a href="/2021/01/17/%E6%82%B2%E4%BC%A4%E7%9A%84%E5%BC%80%E5%A7%8B/" class="archive-article-date">
-  	<time datetime="2021-01-17T14:21:13.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-01-17</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="BE"><a href="#BE" class="headerlink" title="BE"></a>BE</h1><p>是的，再又一次没有给C盘备份，删了还原点的情况下把电脑搞坏了。时隔上次蓝屏只有20h的时间，它又喝了一瓶蓝的。在进安全模式也蓝屏之后，我知道，一切都结束了。欸，又到了白色相扑的季节SADSADSAD。</p>
-<script type="math/tex; mode=display">
-f(n) =
-\begin{cases}
-1,  & \text{if $n$ is even} \\
-3n+1, & \text{if $n$ is odd}
-\end{cases}</script><p><img src="https://i.loli.net/2021/01/19/XcIkpvnmeT5P8D4.jpg" alt="index"></p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">杂谈</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2021/01/17/%E6%82%B2%E4%BC%A4%E7%9A%84%E5%BC%80%E5%A7%8B/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
+  
 
   
+
   
 
 
@@ -497,8 +389,8 @@ f(n) =
     <script>
 	var yiliaConfig = {
 		mathjax: true,
-		isHome: true,
-		isPost: false,
+		isHome: false,
+		isPost: true,
 		isArchive: false,
 		isTag: false,
 		isCategory: false,
