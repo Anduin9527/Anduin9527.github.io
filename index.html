@@ -144,6 +144,204 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-UE4学习笔记--地编篇" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2021/03/18/UE4%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0--%E5%9C%B0%E7%BC%96%E7%AF%87/">UE4学习笔记--地编篇</a>
+    </h1>
+  
+
+        
+        <a href="/2021/03/18/UE4%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0--%E5%9C%B0%E7%BC%96%E7%AF%87/" class="archive-article-date">
+  	<time datetime="2021-03-18T11:22:38.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-03-18</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="BSP-画刷"><a href="#BSP-画刷" class="headerlink" title="BSP(画刷)"></a>BSP(画刷)</h2><p>BSP画刷是虚幻的关卡构建中最为基本的工具。从理论上说,最好将BSP想象为可以在关卡中进行填充并切除空间体积的东西。 很久之前, BSP被用来作为关卡设计中的主要构建模块。 但是现在,这个角色由静态网格物体来承担,相较而言,<strong>静态网格物体</strong>远为高效。不过,作为关卡和物体的快速原型化产品的前期应用,以及<strong>对于那些无法使用3D建模工具而需要进行关卡构建的人</strong>来说, BSP依然很有用.</p>
+<h3 id="关卡场景开发流程"><a href="#关卡场景开发流程" class="headerlink" title="关卡场景开发流程"></a>关卡场景开发流程</h3><p>开发关卡的标准工作流程是这样的:</p>
+<ul>
+<li>设计出关卡章图及关卡路径。</li>
+<li>运行关卡测试流程和游戏性</li>
+<li>修改布局并反复测试</li>
+<li>起始的网格物体环节</li>
+<li>起始的光照环节</li>
+<li>对碰撞及性能问题的游戏测试。</li>
+<li>润色</li>
+</ul>
+<p><img src="https://i.loli.net/2021/03/18/RAVEbqT3Ue9jKa4.png" alt="image-20210318192700940"></p>
+<h3 id="BSP笔刷基本应用"><a href="#BSP笔刷基本应用" class="headerlink" title="BSP笔刷基本应用"></a>BSP笔刷基本应用</h3><p><img src="https://i.loli.net/2021/03/18/KOnHLzvbsIYQlD1.png" alt="image-20210318193525023"></p>
+<ul>
+<li>减去类似于永久且有形状的橡皮擦</li>
+<li>增加和减去的BSP遵循的是后进优先原则，即<strong>先创建的减去型A</strong>无法减去<strong>后创建的添加型B</strong></li>
+</ul>
+<p><img src="https://i.loli.net/2021/03/18/YTFlzb6PRcHrW9d.png" alt="image-20210318193851632"></p>
+<ul>
+<li><p>值得一提的是在细节栏显示高级详细信息后有一个排序选项可以快速设置物体的优先级</p>
+</li>
+<li><p>对物体缩放请使用细节栏中的缩放功能，这样不会造成材质贴图被拉伸（可以再棋盘格的表现上看出）</p>
+<ul>
+<li>或者缩放后使用几何体-对齐</li>
+</ul>
+</li>
+</ul>
+<p><img src="https://i.loli.net/2021/03/18/hdTLtFs25lN9yGx.png" alt="image-20210318194542047">、</p>
+<ul>
+<li>中空：使得视角在物体内时可以看到墙壁 而不是透视</li>
+<li>固体性：可以被减去，且有碰撞检测</li>
+<li>半固体：不可以被减去，且有碰撞检测</li>
+<li>非固体：不可以被减去，且无碰撞检测</li>
+</ul>
+<h4 id="附着材质"><a href="#附着材质" class="headerlink" title="附着材质"></a>附着材质</h4><ul>
+<li>选中材质后创建BSP</li>
+<li>创建BSP后拖动材质附着到面上</li>
+</ul>
+<h4 id="笔刷编辑器"><a href="#笔刷编辑器" class="headerlink" title="笔刷编辑器"></a>笔刷编辑器</h4><p><img src="https://i.loli.net/2021/03/18/DwECtI2ngVHZiq8.png" alt="image-20210318200206583"></p>
+<p>可以对BSP的点线面单独操作，妙用无穷</p>
+<h3 id="搭个房子吧asir"><a href="#搭个房子吧asir" class="headerlink" title="搭个房子吧asir"></a>搭个房子吧asir</h3>
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">UE4</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">游戏</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2021/03/18/UE4%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0--%E5%9C%B0%E7%BC%96%E7%AF%87/">光翼展开 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-UE4学习笔记" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2021/03/09/UE4%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">UE4学习笔记--基础篇</a>
+    </h1>
+  
+
+        
+        <a href="/2021/03/09/UE4%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" class="archive-article-date">
+  	<time datetime="2021-03-09T14:51:30.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-03-09</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>EPIC牛逼!</p>
+<p>本笔记全程跟着<a target="_blank" rel="noopener" href="https://space.bilibili.com/31898841">谌老师</a>的教学走。</p>
+<p>全程参照<a target="_blank" rel="noopener" href="https://docs.unrealengine.com/zh-CN/index.html">官方文档</a>,第一次认真看文档。</p>
+<p>多上手，多上手。有当年YDWE那味了</p>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">UE4</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">游戏</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2021/03/09/UE4%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">光翼展开 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-情人节长夜漫漫，不如出道成为偶像" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -641,11 +839,11 @@ MathJax.Hub.Queue(function() {
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">杂谈</a>
+                <a href="javascript:void(0)" class="js-tag color4">UE4</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">linux</a>
+                <a href="javascript:void(0)" class="js-tag color3">游戏</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -654,6 +852,14 @@ MathJax.Hub.Queue(function() {
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">fun</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">杂谈</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">linux</a>
               </li>
              
               <li class="article-tag-list-item">

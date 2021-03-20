@@ -6,22 +6,26 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://lapras.xyz">
-  <title>悲伤的开始 | Anduin9527的博客</title>
+  <title>UE4学习笔记--基础篇 | Anduin9527的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="BE是的，再又一次没有给C盘备份，删了还原点的情况下把电脑搞坏了。时隔上次蓝屏只有20h的时间，它又喝了一瓶蓝的。在进安全模式也蓝屏之后，我知道，一切都结束了。欸，又到了白色相扑的季节SADSADSAD.">
+  <meta name="description" content="前言EPIC牛逼! 本笔记全程跟着谌老师的教学走。 全程参照官方文档,第一次认真看文档。 多上手，多上手。有当年YDWE那味了">
 <meta property="og:type" content="article">
-<meta property="og:title" content="悲伤的开始">
-<meta property="og:url" content="http://lapras.xyz/2021/01/17/%E6%82%B2%E4%BC%A4%E7%9A%84%E5%BC%80%E5%A7%8B/index.html">
+<meta property="og:title" content="UE4学习笔记--基础篇">
+<meta property="og:url" content="http://lapras.xyz/2021/03/09/UE4%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/index.html">
 <meta property="og:site_name" content="Anduin9527的博客">
-<meta property="og:description" content="BE是的，再又一次没有给C盘备份，删了还原点的情况下把电脑搞坏了。时隔上次蓝屏只有20h的时间，它又喝了一瓶蓝的。在进安全模式也蓝屏之后，我知道，一切都结束了。欸，又到了白色相扑的季节SADSADSAD.">
+<meta property="og:description" content="前言EPIC牛逼! 本笔记全程跟着谌老师的教学走。 全程参照官方文档,第一次认真看文档。 多上手，多上手。有当年YDWE那味了">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="https://i.loli.net/2021/01/19/XcIkpvnmeT5P8D4.jpg">
-<meta property="article:published_time" content="2021-01-17T14:21:13.000Z">
-<meta property="article:modified_time" content="2021-01-25T08:17:38.319Z">
+<meta property="og:image" content="https://i.loli.net/2021/03/10/AJby1hjnlotvWS6.png">
+<meta property="og:image" content="https://i.loli.net/2021/03/10/RPtFmUpOM82nxkG.png#pic_left">
+<meta property="og:image" content="https://i.loli.net/2021/03/10/YQFzXaMPZT5wONB.png#pic_right">
+<meta property="og:image" content="https://i.loli.net/2021/03/10/c5vtlDq7VCEpF3x.jpg#pic_left">
+<meta property="article:published_time" content="2021-03-09T14:51:30.000Z">
+<meta property="article:modified_time" content="2021-03-10T15:34:13.454Z">
 <meta property="article:author" content="Anduin">
-<meta property="article:tag" content="杂谈">
+<meta property="article:tag" content="UE4">
+<meta property="article:tag" content="游戏">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://i.loli.net/2021/01/19/XcIkpvnmeT5P8D4.jpg">
+<meta name="twitter:image" content="https://i.loli.net/2021/03/10/AJby1hjnlotvWS6.png">
   
     <link rel="alternative" href="/atom.xml" title="Anduin9527的博客" type="application/atom+xml">
   
@@ -147,28 +151,153 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-悲伤的开始" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-UE4学习笔记" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      悲伤的开始
+      UE4学习笔记--基础篇
     </h1>
   
 
         
-        <a href="/2021/01/17/%E6%82%B2%E4%BC%A4%E7%9A%84%E5%BC%80%E5%A7%8B/" class="archive-article-date">
-  	<time datetime="2021-01-17T14:21:13.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-01-17</time>
+        <a href="/2021/03/09/UE4%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" class="archive-article-date">
+  	<time datetime="2021-03-09T14:51:30.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-03-09</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="BE"><a href="#BE" class="headerlink" title="BE"></a>BE</h1><p>是的，再又一次没有给C盘备份，删了还原点的情况下把电脑搞坏了。时隔上次蓝屏只有20h的时间，它又喝了一瓶蓝的。在进安全模式也蓝屏之后，我知道，一切都结束了。欸，又到了白色相扑的季节SADSADSAD.</p>
-<p><img src="https://i.loli.net/2021/01/19/XcIkpvnmeT5P8D4.jpg" alt="index"></p>
+        <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>EPIC牛逼!</p>
+<p>本笔记全程跟着<a target="_blank" rel="noopener" href="https://space.bilibili.com/31898841">谌老师</a>的教学走。</p>
+<p>全程参照<a target="_blank" rel="noopener" href="https://docs.unrealengine.com/zh-CN/index.html">官方文档</a>,第一次认真看文档。</p>
+<p>多上手，多上手。有当年YDWE那味了</p>
+<a id="more"></a>
+<h2 id="视口导航"><a href="#视口导航" class="headerlink" title="视口导航"></a>视口导航</h2><p><img src="https://i.loli.net/2021/03/10/AJby1hjnlotvWS6.png" alt="image-20210310223714226"></p>
+<h3 id="视口界面的操作"><a href="#视口界面的操作" class="headerlink" title="视口界面的操作"></a>视口界面的操作</h3><div class="table-container">
+<table>
+<thead>
+<tr>
+<th>操作</th>
+<th>行为</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>左键单击 + 拖动</strong></td>
+<td>前后移动摄像机和左右旋转摄像机。</td>
+</tr>
+<tr>
+<td><strong>右键单击 + 拖动</strong></td>
+<td>左右旋转摄像机。</td>
+</tr>
+<tr>
+<td><strong>左键单击 + 右键单击 + 拖动</strong></td>
+<td>上下移动摄像机</td>
+</tr>
+<tr>
+<td><strong>Ctrl + Alt + 单击 + 拖动</strong></td>
+<td>创建方形选取框</td>
+</tr>
+<tr>
+<td><strong>按住右键 + WASD</strong></td>
+<td>类游戏操作</td>
+</tr>
+<tr>
+<td><strong>选中后按 F</strong></td>
+<td><strong>聚焦</strong></td>
+</tr>
+<tr>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
+<ul>
+<li><p>推荐使用WASD。</p>
+</li>
+<li><p>按住右键后：</p>
+<p>| <strong>操作</strong> | <strong>行为</strong>   |<br>| ———— | ————— |<br>| <strong>Q</strong>    | 上升摄像头 |<br>| <strong>E</strong>    | 下降摄像头 |<br>| <strong>Z</strong>    | 拉远摄像头 |<br>| <strong>C</strong>    | 拉近摄像头 |</p>
+</li>
+<li><p>选中后按住Alt：</p>
+<p>| 操作     | 行为           |<br>| ———— | ——————— |<br>| <strong>左键</strong> | 原地旋转摄像头 |<br>| <strong>右键</strong> | 拉近拉远摄像头 |</p>
+<h3 id="视口的类型"><a href="#视口的类型" class="headerlink" title="视口的类型"></a>视口的类型</h3><p><img src="https://i.loli.net/2021/03/10/RPtFmUpOM82nxkG.png#pic_left" alt="image-20210310222500040"></p>
+</li>
+<li><p>其中的<strong>模拟</strong>指的是进入游戏后进入上帝视角，点击控制(F8)后恢复正常角色游玩。</p>
+</li>
+<li><p>分辨率可在高级设置中更改</p>
+</li>
+</ul>
+<h2 id="物体编辑器"><a href="#物体编辑器" class="headerlink" title="物体编辑器"></a>物体编辑器</h2><h3 id="坐标轴"><a href="#坐标轴" class="headerlink" title="坐标轴"></a>坐标轴</h3><p>笛卡尔坐标系应该都懂把XDD</p>
+<p>UE4提供三种的坐标轴：<img src="https://i.loli.net/2021/03/10/YQFzXaMPZT5wONB.png#pic_right" alt="image-20210310225142680">平移W、旋转E、缩放R用于对物体（Actor）进行操作</p>
+<p><img src="https://i.loli.net/2021/03/10/c5vtlDq7VCEpF3x.jpg#pic_left" alt="Move9.png">更精确的操作可以开启三种坐标轴的<strong>网格对齐模式</strong>。</p>
+<p>而中间这个地球图标是<strong>世界坐标系</strong>和<strong>物体坐标</strong>的切换。最右边的则是<strong>摄像机速度</strong></p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:left">操作</th>
+<th style="text-align:left">行为</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><strong>鼠标左键 + 拖拽 （目标为变换工具）</strong></td>
+<td style="text-align:left">根据当前激活的变换控件，对选中 Actor 进行移动、旋转、缩放。</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>W</strong></td>
+<td style="text-align:left">选择移动工具。</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>E</strong></td>
+<td style="text-align:left">选择旋转工具。</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>R</strong></td>
+<td style="text-align:left">选择缩放工具。</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>V</strong></td>
+<td style="text-align:left">开启/关闭顶点对齐，它允许对象吸附到关卡中的其他对象上。</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>鼠标中键 + 拖拽（目标为枢轴点）</strong></td>
+<td style="text-align:left">临时移动物体的枢轴点，以便进一步的旋转缩放调整。</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>Ctrl + W （目标为Actor）</strong></td>
+<td style="text-align:left">复制当前选中的 Actor。</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>H （目标为Actor）</strong></td>
+<td style="text-align:left">隐藏当前选中的 Actor。</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>Ctrl + H</strong></td>
+<td style="text-align:left">取消隐藏所有的 Actor</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>Shift + E （目标为Actor）</strong></td>
+<td style="text-align:left">依照当前选中的 Actor，选择关卡中所有同类型的其他 Actor。</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>Ctrl + 鼠标左键 （目标为Actor）</strong></td>
+<td style="text-align:left">将该 Actor 添加到当前选中 Actor 组中。</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>Alt + 鼠标左键对轴操作</strong></td>
+<td style="text-align:left">沿轴进行复制</td>
+</tr>
+</tbody>
+</table>
+</div>
+<ul>
+<li>所谓枢轴点可以在3DMAX等软件中调整，在UE4中调整的枢轴点只适用于当前关卡</li>
+</ul>
 
       
 
@@ -182,7 +311,11 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">杂谈</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">UE4</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">游戏</a>
         		</li>
       		
 		</ul>
@@ -201,15 +334,20 @@
   
 <nav id="article-nav">
   
-    <a href="/2021/01/20/linux/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2021/03/18/UE4%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0--%E5%9C%B0%E7%BC%96%E7%AF%87/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          linux 学习笔记（一）
+          UE4学习笔记--地编篇
         
       </div>
     </a>
   
+  
+    <a href="/2021/02/14/%E6%83%85%E4%BA%BA%E8%8A%82%E9%95%BF%E5%A4%9C%E6%BC%AB%E6%BC%AB%EF%BC%8C%E4%B8%8D%E5%A6%82%E5%87%BA%E9%81%93%E6%88%90%E4%B8%BA%E5%81%B6%E5%83%8F/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">情人节长夜漫漫，不如出道成为偶像</div>
+      <i class="icon-circle-right"></i>
+    </a>
   
 </nav>
 
@@ -234,7 +372,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#BE"><span class="toc-number">1.</span> <span class="toc-text">BE</span></a></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%89%8D%E8%A8%80"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A7%86%E5%8F%A3%E5%AF%BC%E8%88%AA"><span class="toc-number"></span> <span class="toc-text">视口导航</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%A7%86%E5%8F%A3%E7%95%8C%E9%9D%A2%E7%9A%84%E6%93%8D%E4%BD%9C"><span class="toc-number">1.</span> <span class="toc-text">视口界面的操作</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%A7%86%E5%8F%A3%E7%9A%84%E7%B1%BB%E5%9E%8B"><span class="toc-number">2.</span> <span class="toc-text">视口的类型</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%89%A9%E4%BD%93%E7%BC%96%E8%BE%91%E5%99%A8"><span class="toc-number"></span> <span class="toc-text">物体编辑器</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9D%90%E6%A0%87%E8%BD%B4"><span class="toc-number">1.</span> <span class="toc-text">坐标轴</span></a></li></ol>
                     </div>
                 </span>
             </div>
