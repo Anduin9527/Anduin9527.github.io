@@ -6,17 +6,27 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://lapras.xyz">
-  <title>Archives: 2021/2 | Anduin9527的博客</title>
+  <title>从零开始的数据结构-堆 | Anduin9527的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="南邮摸鱼ing">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Anduin9527的博客">
-<meta property="og:url" content="http://lapras.xyz/archives/2021/02/index.html">
+  <meta name="description" content="实习周摸鱼真不戳啊真不戳">
+<meta property="og:type" content="article">
+<meta property="og:title" content="从零开始的数据结构-堆">
+<meta property="og:url" content="http://lapras.xyz/2021/04/07/%E5%A0%86/index.html">
 <meta property="og:site_name" content="Anduin9527的博客">
-<meta property="og:description" content="南邮摸鱼ing">
+<meta property="og:description" content="实习周摸鱼真不戳啊真不戳">
 <meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://i.loli.net/2021/04/07/hxKN1d6rL9Xkg78.gif">
+<meta property="og:image" content="https://i.loli.net/2021/04/07/AMwUicPC2aWr6qd.gif">
+<meta property="og:image" content="c:%5CUsers%5CAdministrator%5CDesktop%5CGIF%202021-4-7%2023-23-44.gif">
+<meta property="og:image" content="https://i.loli.net/2021/04/07/ESQBAIXK5HO8YvL.gif">
+<meta property="article:published_time" content="2021-04-07T06:36:35.000Z">
+<meta property="article:modified_time" content="2021-04-07T15:28:38.870Z">
 <meta property="article:author" content="Anduin">
+<meta property="article:tag" content="数据结构">
+<meta property="article:tag" content="算法">
+<meta property="article:tag" content="堆">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://i.loli.net/2021/04/07/hxKN1d6rL9Xkg78.gif">
   
     <link rel="alternative" href="/atom.xml" title="Anduin9527的博客" type="application/atom+xml">
   
@@ -142,64 +152,168 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-堆" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2021" class="archive-year">2021</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/02/14/%E6%83%85%E4%BA%BA%E8%8A%82%E9%95%BF%E5%A4%9C%E6%BC%AB%E6%BC%AB%EF%BC%8C%E4%B8%8D%E5%A6%82%E5%87%BA%E9%81%93%E6%88%90%E4%B8%BA%E5%81%B6%E5%83%8F/" class="archive-article-date">
-  	<time datetime="2021-02-14T03:14:23.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-02-14</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2021/02/14/%E6%83%85%E4%BA%BA%E8%8A%82%E9%95%BF%E5%A4%9C%E6%BC%AB%E6%BC%AB%EF%BC%8C%E4%B8%8D%E5%A6%82%E5%87%BA%E9%81%93%E6%88%90%E4%B8%BA%E5%81%B6%E5%83%8F/">情人节长夜漫漫，不如出道成为偶像</a>
+    <h1 class="article-title" itemprop="name">
+      从零开始的数据结构-堆
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
+        
+        <a href="/2021/04/07/%E5%A0%86/" class="archive-article-date">
+  	<time datetime="2021-04-07T06:36:35.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-04-07</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>实习周摸鱼真不戳啊真不戳</p>
+<a id="more"></a>
+<h2 id="堆（Heap）"><a href="#堆（Heap）" class="headerlink" title="堆（Heap）"></a>堆（Heap）</h2><h2 id="二叉堆-Binary-Heap"><a href="#二叉堆-Binary-Heap" class="headerlink" title="二叉堆(Binary Heap)"></a>二叉堆(Binary Heap)</h2><h3 id="基本性质"><a href="#基本性质" class="headerlink" title="基本性质"></a>基本性质</h3><ul>
+<li>二叉堆是一棵<strong>完全二叉树</strong></li>
+<li>每个节点的键值都大于等于/小于等于其父结点的键值。<ul>
+<li>每个节点的键值都大于等于其父结点键值的堆叫<strong>小根堆/最小堆</strong>，</li>
+<li>每个节点的键值都小于等于其父结点键值的堆叫<strong>大根堆/最大堆</strong>。</li>
+<li><a target="_blank" rel="noopener" href="https://oi-wiki.org/lang/csl/container-adapter/#_13">STL 中的 <code>priority_queue</code></a> 其实就是一个大根堆。</li>
+</ul>
+</li>
+</ul>
+<h4 id="存储实现"><a href="#存储实现" class="headerlink" title="存储实现"></a>存储实现</h4><p>选择的是静态数组创建树的方式</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="keyword">int</span> ElementType;</span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">HeapNode</span> *<span class="title">MaxHeap</span>;</span></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">HeapNode</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">  ElementType *Data; <span class="comment">//储存堆键值的数组</span></span><br><span class="line">  <span class="keyword">int</span> Size;          <span class="comment">//堆的当前元素</span></span><br><span class="line">  <span class="keyword">int</span> Capacity;      <span class="comment">//堆的最大容量</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h3 id="操作集"><a href="#操作集" class="headerlink" title="操作集"></a>操作集</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">MaxHeap <span class="title">CtreatHeap</span><span class="params">(<span class="keyword">int</span> maxSize)</span></span>;          <span class="comment">//创建空堆</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">Insert</span><span class="params">(MaxHeap H, ElementType item)</span></span>; <span class="comment">//插入一个元素</span></span><br><span class="line"><span class="function">ElementType <span class="title">DeleteMax</span><span class="params">(MaxHeap H)</span></span>;         <span class="comment">// 从最大堆H中取出键值为最大的元素，并删除一个结点</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">BuildHeap</span><span class="params">(MaxHeap H)</span></span>;                <span class="comment">//建堆</span></span><br></pre></td></tr></table></figure>
+<h4 id="插入"><a href="#插入" class="headerlink" title="插入"></a>插入</h4><p>以大根堆为例，插入操作要保证插入后的二叉堆也是一颗<strong>完全二叉树</strong>。显然，我们选择最底层的最右边进行插入，然后令其与其父节点比较，<strong>向上调整</strong>。 值得一提的是，如果当前插入的元素大于堆中的任意元素则需要特判，或者在定义堆时建立了<strong>哨兵0</strong>（大于取值范围的最大值）。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">Insert</span><span class="params">(MaxHeap H, ElementType item)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="keyword">int</span> i;</span><br><span class="line">  <span class="keyword">if</span> (IsFull(H)) <span class="comment">//堆满</span></span><br><span class="line">  &#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;Heap is Fulled!&quot;</span>);</span><br><span class="line">    <span class="keyword">return</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">for</span> (i = ++H-&gt;Size; H-&gt;Data[i] &lt; item; i /= <span class="number">2</span>) <span class="comment">//在最小处开始，向上调整</span></span><br><span class="line">    H-&gt;Data[i] = H-&gt;Data[i / <span class="number">2</span>];                 <span class="comment">//父结点向下</span></span><br><span class="line">  H-&gt;Data[i] = item;                             <span class="comment">//插入</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>O(logn)</li>
+</ul>
+<p><img src="https://i.loli.net/2021/04/07/hxKN1d6rL9Xkg78.gif" alt="GIF 2021-4-7 23-19-52" style="zoom:67%;" /></p>
+<h4 id="删除"><a href="#删除" class="headerlink" title="删除"></a>删除</h4><blockquote>
+<p>删除操作指删除堆中最大的元素，即删除根结点。</p>
+<p>但是如果直接删除，则变成了两个堆，难以处理。</p>
+<p>所以不妨考虑插入操作的逆过程，设法将根结点移到最后一个结点，然后直接删掉。</p>
+<p>然而实际上不好做，我们通常采用的方法是，把根结点和最后一个结点直接交换。</p>
+<p>于是直接删掉（在最后一个结点处的）根结点，<strong>但是新的根结点可能不满足堆性质</strong>……</p>
+<p><strong>向下调整</strong>：在该结点的儿子中，找一个最大的，与该结点交换，重复此过程直到底层。</p>
+<p>可以证明，删除并向下调整后，没有其他结点不满足堆性质。</p>
+</blockquote>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">ElementType <span class="title">DeleteMax</span><span class="params">(MaxHeap H)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="keyword">int</span> Parent, Child;</span><br><span class="line">  ElementType MaxItem, X;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (IsEmpty(H))</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;最大堆已为空&quot;</span>);</span><br><span class="line">    <span class="keyword">return</span> ERROR;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  MaxItem = H-&gt;Data[<span class="number">1</span>]; <span class="comment">// 取出根结点</span></span><br><span class="line">  <span class="comment">/* 用最大堆中最后一个元素与根节点交换后从根结点开始向下调整 */</span></span><br><span class="line">  X = H-&gt;Data[H-&gt;Size--]; <span class="comment">// 记录最小值X注意当前堆的规模要减小</span></span><br><span class="line">  <span class="keyword">for</span> (Parent = <span class="number">1</span>; Parent * <span class="number">2</span> &lt;= H-&gt;Size; Parent = Child)</span><br><span class="line">  &#123;</span><br><span class="line">    Child = Parent * <span class="number">2</span>;</span><br><span class="line">    <span class="keyword">if</span> ((Child != H-&gt;Size) &amp;&amp; (H-&gt;Data[Child] &lt; H-&gt;Data[Child + <span class="number">1</span>]))</span><br><span class="line">      Child++; <span class="comment">// Child指向左右子结点的较大者</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (X &gt;= H-&gt;Data[Child])</span><br><span class="line">      <span class="keyword">break</span>; <span class="comment">/* 找到了合适位置 */</span></span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">      H-&gt;Data[Parent] = H-&gt;Data[Child];<span class="comment">//向下调整</span></span><br><span class="line">  &#125;</span><br><span class="line">  H-&gt;Data[Parent] = X;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> MaxItem;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>O(logn)</li>
+</ul>
+<p><img src="https://i.loli.net/2021/04/07/AMwUicPC2aWr6qd.gif" alt="GIF 2021-4-7 23-21-02"></p>
+<h4 id="建堆"><a href="#建堆" class="headerlink" title="建堆"></a>建堆</h4><p>如果用插入建堆，显然是O(nlogn)。<del>那么有没有一种</del></p>
+<p>再来观察一波插入和删除的操作。发现向上调整和向下调整是两个算法的核心，单独抽象出来看看：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">up</span><span class="params">(<span class="keyword">int</span> x)</span> </span>&#123;</span><br><span class="line">  <span class="keyword">while</span> (x &gt; <span class="number">1</span> &amp;&amp; h[x] &gt; h[x / <span class="number">2</span>]) &#123;</span><br><span class="line">    swap(h[x], h[x / <span class="number">2</span>]);</span><br><span class="line">    x /= <span class="number">2</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;<span class="comment">//自下而上同插入</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">down</span><span class="params">(<span class="keyword">int</span> x)</span> </span>&#123;</span><br><span class="line">  <span class="keyword">while</span> (x * <span class="number">2</span> &lt;= n) &#123;</span><br><span class="line">    t = x * <span class="number">2</span>;</span><br><span class="line">    <span class="keyword">if</span> (t + <span class="number">1</span> &lt;= n &amp;&amp; h[t + <span class="number">1</span>] &gt; h[t]) t++;</span><br><span class="line">    <span class="keyword">if</span> (h[t] &lt;= h[x]) <span class="keyword">break</span>;</span><br><span class="line">    <span class="built_in">std</span>::swap(h[x], h[t]);</span><br><span class="line">    x = t;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;<span class="comment">//自上而下同删除</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>考虑使用向上调整：显然复杂度为：$log1+log2+……+logn=O(nlogn)$<del>(留给读者自证)</del>证明见oiwiki</li>
+<li>考虑使用向下调整：不是很显然的得出复杂度为：$nlogn-log1-log2……-logn\le O(n)$</li>
+</ul>
+<p>具体地说明一下：</p>
+<ul>
+<li>考虑现在读入一个无序的二叉堆</li>
+<li>从最后一个具有子结点的结点开始，向下调整建立子堆</li>
+<li>向左移动，重复上述过程</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*----------- 建造最大堆 -----------*/</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">PercDown</span><span class="params">(MaxHeap H, <span class="keyword">int</span> p)</span></span></span><br><span class="line"><span class="function"></span>&#123; <span class="comment">/* 下滤：将H中以H-&gt;Data[p]为根的子堆调整为最大堆 */</span></span><br><span class="line">  <span class="keyword">int</span> Parent, Child;</span><br><span class="line">  ElementType X;</span><br><span class="line"></span><br><span class="line">  X = H-&gt;Data[p]; <span class="comment">/* 取出根结点存放的值 */</span></span><br><span class="line">  <span class="keyword">for</span> (Parent = p; Parent * <span class="number">2</span> &lt;= H-&gt;Size; Parent = Child)</span><br><span class="line">  &#123;</span><br><span class="line">    Child = Parent * <span class="number">2</span>;</span><br><span class="line">    <span class="keyword">if</span> ((Child != H-&gt;Size) &amp;&amp; (H-&gt;Data[Child] &lt; H-&gt;Data[Child + <span class="number">1</span>]))</span><br><span class="line">      Child++; <span class="comment">/* Child指向左右子结点的较大者 */</span></span><br><span class="line">    <span class="keyword">if</span> (X &gt;= H-&gt;Data[Child])</span><br><span class="line">      <span class="keyword">break</span>; <span class="comment">/* 找到了合适位置 */</span></span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">      H-&gt;Data[Parent] = H-&gt;Data[Child];</span><br><span class="line">  &#125;</span><br><span class="line">  H-&gt;Data[Parent] = X;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">BuildHeap</span><span class="params">(MaxHeap H)</span></span></span><br><span class="line"><span class="function"></span>&#123; <span class="comment">/* 调整H-&gt;Data[]中的元素，使满足最大堆的有序性  */</span></span><br><span class="line">  <span class="comment">/* 这里假设所有H-&gt;Size个元素已经存在H-&gt;Data[]中 */</span></span><br><span class="line">  <span class="keyword">int</span> i;</span><br><span class="line">  <span class="comment">/* 从最后一个结点的父节点开始，到根结点1 */</span></span><br><span class="line">  <span class="keyword">for</span> (i = H-&gt;Size / <span class="number">2</span>; i &gt; <span class="number">0</span>; i--)</span><br><span class="line">    PercDown(H, i);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><img src="C:%5CUsers%5CAdministrator%5CDesktop%5CGIF%202021-4-7%2023-23-44.gif" alt="GIF 2021-4-7 23-23-44" style="zoom:67%;" /></p>
+<p>向上调整O(nlogn)</p>
+<p><img src="https://i.loli.net/2021/04/07/ESQBAIXK5HO8YvL.gif" alt="GIF 2021-4-7 23-24-45" style="zoom:67%;" /></p>
+<p>向下调整O(n)</p>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><a target="_blank" rel="noopener" href="https://oi-wiki.org/ds/heap/">https://oi-wiki.org/ds/heap/</a></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">python</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">数据结构</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">fun</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">算法</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">堆</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
+      
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
   
   
-    </div></section>
+    <a href="/2021/04/01/%E6%A0%912/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">从零开始的数据结构-树（下）</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A0%86%EF%BC%88Heap%EF%BC%89"><span class="toc-number">1.</span> <span class="toc-text">堆（Heap）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E5%8F%89%E5%A0%86-Binary-Heap"><span class="toc-number">2.</span> <span class="toc-text">二叉堆(Binary Heap)</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9F%BA%E6%9C%AC%E6%80%A7%E8%B4%A8"><span class="toc-number">2.1.</span> <span class="toc-text">基本性质</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AD%98%E5%82%A8%E5%AE%9E%E7%8E%B0"><span class="toc-number">2.1.1.</span> <span class="toc-text">存储实现</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%93%8D%E4%BD%9C%E9%9B%86"><span class="toc-number">2.2.</span> <span class="toc-text">操作集</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%8F%92%E5%85%A5"><span class="toc-number">2.2.1.</span> <span class="toc-text">插入</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%88%A0%E9%99%A4"><span class="toc-number">2.2.2.</span> <span class="toc-text">删除</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%BB%BA%E5%A0%86"><span class="toc-number">2.2.3.</span> <span class="toc-text">建堆</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E8%80%83"><span class="toc-number">3.</span> <span class="toc-text">参考</span></a></li></ol>
+                    </div>
+                </span>
+            </div>
+        </div>
+        
+    </div>
+</aside>
+
+
+
+  
+  
   
 
-    
+  
+
+  
+
+  
 
 
           </div>
@@ -222,8 +336,8 @@
 	var yiliaConfig = {
 		mathjax: true,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
