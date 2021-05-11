@@ -36,7 +36,7 @@
   const wordcloud_canvas = document.getElementById('wordcloud-canvas')
   wordcloud_canvas.width = document.querySelector('#page').clientWidth - 16
   wordcloud_canvas.height = 350
-  let wordcloud_config = {"list":[["UE4",1.2,"/tags/UE4/"],["游戏",1.2,"/tags/游戏/"],["linux",1.2,"/tags/linux/"],["python",1.1,"/tags/python/"],["fun",1.1,"/tags/fun/"],["杂谈",1.1,"/tags/杂谈/"],["c/c++",1.1,"/tags/c-c/"],["语法",1.1,"/tags/语法/"],["数据结构",1.4,"/tags/数据结构/"],["算法",1.4,"/tags/算法/"],["堆",1.1,"/tags/堆/"],["树",1.2,"/tags/树/"]],"fontFamily":"'PingFang SC', 'Microsoft YaHei', Roboto, Arial, sans-serif","fontWeight":400,"gridSize":10,"weightFactor":13,"backgroundColor":"transparent","color":"random-dark"}
+  let wordcloud_config = {"list":[["UE4",1.2,"/tags/UE4/"],["游戏",1.2,"/tags/游戏/"],["linux",1.2,"/tags/linux/"],["c/c++",1.1,"/tags/c-c/"],["语法",1.1,"/tags/语法/"],["数据结构",1.4,"/tags/数据结构/"],["算法",1.4,"/tags/算法/"],["堆",1.1,"/tags/堆/"],["杂谈",1.1,"/tags/杂谈/"],["python",1.1,"/tags/python/"],["fun",1.1,"/tags/fun/"],["树",1.2,"/tags/树/"]],"fontFamily":"'PingFang SC', 'Microsoft YaHei', Roboto, Arial, sans-serif","fontWeight":400,"gridSize":10,"weightFactor":13,"backgroundColor":"transparent","color":"random-dark"}
   wordcloud_config.hover = function(item, dimension){
     if (!dimension) {
       wordbox.hidden = true
