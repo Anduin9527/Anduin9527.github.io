@@ -209,8 +209,8 @@ codeblock:
     dark: tomorrow
 
 katex:
-  copy_tex: false
-  global: false
+  copy_tex: true
+  global: true
 
 albums:
   enable: false
@@ -256,6 +256,7 @@ categories:
   算法学习: "#317ec7"
   整活: "#f3c9f9"
   折腾系列: "#e67e22"
+  数学建模: ""
 
 pages:
   - name: 我的小伙伴们
