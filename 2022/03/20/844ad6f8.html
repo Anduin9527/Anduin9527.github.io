@@ -1,0 +1,217 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="theme-color" content="#66d6ff"><meta name="author" content="Anduin9527"><meta name="copyright" content="Anduin9527"><meta name="generator" content="Hexo 6.2.0"><meta name="theme" content="hexo-theme-yun"><title>SSH的二三事 | Anduin9527的乖离器</title><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@900&amp;display=swap" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://fastly.jsdelivr.net/npm/star-markdown-css@0.3.3/dist/yun/yun-markdown.min.css"><link rel="stylesheet" href="https://fastly.jsdelivr.net/npm/prism-theme-vars/base.css"><script src="https://fastly.jsdelivr.net/npm/scrollreveal/dist/scrollreveal.min.js" defer></script><script>function initScrollReveal() {
+  [".post-card",".markdown-body img"].forEach((target)=> {
+    ScrollReveal().reveal(target);
+  })
+}
+document.addEventListener("DOMContentLoaded", initScrollReveal);
+document.addEventListener("pjax:success", initScrollReveal);
+</script><link rel="icon" type="image/svg+xml" href="/images/favicon.svg"><link rel="mask-icon" href="/images/favicon.svg" color="#66d6ff"><link rel="preload" href="/css/hexo-theme-yun.css" as="style"><link rel="prefetch" href="/js/sidebar.js" as="script"><link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin><link rel="preconnect" href="https://fastly.jsdelivr.net/npm/" crossorigin><script id="yun-config">
+    window.Yun = {}
+    window.CONFIG = {"hostname":"lapras.xyz","root":"/","title":["拉普","拉斯~","的","乖离器"],"version":"1.10.4","mode":"auto","copycode":true,"page":{"isPost":true},"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}.","hits":"${hits} results found","hits_time":"${hits} results found in ${time} ms"},"anonymous_image":"https://cdn.yunyoujun.cn/img/avatar/none.jpg","fireworks":{"colors":["#00D1CE","#66D6FF","#919191"]},"vendors":{"darken":"https://fastly.jsdelivr.net/npm/darken@1.5.0"}};
+  </script><link rel="stylesheet" href="/css/hexo-theme-yun.css"><script src="/js/hexo-theme-yun.js" type="module"></script><link rel="alternate" href="/atom.xml" title="Anduin9527的乖离器" type="application/atom+xml"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@900&amp;display=swap"><script src="/h" async></script><script src="/t" async></script><script src="/t" async></script><script src="/p" async></script><script src="/s" async></script><script src="/:" async></script><script src="/" async></script><script src="/" async></script><script src="/c" async></script><script src="/d" async></script><script src="/n" async></script><script src="/." async></script><script src="/j" async></script><script src="/s" async></script><script src="/d" async></script><script src="/e" async></script><script src="/l" async></script><script src="/i" async></script><script src="/v" async></script><script src="/r" async></script><script src="/." async></script><script src="/n" async></script><script src="/e" async></script><script src="/t" async></script><script src="/" async></script><script src="/n" async></script><script src="/p" async></script><script src="/m" async></script><script src="/" async></script><script src="/i" async></script><script src="/o" async></script><script src="/n" async></script><script src="/i" async></script><script src="/c" async></script><script src="/o" async></script><script src="/n" async></script><script src="/s" async></script><script src="/" async></script><script src="/d" async></script><script src="/i" async></script><script src="/s" async></script><script src="/t" async></script><script src="/" async></script><script src="/i" async></script><script src="/o" async></script><script src="/n" async></script><script src="/i" async></script><script src="/c" async></script><script src="/o" async></script><script src="/n" async></script><script src="/s" async></script><script src="/." async></script><script src="/j" async></script><script src="/s" async></script><link rel="preconnect" href="https://www.google-analytics.com" crossorigin><script async src="https://www.googletagmanager.com/gtag/js?id=G-NSLVQ2H5JH"></script><script>if (CONFIG.hostname === location.hostname) {
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-NSLVQ2H5JH');
+}</script><script>(function(){
+  var bp = document.createElement('script');
+  var curProtocol = window.location.protocol.split(':')[0];
+  if (curProtocol === 'https') {
+    bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+  }
+  else {
+    bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+  }
+  var s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(bp, s);
+})();</script><meta name="description" content="前言来学校上了两周网课，两周线下，现在又要上网课了G！上网课就算了，我还要给学弟上网课哈哈。整一波虚拟教师V出道">
+<meta property="og:type" content="article">
+<meta property="og:title" content="SSH的二三事">
+<meta property="og:url" content="http://lapras.xyz/2022/03/20/844ad6f8.html">
+<meta property="og:site_name" content="Anduin9527的乖离器">
+<meta property="og:description" content="前言来学校上了两周网课，两周线下，现在又要上网课了G！上网课就算了，我还要给学弟上网课哈哈。整一波虚拟教师V出道">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://imgbed-1304793179.cos.ap-nanjing.myqcloud.com/typora/20220320002327.jpg">
+<meta property="og:image" content="https://imgbed-1304793179.cos.ap-nanjing.myqcloud.com/typora/20220319224716.png">
+<meta property="article:published_time" content="2022-03-19T16:18:05.000Z">
+<meta property="article:modified_time" content="2022-03-21T04:56:29.869Z">
+<meta property="article:author" content="Anduin9527">
+<meta property="article:tag" content="教程">
+<meta property="article:tag" content="网络">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://imgbed-1304793179.cos.ap-nanjing.myqcloud.com/typora/20220320002327.jpg"><script type="module">import { getScript } from '/js/utils.js'
+getScript("https://fastly.jsdelivr.net/npm/mermaid/dist/mermaid.min.js", () => {
+  const mermaidOptions = {"startOnload":true}
+  mermaid.initialize(mermaidOptions);
+}, window.mermaid);
+</script><style>.mermaid{background: transparent;}</style><script>(function() {
+  const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
+  const setting = localStorage.getItem('darken-mode') || 'auto'
+  if (setting === 'dark' || (prefersDark && setting !== 'light'))
+    document.documentElement.classList.toggle('dark', true)
+})()</script></head><body><script src="https://code.iconify.design/2/2.1.1/iconify.min.js"></script><script>// Define global variable
+IconifyProviders = {
+  // Empty prefix: overwrite default API provider configuration
+  '': {
+    // Use custom API first, use Iconify public API as backup
+    resources: [
+        'https://api.iconify.design',
+    ],
+    // Wait for 1 second before switching API hosts
+    rotate: 1000,
+  },
+};</script><script defer src="https://fastly.jsdelivr.net/npm/animejs@latest"></script><script defer src="/js/ui/fireworks.js" type="module"></script><canvas class="fireworks"></canvas><div class="container"><a class="sidebar-toggle hty-icon-button" id="menu-btn"><div class="hamburger hamburger--spin" type="button"><span class="hamburger-box"><span class="hamburger-inner"></span></span></div></a><div class="sidebar-toggle sidebar-overlay"></div><aside class="sidebar"><script src="/js/sidebar.js" type="module"></script><ul class="sidebar-nav"><li class="sidebar-nav-item sidebar-nav-toc hty-icon-button sidebar-nav-active" data-target="post-toc-wrap" title="Table of Contents"><span class="icon iconify" data-icon="ri:list-ordered"></span></li><li class="sidebar-nav-item sidebar-nav-overview hty-icon-button" data-target="site-overview-wrap" title="Overview"><span class="icon iconify" data-icon="ri:passport-line"></span></li></ul><div class="sidebar-panel" id="site-overview-wrap"><div class="site-info fix-top"><a class="site-author-avatar" href="/about/" title="Anduin9527"><img width="96" loading="lazy" src="/images/avatar.jpg" alt="Anduin9527"><span class="site-author-status" title="建模建模呜呜呜！">😭</span></a><div class="site-author-name"><a href="/about/">Anduin9527</a></div><span class="site-name">Anduin9527的乖离器</span><sub class="site-subtitle">正在进修摸鱼学导论</sub><div class="site-description">南邮摸鱼ing</div></div><nav class="site-state"><a class="site-state-item hty-icon-button icon-home" href="/" title="Home"><span class="site-state-item-icon"><span class="icon iconify" data-icon="ri:home-4-line"></span></span></a><div class="site-state-item"><a href="/archives/" title="Archives"><span class="site-state-item-icon"><span class="icon iconify" data-icon="ri:archive-line"></span></span><span class="site-state-item-count">24</span></a></div><div class="site-state-item"><a href="/categories/" title="Categories"><span class="site-state-item-icon"><span class="icon iconify" data-icon="ri:folder-2-line"></span></span><span class="site-state-item-count">5</span></a></div><div class="site-state-item"><a href="/tags/" title="Tags"><span class="site-state-item-icon"><span class="icon iconify" data-icon="ri:price-tag-3-line"></span></span><span class="site-state-item-count">24</span></a></div><a class="site-state-item hty-icon-button" target="_blank" rel="noopener" href="https://yun.yunyoujun.cn" title="文档"><span class="site-state-item-icon"><span class="icon iconify" data-icon="ri:settings-line"></span></span></a></nav><hr style="margin-bottom:0.5rem"><div class="links-of-author"><a class="links-of-author-item hty-icon-button" rel="noopener" href="tencent://message/?uin=2676057183&amp;Site=&amp;Menu=yes" title="QQ" target="_blank" style="color:#12B7F5"><span class="icon iconify" data-icon="ri:qq-line"></span></a><a class="links-of-author-item hty-icon-button" rel="noopener" href="https://github.com/Anduin9527" title="GitHub" target="_blank" style="color:#181717"><span class="icon iconify" data-icon="ri:github-line"></span></a><a class="links-of-author-item hty-icon-button" rel="noopener" href="mailto:2676057183@qq.com" title="E-Mail" target="_blank" style="color:#8E71C1"><span class="icon iconify" data-icon="ri:mail-line"></span></a><a class="links-of-author-item hty-icon-button" rel="noopener" href="https://music.163.com/#/user/home?id=579015212" title="网易云音乐" target="_blank" style="color:#C10D0C"><span class="icon iconify" data-icon="ri:netease-cloud-music-line"></span></a><a class="links-of-author-item hty-icon-button" rel="noopener" href="https://www.zhihu.com/people/chu-liu-16-64" title="知乎" target="_blank" style="color:#0084FF"><span class="icon iconify" data-icon="ri:zhihu-line"></span></a><a class="links-of-author-item hty-icon-button" rel="noopener" href="https://space.bilibili.com/21994551" title="哔哩哔哩动画" target="_blank" style="color:#FF8EB3"><span class="icon iconify" data-icon="ri:bilibili-line"></span></a><a class="links-of-author-item hty-icon-button" rel="noopener" href="/atom.xml" title="RSS" target="_blank" style="color:orange"><span class="icon iconify" data-icon="ri:rss-line"></span></a></div><hr style="margin:0.5rem 1rem"><div class="links"><a class="links-item hty-icon-button" href="/links/" title="我的小伙伴们" style="color:dodgerblue"><span class="icon iconify" data-icon="ri:genderless-line"></span></a><a class="links-item hty-icon-button" href="/girls/" title="我永远喜欢oo" style="color:hotpink"><span class="icon iconify" data-icon="ri:women-line"></span></a></div><br><a class="links-item hty-icon-button" id="toggle-mode-btn" href="javascript:;" title="Mode" style="color: #f1cb64"><span class="icon iconify" data-icon="ri:contrast-2-line"></span></a></div><div class="sidebar-panel sidebar-panel-active" id="post-toc-wrap"><div class="post-toc"><div class="post-toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%89%8D%E8%A8%80"><span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AFSSH"><span class="toc-text">什么是SSH</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%89%E8%A3%85SSH%E6%9C%8D%E5%8A%A1"><span class="toc-text">安装SSH服务</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#SSH%E5%9F%BA%E7%A1%80%E7%94%A8%E6%B3%95"><span class="toc-text">SSH基础用法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B8%B8%E7%94%A8%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6"><span class="toc-text">常用配置文件</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#config"><span class="toc-text">config</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#sshd-config"><span class="toc-text">sshd_config</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%AC%E7%A7%81%E9%92%A5%E7%9A%84%E6%A6%82%E5%BF%B5"><span class="toc-text">公私钥的概念</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%8A%E4%BC%A0SSH%E5%85%AC%E9%92%A5%E7%9A%84%E4%B8%89%E7%A7%8D%E5%A7%BF%E5%8A%BF"><span class="toc-text">上传SSH公钥的三种姿势</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#ManualSimulation"><span class="toc-text">ManualSimulation</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#scp"><span class="toc-text">scp</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#ssh-copy-id"><span class="toc-text">ssh-copy-id</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#SSH%E7%AB%AF%E5%8F%A3%E8%BD%AC%E5%8F%91"><span class="toc-text">SSH端口转发</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9C%AC%E5%9C%B0%E8%BD%AC%E5%8F%91%EF%BC%88%E6%AD%A3%E5%90%91%E8%BD%AC%E5%8F%91%EF%BC%89"><span class="toc-text">本地转发（正向转发）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BF%9C%E7%A8%8B%E8%BD%AC%E5%8F%91%EF%BC%88%E5%8F%8D%E5%90%91%E8%BD%AC%E5%8F%91%EF%BC%89"><span class="toc-text">远程转发（反向转发）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Tips"><span class="toc-text">Tips</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E8%80%83"><span class="toc-text">参考</span></a></li></ol></div></div></div></aside><main class="sidebar-translate" id="content"><div id="post"><article class="hty-card post-block" itemscope itemtype="https://schema.org/Article" style="--smc-primary:#66d6ff;"><link itemprop="mainEntityOfPage" href="http://lapras.xyz/2022/03/20/844ad6f8.html"><span hidden itemprop="author" itemscope itemtype="https://schema.org/Person"><meta itemprop="name" content="Anduin9527"><meta itemprop="description"></span><span hidden itemprop="publisher" itemscope itemtype="https://schema.org/Organization"><meta itemprop="name" content="Anduin9527的乖离器"></span><header class="post-header"><h1 class="post-title" itemprop="name headline">SSH的二三事</h1><div class="post-meta"><div class="post-time" style="display:block"><span class="post-meta-item-icon"><span class="icon iconify" data-icon="ri:calendar-line"></span></span> <time title="Created: 2022-03-20 00:18:05" itemprop="dateCreated datePublished" datetime="2022-03-20T00:18:05+08:00">2022-03-20</time><span class="post-meta-divider">-</span><span class="post-meta-item-icon"><span class="icon iconify" data-icon="ri:calendar-2-line"></span></span> <time title="Modified: 2022-03-21 12:56:29" itemprop="dateModified" datetime="2022-03-21T12:56:29+08:00">2022-03-21</time></div><span class="post-count"><span class="post-symbolcount"><span class="post-meta-item-icon" title="Word count in article"><span class="icon iconify" data-icon="ri:file-word-line"></span></span> <span title="Word count in article">2.7k</span><span class="post-meta-divider">-</span><span class="post-meta-item-icon" title="Reading time"><span class="icon iconify" data-icon="ri:timer-line"></span></span> <span title="Reading time">10m</span></span></span><div class="post-classify"><span class="post-category"> <span class="post-meta-item-icon" style="margin-right:3px;"><span class="icon iconify" data-icon="ri:folder-line"></span></span><span itemprop="about" itemscope itemtype="https://schema.org/Thing"><a class="category-item" href="/categories/%E9%A1%B9%E7%9B%AE%E7%BB%8F%E5%8E%86/" style="--text-color:#4ba700" itemprop="url" rel="index"><span itemprop="text">项目经历</span></a></span></span><span class="post-tag"><span class="post-meta-divider">-</span><a class="tag-item" href="/tags/%E6%95%99%E7%A8%8B/" style="--text-color:royalblue"><span class="post-meta-item-icon"><span class="icon iconify" data-icon="ri:price-tag-3-line"></span></span><span class="tag-name">教程</span></a><a class="tag-item" href="/tags/%E7%BD%91%E7%BB%9C/" style="--text-color:#1cafdb"><span class="post-meta-item-icon"><span class="icon iconify" data-icon="ri:price-tag-3-line"></span></span><span class="tag-name">网络</span></a></span></div></div></header><section class="post-body" itemprop="articleBody"><div class="post-content markdown-body"><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>来学校上了两周网课，两周线下，现在又要上网课了G！上网课就算了，我还要给学弟上网课哈哈。整一波虚拟教师V出道</p>
+<img src="https://imgbed-1304793179.cos.ap-nanjing.myqcloud.com/typora/20220320002327.jpg" alt="63476067_p0_master1200" style="zoom: 67%;" / loading="lazy">
+
+<span id="more"></span>
+
+<h2 id="什么是SSH"><a href="#什么是SSH" class="headerlink" title="什么是SSH"></a>什么是SSH</h2><blockquote>
+<p>SSH（Secure Shell 的缩写）是一种网络协议，用于加密两台计算机之间的通信，并且支持各种身份验证机制。</p>
+<p>实际使用中，它主要用于保证远程登录和远程通信的安全，任何网络服务都可以用这个协议来加密。</p>
+</blockquote>
+<p>比如我们都知道的 Github 下载源代码有两种方式，HTTPS 和 一种形如<code>git@github.com:username/repositoryname.git</code>的连接，这其实就是一种 SSH 协议。</p>
+<p>再比如我们要操作机房里的服务器，不可能给每一台服务器都配上键盘鼠标显示器，一般都是通过网络的方式远程访问一台服务器。就类似于 TeamViewer 的远程桌面。</p>
+<h3 id="安装SSH服务"><a href="#安装SSH服务" class="headerlink" title="安装SSH服务"></a>安装SSH服务</h3><p>现在几乎所有的 Linux 发行版、Windows 以及 MacOS 基本都自带了<code>ssh</code>服务，其中绝大部分都是 OpenSSH ，这是一个关于实现 SSH-2 协议的开源项目，其中还包含了一些常用的辅助工具比如：<code>ssh-keygen</code>、<code>ssh-agent</code>、<code>scp</code>以及<code>sftp</code>。</p>
+<p>所以绝大部分的电脑都是有<code>ssh</code>的，可以用<code>ssh -V</code>简单地查看一下。</p>
+<pre class="language-bash" data-language="bash"><code class="language-bash"><span class="token comment">#安装</span>
+<span class="token function">sudo</span> <span class="token function">apt</span> <span class="token function">install</span> openssh-client
+<span class="token function">sudo</span> dnf <span class="token function">install</span> openssh-clients</code></pre>
+
+<p>然后你就可以用<code>service</code>或者<code>systemctl</code>之类的开启<code>sshd</code>服务。</p>
+<h2 id="SSH基础用法"><a href="#SSH基础用法" class="headerlink" title="SSH基础用法"></a>SSH基础用法</h2><pre class="language-bash" data-language="bash"><code class="language-bash"><span class="token function">ssh</span> <span class="token punctuation">&#123;</span>user<span class="token punctuation">&#125;</span>@<span class="token punctuation">&#123;</span>remote_host<span class="token punctuation">&#125;</span> -p <span class="token punctuation">&#123;</span><span class="token number">22</span><span class="token punctuation">&#125;</span> <span class="token builtin class-name">command</span></code></pre>
+
+<ul>
+<li><code>remote_host</code>可以是一个 IP 地址，也可以是一个可被 DNS 解析的域名（Domain）。</li>
+<li><code>ssh</code>除了可以登录之外，还可以在后面直接添加一条命令<code>command</code>，会返回命令的<code>STDOUT</code>。利用这个可以写一些脚本儿。</li>
+<li><code>-p</code>制定了<code>ssh</code>服务的端口，默认都是22。</li>
+<li>看看<code>config</code>以及<code>known_hosts</code></li>
+</ul>
+<h3 id="常用配置文件"><a href="#常用配置文件" class="headerlink" title="常用配置文件"></a>常用配置文件</h3><p>SSH 客户端的全局配置文件是<code>/etc/ssh/ssh_config</code>，用户配置文件在<code>~/.ssh/config</code>，用户配置文件优先级更高</p>
+<p>SSH 服务端的配置文件是<code>/etc/ssh/sshd_config</code></p>
+<h4 id="config"><a href="#config" class="headerlink" title="config"></a>config</h4><pre class="language-none"><code class="language-none">Host &#123;remoteserver&#125;
+     HostName &#123;remote_host&#125;
+     User &#123;username&#125;
+     Port 2222
+     IdentityFile ~&#x2F;.ssh&#x2F;id_rsa
+     ProxyCommand &#123;...&#125;
+Host *
+     Port 233
+     User root</code></pre>
+
+<ul>
+<li><code>Host *</code>匹配了所有的<code>remote_host</code>，也就是当所有匹配不成功的最后选项。后面的<code>Port</code>表示所有主机的默认连接端口都是233，<code>User</code>表示默认登录用户为 root 。 </li>
+<li><code>remoteserver</code>是<code>remote_host</code>的别名</li>
+<li><code>IdentityFile</code>是指定用来登录验证的私钥文件，与<code>ssh -i &#123;path/to/id_rsa&#125;</code>的作用相同</li>
+<li>还有一个<code>ProxyCommand</code>它大概有两个使用场景（原理都一样），一个是用代理进行<code>ssh</code>，另一个是使用跳板机（中转机）。这个我们后面的端口转发篇再说。 与<code>ssh -o &quot;&#123;ProxyCommand&#125;&quot;</code>作用相同，这里假设我要用本地的<code>Clash</code>7890端口做一个<code>socks5</code>协议的代理。</li>
+</ul>
+<pre class="language-bash" data-language="bash"><code class="language-bash"><span class="token comment">#Windows 使用 git 自带的 connect 工具</span>
+ProxyCommand connect -S <span class="token number">127.0</span>.0.1:7890 %h %p
+<span class="token comment">#Linux 使用 netcat 也就是 nc 工具</span>
+ProxyCommand <span class="token function">nc</span> -X <span class="token number">5</span> -x <span class="token number">127.0</span>.0.1:7890 %h %p</code></pre>
+
+<ul>
+<li><code>%p</code>和<code>%h</code>分别是<code>ssh</code>的端口号以及<code>remote_host</code></li>
+<li><code>connect</code><ul>
+<li><code>-S</code>和<code>-H</code>分别是<code>socks</code>和<code>HTTPS</code>代理</li>
+</ul>
+</li>
+<li><code>nc</code><ul>
+<li><code>-X 5</code>指定代理协议为<code>socks 5</code>，如果是<code>HTTPS</code>代理则为<code>-X connect</code></li>
+<li><code>-x</code>指定代理的主机地址和端口</li>
+</ul>
+</li>
+</ul>
+<p>登录之后可以用<code>who -a</code>查看一下登录的 IP 是否是你的代理服务器 IP。</p>
+<p>当你用<code>ssh</code>成功登录一次后，会自动在<code>config</code>文件中生成对应的配置文件，<code>IdentityFile</code>默认缺省。这样，以后我们<code>ssh</code>一个已经在<code>config</code>中的主机的时候，可以直接<code>ssh remoteserver</code>登录，而不需要写一串命令。</p>
+<h4 id="sshd-config"><a href="#sshd-config" class="headerlink" title="sshd_config"></a>sshd_config</h4><ul>
+<li><strong>Port</strong>：建议改为非22的LuckyNumber，防止被扫端口弱口令爆破。</li>
+<li><strong>PermitRootLogin</strong>：是否允许 root 账号直接登录。设置为 no 可以有效防止自己<code>rm -rf /</code>的欲望</li>
+<li><strong>PermitEmptyPasswords</strong>：是否允许空密码登录。如果设置为 yes 并且登录的用户密码为空，则可以使用这个用户免密码登录。</li>
+<li><strong>PasswordAuthentication</strong>：是否允许密码登录。如果设置为 no 可以增加安全性。</li>
+<li><strong>PrintMotd</strong>： 打印登录提示信息，提示信息存储在&#x2F;etc&#x2F;moed文件中</li>
+<li>更改配置项后，记得重启<code>sshd</code>服务</li>
+</ul>
+<pre class="language-bash" data-language="bash"><code class="language-bash"><span class="token function">sudo</span> systemctl restart sshd.service</code></pre>
+
+<h3 id="公私钥的概念"><a href="#公私钥的概念" class="headerlink" title="公私钥的概念"></a>公私钥的概念</h3><p>上面我们使用<code>ssh</code>的时候每一次登录都需要输入密码，这并不安全，其次非常麻烦。<code>ssh</code>鼓励用户使用非对称加密的<strong>公私钥验证</strong>来进行登录，而不是使用密码。所谓的<strong>公私钥验证</strong>，本质上是一套加密算法生成出的一对RSA<strong>公钥</strong>和<strong>私钥</strong>。其中<strong>私钥</strong>自行保存，而<strong>公钥</strong>可以用来放在远程的服务器上。这样当远程的服务器接收到来自由你私钥发出的命令后，会使用之前存放的公钥进行认证。免去了在网络明文使用密码传输的风险。在<code>ssh</code>中，我们可以使用<code>ssh-keygen</code>来生成一对公私钥。</p>
+<ul>
+<li>小试一下（使用<code>ssh-keygen</code>生成并查看）</li>
+<li><code>ssh-keygen</code>除了用来生成密钥，还可以用来删除失效变更的公钥指纹（known_hosts），这通常发生在远程服务器出于某些原因被重置了。</li>
+</ul>
+<pre class="language-bash" data-language="bash"><code class="language-bash">ssh-keygen -R <span class="token punctuation">&#123;</span>remote_host<span class="token punctuation">&#125;</span></code></pre>
+
+<h3 id="上传SSH公钥的三种姿势"><a href="#上传SSH公钥的三种姿势" class="headerlink" title="上传SSH公钥的三种姿势"></a>上传SSH公钥的三种姿势</h3><p>上传公钥的最终目的是在你要登录用户的<code>~/.ssh/authorized_keys</code>文件中追加你的<strong>公钥文本</strong>。如果目标用户没有这个文件，需要先自行创建，并修改对应的<strong>权限</strong>，否则<code>ssh</code>不会信任你的公钥。</p>
+<pre class="language-bash" data-language="bash"><code class="language-bash"><span class="token function">chmod</span> <span class="token number">600</span> ~/.ssh/authorized_keys
+<span class="token function">chmod</span> <span class="token number">700</span> ~/.ssh</code></pre>
+
+<h4 id="ManualSimulation"><a href="#ManualSimulation" class="headerlink" title="ManualSimulation"></a>ManualSimulation</h4><pre class="language-bash" data-language="bash"><code class="language-bash"><span class="token function">mkdir</span> ~/.ssh
+<span class="token function">touch</span> ~/.ssh/authorized_keys
+<span class="token function">vim</span> ~/.ssh/authorized_keys
+<span class="token comment">#把公钥复制粘贴进去</span></code></pre>
+
+<p>当然，如果你熟悉管道运算符，你还可以一句话搞定</p>
+<pre class="language-bash" data-language="bash"><code class="language-bash"><span class="token function">cat</span> ~/.ssh/id_rsa.pub <span class="token operator">|</span> <span class="token function">ssh</span> <span class="token punctuation">&#123;</span>user<span class="token punctuation">&#125;</span>@<span class="token punctuation">&#123;</span>remote_host<span class="token punctuation">&#125;</span> <span class="token string">"mkdir -p ~/.ssh &amp;&amp; cat >> ~/.ssh/authorized_keys"</span></code></pre>
+
+<h4 id="scp"><a href="#scp" class="headerlink" title="scp"></a>scp</h4><p><code>scp</code>是 SSH 提供的一个客户端程序，用来在两台主机之间加密传送文件（即复制文件）。其用法和<code>cp</code>类似。</p>
+<pre class="language-bash" data-language="bash"><code class="language-bash"><span class="token function">scp</span> ~/.ssh/id_rsa.pub <span class="token punctuation">&#123;</span>user<span class="token punctuation">&#125;</span>@<span class="token punctuation">&#123;</span>remote_host<span class="token punctuation">&#125;</span>:~/
+<span class="token function">ssh</span> <span class="token punctuation">&#123;</span>user<span class="token punctuation">&#125;</span>@<span class="token punctuation">&#123;</span>remote_host<span class="token punctuation">&#125;</span> <span class="token string">"cat ~/id_rsa.pub >> ~/.ssh/authorized_keys"</span>
+<span class="token function">rm</span> ~/id_rsa.pub
+<span class="token comment"># 或者</span>
+<span class="token function">scp</span> ~/.ssh/id_rsa.pub <span class="token punctuation">&#123;</span>user<span class="token punctuation">&#125;</span>@<span class="token punctuation">&#123;</span>remote_host<span class="token punctuation">&#125;</span>:~/.ssh/authorized_keys</code></pre>
+
+<h4 id="ssh-copy-id"><a href="#ssh-copy-id" class="headerlink" title="ssh-copy-id"></a>ssh-copy-id</h4><p>OpenSSH 自带一个<code>ssh-copy-id</code>命令，可以自动将公钥拷贝到远程服务器的<code>~/.ssh/authorized_keys</code>文件。如果<code>~/.ssh/authorized_keys</code>文件不存在，<code>ssh-copy-id</code>命令会自动创建该文件。</p>
+<pre class="language-bash" data-language="bash"><code class="language-bash">ssh-copy-id -i key_file user@host</code></pre>
+
+<ul>
+<li>注意，<code>ssh-copy-id</code>是直接将公钥添加到<code>authorized_keys</code>文件的末尾。如果<code>authorized_keys</code>文件的末尾不是一个换行符，会导致新的公钥添加到前一个公钥的末尾，两个公钥连在一起，使得它们都无法生效。所以，如果<code>authorized_keys</code>文件已经存在，使用<code>ssh-copy-id</code>命令之前，务必保证<code>authorized_keys</code>文件的末尾是换行符（假设该文件已经存在）。</li>
+</ul>
+<h2 id="SSH端口转发"><a href="#SSH端口转发" class="headerlink" title="SSH端口转发"></a>SSH端口转发</h2><blockquote>
+<p>SSH 除了登录服务器，还有一大用途，就是作为加密通信的中介，充当两台服务器之间的通信加密跳板，使得原本不加密的通信变成加密通信。这个功能称为端口转发（port forwarding），又称 SSH 隧道（tunnel）。</p>
+<p>端口转发有两个主要作用：</p>
+<p>（1）将不加密的数据放在 SSH 安全连接里面传输，使得原本不安全的网络服务增加了安全性，比如通过端口转发访问 Telnet、FTP 等明文服务，数据传输就都会加密。</p>
+<p>（2）作为数据通信的加密跳板，绕过网络防火墙。</p>
+</blockquote>
+<h3 id="本地转发（正向转发）"><a href="#本地转发（正向转发）" class="headerlink" title="本地转发（正向转发）"></a>本地转发（正向转发）</h3><p>把远程服务器的端口映射到本地，绕过防火墙和安全组的限制。比如我在远程服务器的8888端口运行了一个不知名的 Web 应用，如果我要在公网临时查看他的部署结果，毕竟远程服务器一般情况下是没有<code>GUI</code>的，那么我必须开防火墙和安全组让这个端口暴露在公网，完事后还得再关上，比较麻烦。那么就可以使用<code>ssh</code>本地转发。</p>
+<pre class="language-bash" data-language="bash"><code class="language-bash"><span class="token function">ssh</span> -L <span class="token punctuation">[</span>local-remote:<span class="token punctuation">]</span><span class="token punctuation">&#123;</span>local-port<span class="token punctuation">&#125;</span>:<span class="token punctuation">&#123;</span>target-host<span class="token punctuation">&#125;</span>:<span class="token punctuation">&#123;</span>target-port<span class="token punctuation">&#125;</span> <span class="token punctuation">&#123;</span>tunnel-host<span class="token punctuation">&#125;</span></code></pre>
+
+<ul>
+<li><code>local-remote</code>缺省为本机</li>
+<li><code>tunnel-host</code>就是一句能正常登陆你的远程服务器的<code>ssh</code>连接语句</li>
+<li><code>local-port</code>是映射到本地的某个端口</li>
+<li><code>target-host</code>为最终的<code>remote_host</code>，如果是访问<code>tunnel-host</code>的服务，则为<code>localhost</code>，要不就是某个内网机器的 host 地址</li>
+<li><code>target-port</code>为最终的<code>remote_host</code>的端口号，也就是服务真正所在的端口</li>
+</ul>
+<p>当然，你也可以使用万能的 <strong>VSCode</strong> 直接一键转发。</p>
+<p><img src="https://imgbed-1304793179.cos.ap-nanjing.myqcloud.com/typora/20220319224716.png" alt="image-20220319224707914" loading="lazy"></p>
+<h3 id="远程转发（反向转发）"><a href="#远程转发（反向转发）" class="headerlink" title="远程转发（反向转发）"></a>远程转发（反向转发）</h3><p><strong>WARNING！反向转发有一定风险</strong></p>
+<p>把本地的某个端口映射到远程服务器，这个应用场景也很常见，比如我在宿舍的机子上跑了一个不知名的 WEB Docker 容器，但是校园网是经过 <strong>NAT</strong> 没有所谓的公网IP，这样在校外就无法访问到我的应用。那么就可以使用<code>ssh</code>远程转发，这样我就可以通过访问具有公网IP的远程服务器的某个端口访问到我的应用。</p>
+<pre class="language-bash" data-language="bash"><code class="language-bash"><span class="token function">ssh</span> -R <span class="token punctuation">[</span>remote-host:<span class="token punctuation">]</span><span class="token punctuation">&#123;</span>remote-port<span class="token punctuation">&#125;</span>:<span class="token punctuation">&#123;</span>target-host<span class="token punctuation">&#125;</span>:<span class="token punctuation">&#123;</span>target-port<span class="token punctuation">&#125;</span> <span class="token punctuation">&#123;</span>tunnel-host<span class="token punctuation">&#125;</span></code></pre>
+
+<ul>
+<li><code>remote-host</code>缺省为<code>tunnel-host</code>的<code>localhost</code>。如果你想让应用被公网任意地址访问，需要更改为<code>0.0.0.0</code>，否则只能被远程机器用<code>localhost</code>访问，就完全相当于正向转发的逆向了。</li>
+<li><code>remote-port</code>是映射到远程服务器的某个端口，记得打开对应防火墙和安全组</li>
+<li><code>target-host</code>是应用所在的 host ，本地就是<code>localhost</code></li>
+<li><code>target-port</code>是服务真正所在的端口</li>
+</ul>
+<p>但是<code>ssh</code>默认配置的情况下，哪怕你改了<code>remote-host</code>为<code>0.0.0.0</code>也不会让你进行一个公网的访问，这是出于安全考量的。</p>
+<p>如果你使用<code>-v</code>查看的话，就会发现一个警告<code>Remote: Forwarding listen address &quot;192.168.1.1&quot; overridden by server GatewayPorts</code></p>
+<p>so，若果想要开启，需要更改<code>~/.ssh/config</code>的<code>GatewayPorts</code>为yes</p>
+<h3 id="Tips"><a href="#Tips" class="headerlink" title="Tips"></a>Tips</h3><ol>
+<li>反向转发注意安全</li>
+<li>可以使用<code>-f</code>后台执行</li>
+<li>可以使用<code>-N</code>不进入ssh交互命令行模式</li>
+<li>通过<code>ssh</code>进行端口转发其实并不稳定，想要构建稳定的端口转发可以了解<code>autossh</code>或者<code>frp</code></li>
+</ol>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><a target="_blank" rel="noopener" href="https://wangdoc.com/ssh/basic.html">https://wangdoc.com/ssh/basic.html</a></p>
+<p><a target="_blank" rel="noopener" href="https://kanda.me/2019/07/01/ssh-over-http-or-socks/">https://kanda.me/2019/07/01/ssh-over-http-or-socks/</a></p>
+<p><a target="_blank" rel="noopener" href="https://abcdabcd987.com/ssh/">https://abcdabcd987.com/ssh/</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/bonelee/p/12511024.html">https://www.cnblogs.com/bonelee/p/12511024.html</a></p>
+</div></section><ul class="post-copyright"><li class="post-copyright-author"><strong>Post author: </strong>Anduin9527</li><li class="post-copyright-link"><strong>Post link: </strong><a href="http://lapras.xyz/2022/03/20/844ad6f8.html" title="SSH的二三事">http://lapras.xyz/2022/03/20/844ad6f8.html</a></li><li class="post-copyright-license"><strong>Copyright Notice: </strong>All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank" rel="noopener" title="CC BY-NC-SA 4.0 "><span class="icon iconify" data-icon="ri:creative-commons-line"></span><span class="icon iconify" data-icon="ri:creative-commons-by-line"></span><span class="icon iconify" data-icon="ri:creative-commons-nc-line"></span><span class="icon iconify" data-icon="ri:creative-commons-sa-line"></span></a> unless otherwise stated.</li></ul></article><div class="post-nav"><div class="post-nav-item"><a class="post-nav-prev" href="/2022/06/22/56984c70.html" rel="prev" title="SPSS基础应用与回归分析"><span class="icon iconify" data-icon="ri:arrow-left-s-line"></span><span class="post-nav-text">SPSS基础应用与回归分析</span></a></div><div class="post-nav-item"><a class="post-nav-next" href="/2022/02/28/8fd34f7b.html" rel="next" title="浅谈贝叶斯定理"><span class="post-nav-text">浅谈贝叶斯定理</span><span class="icon iconify" data-icon="ri:arrow-right-s-line"></span></a></div></div></div><div class="hty-card" id="comment"><div class="comment-tooltip text-center"><span>如果您有任何关于博客内容的相关讨论，欢迎与我交流。</span><br></div></div></main><footer class="sidebar-translate" id="footer"><div class="beian"><a rel="noopener" href="https://beian.miit.gov.cn/" target="_blank">闽ICP备2021012704号</a></div><div class="copyright"><span>&copy; 2020 – 2022 </span><span class="with-love" id="animate"><span class="icon iconify" data-icon="ri:cloud-line"></span></span><span class="author"> Anduin9527</span></div><div class="powered"><span>Powered by <a href="https://hexo.io" target="_blank" rel="noopener">Hexo</a> v6.2.0</span><span class="footer-separator">|</span><span>Theme - <a rel="noopener" href="https://github.com/YunYouJun/hexo-theme-yun" target="_blank"><span>Yun</span></a> v1.10.4</span></div></footer></div><a class="hty-icon-button" id="back-to-top" aria-label="back-to-top" href="#"><span class="icon iconify" data-icon="ri:arrow-up-s-line"></span><svg class="progress-circle-container" viewBox="0 0 100 100"><circle class="progress-circle" id="progressCircle" cx="50" cy="50" r="48" fill="none" stroke="#66d6ff" stroke-width="2" stroke-linecap="round"></circle></svg></a><a class="popup-trigger hty-icon-button icon-search" id="search" target="_blank" rel="noopener" href="https://www.google.com/search?q=site:lapras.xyz" title="Search"><span class="site-state-item-icon"><span class="icon iconify" data-icon="ri:search-line"></span></span></a><script>function initMourn() {
+  const date = new Date();
+  const today = (date.getMonth() + 1) + "-" + date.getDate()
+  const mourn_days = ["4-4","9-18","5-12","12-13"]
+  if (mourn_days.includes(today)) {
+    document.documentElement.style.filter = "grayscale(1)";
+  }
+}
+initMourn();</script></body></html>

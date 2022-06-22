@@ -1,0 +1,660 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="theme-color" content="#66d6ff"><meta name="author" content="Anduin9527"><meta name="copyright" content="Anduin9527"><meta name="generator" content="Hexo 6.2.0"><meta name="theme" content="hexo-theme-yun"><title>从零开始的数据结构-树（上） | Anduin9527的乖离器</title><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@900&amp;display=swap" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://fastly.jsdelivr.net/npm/star-markdown-css@0.3.3/dist/yun/yun-markdown.min.css"><link rel="stylesheet" href="https://fastly.jsdelivr.net/npm/prism-theme-vars/base.css"><script src="https://fastly.jsdelivr.net/npm/scrollreveal/dist/scrollreveal.min.js" defer></script><script>function initScrollReveal() {
+  [".post-card",".markdown-body img"].forEach((target)=> {
+    ScrollReveal().reveal(target);
+  })
+}
+document.addEventListener("DOMContentLoaded", initScrollReveal);
+document.addEventListener("pjax:success", initScrollReveal);
+</script><link rel="stylesheet" type="text/css" href="https://fastly.jsdelivr.net/npm/katex@latest/dist/katex.min.css"><script defer src="https://fastly.jsdelivr.net/npm/katex@latest/dist/katex.min.js"></script><script defer src="https://fastly.jsdelivr.net/npm/katex@latest/dist/contrib/auto-render.min.js"></script><script type="module">import { renderKatex } from '/js/utils.js'
+document.addEventListener("DOMContentLoaded", () => {
+  renderKatex({
+    ...{},
+    ...true?.options,
+  });
+});</script><link rel="icon" type="image/svg+xml" href="/images/favicon.svg"><link rel="mask-icon" href="/images/favicon.svg" color="#66d6ff"><link rel="preload" href="/css/hexo-theme-yun.css" as="style"><link rel="prefetch" href="/js/sidebar.js" as="script"><link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin><link rel="preconnect" href="https://fastly.jsdelivr.net/npm/" crossorigin><script id="yun-config">
+    window.Yun = {}
+    window.CONFIG = {"hostname":"lapras.xyz","root":"/","title":["拉普","拉斯~","的","乖离器"],"version":"1.10.4","mode":"auto","copycode":true,"page":{"isPost":true},"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}.","hits":"${hits} results found","hits_time":"${hits} results found in ${time} ms"},"anonymous_image":"https://cdn.yunyoujun.cn/img/avatar/none.jpg","fireworks":{"colors":["#00D1CE","#66D6FF","#919191"]},"vendors":{"darken":"https://fastly.jsdelivr.net/npm/darken@1.5.0"}};
+  </script><link rel="stylesheet" href="/css/hexo-theme-yun.css"><script src="/js/hexo-theme-yun.js" type="module"></script><link rel="alternate" href="/atom.xml" title="Anduin9527的乖离器" type="application/atom+xml"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@900&amp;display=swap"><script src="/h" async></script><script src="/t" async></script><script src="/t" async></script><script src="/p" async></script><script src="/s" async></script><script src="/:" async></script><script src="/" async></script><script src="/" async></script><script src="/c" async></script><script src="/d" async></script><script src="/n" async></script><script src="/." async></script><script src="/j" async></script><script src="/s" async></script><script src="/d" async></script><script src="/e" async></script><script src="/l" async></script><script src="/i" async></script><script src="/v" async></script><script src="/r" async></script><script src="/." async></script><script src="/n" async></script><script src="/e" async></script><script src="/t" async></script><script src="/" async></script><script src="/n" async></script><script src="/p" async></script><script src="/m" async></script><script src="/" async></script><script src="/i" async></script><script src="/o" async></script><script src="/n" async></script><script src="/i" async></script><script src="/c" async></script><script src="/o" async></script><script src="/n" async></script><script src="/s" async></script><script src="/" async></script><script src="/d" async></script><script src="/i" async></script><script src="/s" async></script><script src="/t" async></script><script src="/" async></script><script src="/i" async></script><script src="/o" async></script><script src="/n" async></script><script src="/i" async></script><script src="/c" async></script><script src="/o" async></script><script src="/n" async></script><script src="/s" async></script><script src="/." async></script><script src="/j" async></script><script src="/s" async></script><link rel="preconnect" href="https://www.google-analytics.com" crossorigin><script async src="https://www.googletagmanager.com/gtag/js?id=G-NSLVQ2H5JH"></script><script>if (CONFIG.hostname === location.hostname) {
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-NSLVQ2H5JH');
+}</script><script>(function(){
+  var bp = document.createElement('script');
+  var curProtocol = window.location.protocol.split(':')[0];
+  if (curProtocol === 'https') {
+    bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+  }
+  else {
+    bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+  }
+  var s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(bp, s);
+})();</script><meta name="description" content="智慧树上智慧果，智慧树下平衡树，划分树，归并树，k-d树，pq树，主席树，树套树。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="从零开始的数据结构-树（上）">
+<meta property="og:url" content="http://lapras.xyz/2021/03/28/389e8dec.html">
+<meta property="og:site_name" content="Anduin9527的乖离器">
+<meta property="og:description" content="智慧树上智慧果，智慧树下平衡树，划分树，归并树，k-d树，pq树，主席树，树套树。">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://imgbed-1304793179.cos.ap-nanjing.myqcloud.com/typora/20211008092755.png">
+<meta property="og:image" content="https://imgbed-1304793179.cos.ap-nanjing.myqcloud.com/typora/20211008092753.png">
+<meta property="og:image" content="https://imgbed-1304793179.cos.ap-nanjing.myqcloud.com/typora/20211008092748.webp">
+<meta property="og:image" content="https://imgbed-1304793179.cos.ap-nanjing.myqcloud.com/typora/20211008092747.webp">
+<meta property="og:image" content="https://imgbed-1304793179.cos.ap-nanjing.myqcloud.com/typora/20211008092744.png">
+<meta property="og:image" content="https://imgbed-1304793179.cos.ap-nanjing.myqcloud.com/typora/20211008092742.png">
+<meta property="og:image" content="https://imgbed-1304793179.cos.ap-nanjing.myqcloud.com/typora/20211008092737.png">
+<meta property="og:image" content="https://imgbed-1304793179.cos.ap-nanjing.myqcloud.com/typora/20211008092811.png">
+<meta property="og:image" content="https://imgbed-1304793179.cos.ap-nanjing.myqcloud.com/typora/20211008092813.png">
+<meta property="og:image" content="https://imgbed-1304793179.cos.ap-nanjing.myqcloud.com/typora/20211008092815.png">
+<meta property="og:image" content="https://imgbed-1304793179.cos.ap-nanjing.myqcloud.com/typora/20211008092818.png">
+<meta property="og:image" content="https://imgbed-1304793179.cos.ap-nanjing.myqcloud.com/typora/20211008092820.png">
+<meta property="og:image" content="https://imgbed-1304793179.cos.ap-nanjing.myqcloud.com/typora/20211008092821.png">
+<meta property="og:image" content="https://imgbed-1304793179.cos.ap-nanjing.myqcloud.com/typora/20211008092826.png">
+<meta property="og:image" content="https://imgbed-1304793179.cos.ap-nanjing.myqcloud.com/typora/20211008092828.jpeg">
+<meta property="article:published_time" content="2021-03-28T06:10:35.000Z">
+<meta property="article:modified_time" content="2021-10-10T07:19:21.171Z">
+<meta property="article:author" content="Anduin9527">
+<meta property="article:tag" content="算法">
+<meta property="article:tag" content="数据结构">
+<meta property="article:tag" content="树">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://imgbed-1304793179.cos.ap-nanjing.myqcloud.com/typora/20211008092755.png"><script type="module">import { getScript } from '/js/utils.js'
+getScript("https://fastly.jsdelivr.net/npm/mermaid/dist/mermaid.min.js", () => {
+  const mermaidOptions = {"startOnload":true}
+  mermaid.initialize(mermaidOptions);
+}, window.mermaid);
+</script><style>.mermaid{background: transparent;}</style><script>(function() {
+  const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
+  const setting = localStorage.getItem('darken-mode') || 'auto'
+  if (setting === 'dark' || (prefersDark && setting !== 'light'))
+    document.documentElement.classList.toggle('dark', true)
+})()</script></head><body><script src="https://code.iconify.design/2/2.1.1/iconify.min.js"></script><script>// Define global variable
+IconifyProviders = {
+  // Empty prefix: overwrite default API provider configuration
+  '': {
+    // Use custom API first, use Iconify public API as backup
+    resources: [
+        'https://api.iconify.design',
+    ],
+    // Wait for 1 second before switching API hosts
+    rotate: 1000,
+  },
+};</script><script defer src="https://fastly.jsdelivr.net/npm/animejs@latest"></script><script defer src="/js/ui/fireworks.js" type="module"></script><canvas class="fireworks"></canvas><div class="container"><a class="sidebar-toggle hty-icon-button" id="menu-btn"><div class="hamburger hamburger--spin" type="button"><span class="hamburger-box"><span class="hamburger-inner"></span></span></div></a><div class="sidebar-toggle sidebar-overlay"></div><aside class="sidebar"><script src="/js/sidebar.js" type="module"></script><ul class="sidebar-nav"><li class="sidebar-nav-item sidebar-nav-toc hty-icon-button sidebar-nav-active" data-target="post-toc-wrap" title="Table of Contents"><span class="icon iconify" data-icon="ri:list-ordered"></span></li><li class="sidebar-nav-item sidebar-nav-overview hty-icon-button" data-target="site-overview-wrap" title="Overview"><span class="icon iconify" data-icon="ri:passport-line"></span></li></ul><div class="sidebar-panel" id="site-overview-wrap"><div class="site-info fix-top"><a class="site-author-avatar" href="/about/" title="Anduin9527"><img width="96" loading="lazy" src="/images/avatar.jpg" alt="Anduin9527"><span class="site-author-status" title="建模建模呜呜呜！">😭</span></a><div class="site-author-name"><a href="/about/">Anduin9527</a></div><span class="site-name">Anduin9527的乖离器</span><sub class="site-subtitle">正在进修摸鱼学导论</sub><div class="site-description">南邮摸鱼ing</div></div><nav class="site-state"><a class="site-state-item hty-icon-button icon-home" href="/" title="Home"><span class="site-state-item-icon"><span class="icon iconify" data-icon="ri:home-4-line"></span></span></a><div class="site-state-item"><a href="/archives/" title="Archives"><span class="site-state-item-icon"><span class="icon iconify" data-icon="ri:archive-line"></span></span><span class="site-state-item-count">24</span></a></div><div class="site-state-item"><a href="/categories/" title="Categories"><span class="site-state-item-icon"><span class="icon iconify" data-icon="ri:folder-2-line"></span></span><span class="site-state-item-count">5</span></a></div><div class="site-state-item"><a href="/tags/" title="Tags"><span class="site-state-item-icon"><span class="icon iconify" data-icon="ri:price-tag-3-line"></span></span><span class="site-state-item-count">24</span></a></div><a class="site-state-item hty-icon-button" target="_blank" rel="noopener" href="https://yun.yunyoujun.cn" title="文档"><span class="site-state-item-icon"><span class="icon iconify" data-icon="ri:settings-line"></span></span></a></nav><hr style="margin-bottom:0.5rem"><div class="links-of-author"><a class="links-of-author-item hty-icon-button" rel="noopener" href="tencent://message/?uin=2676057183&amp;Site=&amp;Menu=yes" title="QQ" target="_blank" style="color:#12B7F5"><span class="icon iconify" data-icon="ri:qq-line"></span></a><a class="links-of-author-item hty-icon-button" rel="noopener" href="https://github.com/Anduin9527" title="GitHub" target="_blank" style="color:#181717"><span class="icon iconify" data-icon="ri:github-line"></span></a><a class="links-of-author-item hty-icon-button" rel="noopener" href="mailto:2676057183@qq.com" title="E-Mail" target="_blank" style="color:#8E71C1"><span class="icon iconify" data-icon="ri:mail-line"></span></a><a class="links-of-author-item hty-icon-button" rel="noopener" href="https://music.163.com/#/user/home?id=579015212" title="网易云音乐" target="_blank" style="color:#C10D0C"><span class="icon iconify" data-icon="ri:netease-cloud-music-line"></span></a><a class="links-of-author-item hty-icon-button" rel="noopener" href="https://www.zhihu.com/people/chu-liu-16-64" title="知乎" target="_blank" style="color:#0084FF"><span class="icon iconify" data-icon="ri:zhihu-line"></span></a><a class="links-of-author-item hty-icon-button" rel="noopener" href="https://space.bilibili.com/21994551" title="哔哩哔哩动画" target="_blank" style="color:#FF8EB3"><span class="icon iconify" data-icon="ri:bilibili-line"></span></a><a class="links-of-author-item hty-icon-button" rel="noopener" href="/atom.xml" title="RSS" target="_blank" style="color:orange"><span class="icon iconify" data-icon="ri:rss-line"></span></a></div><hr style="margin:0.5rem 1rem"><div class="links"><a class="links-item hty-icon-button" href="/links/" title="我的小伙伴们" style="color:dodgerblue"><span class="icon iconify" data-icon="ri:genderless-line"></span></a><a class="links-item hty-icon-button" href="/girls/" title="我永远喜欢oo" style="color:hotpink"><span class="icon iconify" data-icon="ri:women-line"></span></a></div><br><a class="links-item hty-icon-button" id="toggle-mode-btn" href="javascript:;" title="Mode" style="color: #f1cb64"><span class="icon iconify" data-icon="ri:contrast-2-line"></span></a></div><div class="sidebar-panel sidebar-panel-active" id="post-toc-wrap"><div class="post-toc"><div class="post-toc-content"><ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%99%BA%E6%85%A7%E6%A0%91%E4%B8%8A%E6%99%BA%E6%85%A7%E6%9E%9C%EF%BC%8C%E6%99%BA%E6%85%A7%E6%A0%91%E4%B8%8B%E5%B9%B3%E8%A1%A1%E6%A0%91%EF%BC%8C%E5%88%92%E5%88%86%E6%A0%91%EF%BC%8C%E5%BD%92%E5%B9%B6%E6%A0%91%EF%BC%8Ck-d%E6%A0%91%EF%BC%8Cpq%E6%A0%91%EF%BC%8C%E4%B8%BB%E5%B8%AD%E6%A0%91%EF%BC%8C%E6%A0%91%E5%A5%97%E6%A0%91%E3%80%82"><span class="toc-text">智慧树上智慧果，智慧树下平衡树，划分树，归并树，k-d树，pq树，主席树，树套树。</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A0%91%E7%9A%84%E5%AE%9A%E4%B9%89"><span class="toc-text">树的定义</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%80%E4%BA%9B%E6%9C%AF%E8%AF%AD"><span class="toc-text">一些术语</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A0%91%E7%9A%84%E8%A1%A8%E7%A4%BA"><span class="toc-text">树的表示</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E5%8F%89%E6%A0%91-BinaryTree"><span class="toc-text">二叉树(BinaryTree)</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E6%80%A7%E8%B4%A8"><span class="toc-text">二叉树的性质</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%89%B9%E6%AE%8A%E7%9A%84%E4%BA%8C%E5%8F%89%E6%A0%91"><span class="toc-text">特殊的二叉树</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%96%9C%E4%BA%8C%E5%8F%89%E6%A0%91"><span class="toc-text">斜二叉树</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%BB%A1%E4%BA%8C%E5%8F%89%E6%A0%91"><span class="toc-text">满二叉树</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AE%8C%E5%85%A8%E4%BA%8C%E5%8F%89%E6%A0%91"><span class="toc-text">完全二叉树</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%89%A9%E5%85%85%E4%BA%8C%E5%8F%89%E6%A0%91"><span class="toc-text">扩充二叉树</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E5%AE%9E%E7%8E%B0"><span class="toc-text">二叉树的实现</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AD%98%E5%82%A8%E5%AE%9E%E7%8E%B0%EF%BC%88%E6%95%B0%E7%BB%84%EF%BC%89"><span class="toc-text">存储实现（数组）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AD%98%E5%82%A8%E5%AE%9E%E7%8E%B0%EF%BC%88%E9%93%BE%E8%A1%A8%EF%BC%89"><span class="toc-text">存储实现（链表）</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E9%81%8D%E5%8E%86"><span class="toc-text">二叉树的遍历</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1%EF%BC%89%E5%85%88-x2F-%E5%89%8D%E5%BA%8F%E9%81%8D%E5%8E%86"><span class="toc-text">1）先&#x2F;前序遍历</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2%EF%BC%89%E4%B8%AD%E5%BA%8F%E9%81%8D%E5%8E%86"><span class="toc-text">2）中序遍历</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3%EF%BC%89%E5%90%8E%E5%BA%8F%E9%81%8D%E5%8E%86"><span class="toc-text">3）后序遍历</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4%EF%BC%89%E9%9D%9E%E9%80%92%E5%BD%92%EF%BC%88%E5%88%A9%E7%94%A8%E5%A0%86%E6%A0%88%EF%BC%89%E5%AE%9E%E7%8E%B0%E9%81%8D%E5%8E%86"><span class="toc-text">4）非递归（利用堆栈）实现遍历</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5%EF%BC%89%E5%B1%82%E5%BA%8F%E9%81%8D%E5%8E%86"><span class="toc-text">5）层序遍历</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E6%93%8D%E4%BD%9C%E9%9B%86%E5%8F%8A%E5%9F%BA%E7%A1%80%E5%BA%94%E7%94%A8"><span class="toc-text">二叉树的操作集及基础应用</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1%EF%BC%89%E8%BE%93%E5%87%BA%E5%8F%B6%E7%BB%93%E7%82%B9%EF%BC%88PrintLeaves%EF%BC%89"><span class="toc-text">1）输出叶结点（PrintLeaves）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2%EF%BC%89%E6%B1%82%E9%AB%98%E5%BA%A6%EF%BC%88getHeight%EF%BC%89"><span class="toc-text">2）求高度（getHeight）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3%EF%BC%89%E4%BA%8C%E5%85%83%E8%BF%90%E7%AE%97%E8%A1%A8%E8%BE%BE%E5%BC%8F%E6%A0%91"><span class="toc-text">3）二元运算表达式树</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4%EF%BC%89%E5%89%8D%E5%BA%8F-%E4%B8%AD%E5%BA%8F-gt-%E5%90%8E%E5%BA%8F"><span class="toc-text">4）前序+中序-&gt;后序</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B9%B6%E6%9F%A5%E9%9B%86"><span class="toc-text">并查集</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B9%B6%E6%9F%A5%E9%9B%86%E7%9A%84%E8%A1%A8%E7%A4%BA"><span class="toc-text">并查集的表示</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9F%A5%E6%89%BE"><span class="toc-text">查找</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%90%88%E5%B9%B6"><span class="toc-text">合并</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E8%80%83"><span class="toc-text">参考</span></a></div></div></div></aside><main class="sidebar-translate" id="content"><div id="post"><article class="hty-card post-block" itemscope itemtype="https://schema.org/Article" style="--smc-primary:#66d6ff;"><link itemprop="mainEntityOfPage" href="http://lapras.xyz/2021/03/28/389e8dec.html"><span hidden itemprop="author" itemscope itemtype="https://schema.org/Person"><meta itemprop="name" content="Anduin9527"><meta itemprop="description"></span><span hidden itemprop="publisher" itemscope itemtype="https://schema.org/Organization"><meta itemprop="name" content="Anduin9527的乖离器"></span><header class="post-header"><h1 class="post-title" itemprop="name headline">从零开始的数据结构-树（上）</h1><div class="post-meta"><div class="post-time" style="display:block"><span class="post-meta-item-icon"><span class="icon iconify" data-icon="ri:calendar-line"></span></span> <time title="Created: 2021-03-28 14:10:35" itemprop="dateCreated datePublished" datetime="2021-03-28T14:10:35+08:00">2021-03-28</time><span class="post-meta-divider">-</span><span class="post-meta-item-icon"><span class="icon iconify" data-icon="ri:calendar-2-line"></span></span> <time title="Modified: 2021-10-10 15:19:21" itemprop="dateModified" datetime="2021-10-10T15:19:21+08:00">2021-10-10</time></div><span class="post-count"><span class="post-symbolcount"><span class="post-meta-item-icon" title="Word count in article"><span class="icon iconify" data-icon="ri:file-word-line"></span></span> <span title="Word count in article">4.7k</span><span class="post-meta-divider">-</span><span class="post-meta-item-icon" title="Reading time"><span class="icon iconify" data-icon="ri:timer-line"></span></span> <span title="Reading time">19m</span></span></span><div class="post-classify"><span class="post-category"> <span class="post-meta-item-icon" style="margin-right:3px;"><span class="icon iconify" data-icon="ri:folder-line"></span></span><span itemprop="about" itemscope itemtype="https://schema.org/Thing"><a class="category-item" href="/categories/%E7%AE%97%E6%B3%95%E5%AD%A6%E4%B9%A0/" style="--text-color:#317ec7" itemprop="url" rel="index"><span itemprop="text">算法学习</span></a></span></span><span class="post-tag"><span class="post-meta-divider">-</span><a class="tag-item" href="/tags/%E7%AE%97%E6%B3%95/" style="--text-color:#d04d2d"><span class="post-meta-item-icon"><span class="icon iconify" data-icon="ri:price-tag-3-line"></span></span><span class="tag-name">算法</span></a><a class="tag-item" href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" style="--text-color:#ccb44b"><span class="post-meta-item-icon"><span class="icon iconify" data-icon="ri:price-tag-3-line"></span></span><span class="tag-name">数据结构</span></a><a class="tag-item" href="/tags/%E6%A0%91/" style="--text-color:#31b95e"><span class="post-meta-item-icon"><span class="icon iconify" data-icon="ri:price-tag-3-line"></span></span><span class="tag-name">树</span></a></span></div></div></header><section class="post-body" itemprop="articleBody"><div class="post-content markdown-body"><h3 id="智慧树上智慧果，智慧树下平衡树，划分树，归并树，k-d树，pq树，主席树，树套树。"><a href="#智慧树上智慧果，智慧树下平衡树，划分树，归并树，k-d树，pq树，主席树，树套树。" class="headerlink" title="智慧树上智慧果，智慧树下平衡树，划分树，归并树，k-d树，pq树，主席树，树套树。"></a>智慧树上智慧果，智慧树下平衡树，划分树，归并树，k-d树，pq树，主席树，树套树。</h3><span id="more"></span>
+
+<h2 id="树的定义"><a href="#树的定义" class="headerlink" title="树的定义"></a>树的定义</h2><ul>
+<li><p>n 个结点构成的有限集合。</p>
+</li>
+<li><p>当n&#x3D;0时,称为空树。</p>
+</li>
+<li><p>对于任一棵非空树(n&gt;0) ,它具备以下性质:</p>
+<ul>
+<li><p>树中有一个称为“根(Root) ”的特殊结点,用r表示。</p>
+</li>
+<li><p>其余结点可分为m个互不相交的有限集T, T2, .., , Tm,其中每个集合本身又是一棵树,称为原来树的”子树”(SubTree)。 </p>
+</li>
+<li><p>子树是不相交的,除了根结点外,每个结点有且仅有一个父结点。</p>
+</li>
+<li><p>一棵N个结点的树有N-1条边。</p>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="一些术语"><a href="#一些术语" class="headerlink" title="一些术语"></a>一些术语</h3><ul>
+<li>结点的<strong>度</strong>(Degree) ：结点的子树（子结点）个数</li>
+<li>树的<strong>度</strong>：树的所有结点中最大的度数</li>
+<li>叶结点(Leaf)&#x2F;外部节点：度为0的结点</li>
+<li>父结点(Parent)：有子树的结点是其子树的根结点的父结点</li>
+<li>子结点(Child)：若A结点是B结点的父结点,则称B结点是A结点的子结点;子结点也称孩子结点。</li>
+<li>兄弟结点(Sibling)：具有同一父结点的各结点彼此是兄弟结点。</li>
+<li>路径和路径长度：从结点$n_1$到$n_k$的路径为一个结点序列$n_1,n_2,\cdots,n_k$,并且$n_i是n_{i+1}$父结点。则路径所包含边的个数为路径的长度。</li>
+<li>祖先结点(Ancestor)：沿树根到某一结点路径上的所有结点都是这个结点的祖先结点。</li>
+<li>子孙结点(Descendant)：某一结点的子树中的所有结点是这个结点的子孙。</li>
+<li>结点的层次(Level)：规定根结点在1层,其它任一结点的层数是其父结点的层数加1.</li>
+<li>深度(Depth)：树中所有结点中的最大层次是这棵树的深度。根的深度为0。</li>
+<li>高度(height)：对于任意节点n,n的高度为从n到一片树叶的最长路径长，所有叶结点的高度为0；</li>
+<li>无序树：树中结点的各子树之间的顺序无关，可以交换位置</li>
+<li>有序树：树种结点的各棵子树从左到右顺序相关</li>
+</ul>
+<h2 id="树的表示"><a href="#树的表示" class="headerlink" title="树的表示"></a>树的表示</h2><p>自然而然地，我们会想到用指针来存放一棵树。但毫无疑问地是指针域要按照<strong>树的度</strong>的决定，这样势必就会造成指针域的浪费。</p>
+<p>于是我们引入了一种方法：**左子-右兄弟表示法(left-child right-sibling representation)**：可以将任意树转变为二叉树链表。</p>
+<p><strong>左子-右兄弟表示法</strong>包含的信息：</p>
+<ul>
+<li><p>结点数据（ElementType Data）</p>
+</li>
+<li><p>节点n的父节点（Parent）&#x2F;&#x2F;基础情况可省略</p>
+</li>
+<li><p>节点n<strong>最左侧</strong>的子结点（Left）</p>
+</li>
+<li><p>节点n<strong>右侧紧邻</strong>的兄弟节点（Right）</p>
+<p><img src="https://imgbed-1304793179.cos.ap-nanjing.myqcloud.com/typora/20211008092755.png" alt="image-20210328152116810" loading="lazy"></p>
+</li>
+</ul>
+<p>可以和一开始的想法进行对比：</p>
+<p>假设一棵度为 m的树有n个节点。若每个节点直接用m个链指向相应的儿子，则表示这个树所需要的总空间是<em><em>n</em>(m+1)</em>* (假定每个链以及表示节点的数据域都是一个单位空间).。当采用<strong>左子-右兄弟表示法(left-child right-sibling representation)<strong>表示法时，所需的总空间是</strong>3n</strong>。</p>
+<h2 id="二叉树-BinaryTree"><a href="#二叉树-BinaryTree" class="headerlink" title="二叉树(BinaryTree)"></a>二叉树(BinaryTree)</h2><p>作为最基本也是最重要的树结构，请务必能倒写二叉树。</p>
+<ul>
+<li>二叉树是一个有穷的结点集合。</li>
+<li>这个集合可以为空</li>
+<li>若不为空,则它是由根结点和称为其左子树TL和右子树TR的两个不相交的二叉树组成。</li>
+<li>二叉树具有五种基本形态</li>
+</ul>
+<p><img src="https://imgbed-1304793179.cos.ap-nanjing.myqcloud.com/typora/20211008092753.png" alt="image-20210328155942742" loading="lazy"></p>
+<h3 id="二叉树的性质"><a href="#二叉树的性质" class="headerlink" title="二叉树的性质"></a>二叉树的性质</h3><ul>
+<li>第i层的最大结点数为：$2^{i-1}$$(i\ge1)$</li>
+<li>深度为k的二叉树的最大结点总数：$2^k-1(k\ge1)$ （显然最大时为满二叉树）</li>
+<li>包含n个结点的的二叉树的高度<strong>最矮</strong>为：$[log_2(n+1)]$（最矮的情况为完全二叉树）</li>
+<li>对于任何非空的二叉树T，若$n_0$表示叶结点的个数，$n_1$是度为1的非叶结点的个数,$n_2$是度为2的非叶结点的个数，那么满足公式：$n_0&#x3D;n_2+1$。</li>
+<li>二叉树边的个数：$n_0+n_1+n_2-1&#x3D;0\times n_0+1\times n_1+2\times n_2$</li>
+</ul>
+<h3 id="特殊的二叉树"><a href="#特殊的二叉树" class="headerlink" title="特殊的二叉树"></a>特殊的二叉树</h3><h4 id="斜二叉树"><a href="#斜二叉树" class="headerlink" title="斜二叉树"></a>斜二叉树</h4><p>只有左子结点或只有右子结点的二叉树称为斜二叉树</p>
+<h4 id="满二叉树"><a href="#满二叉树" class="headerlink" title="满二叉树"></a>满二叉树</h4><p>满二叉树除了叶结点外所有节点都有两个子节点，且叶结点都在同一层。</p>
+<p>换句话说，除了最后一层的叶结点，以上所有父结点必须有且只有两个子结点。</p>
+<p><img src="https://imgbed-1304793179.cos.ap-nanjing.myqcloud.com/typora/20211008092748.webp" alt="img" loading="lazy"></p>
+<h4 id="完全二叉树"><a href="#完全二叉树" class="headerlink" title="完全二叉树"></a>完全二叉树</h4><p>对一棵具有n个结点的二叉树按层序编号，则编号为i(1&lt;&#x3D;i&lt;&#x3D;n)的结点与同样深度的满二叉树中编号为i的结点位置完全相同</p>
+<p>换句话说，从根结点开始往下数，除了最下层外都是全满（都有两个子节点），而最下层所有叶结点都向左边靠拢填满。</p>
+<p><img src="https://imgbed-1304793179.cos.ap-nanjing.myqcloud.com/typora/20211008092747.webp" alt="img" loading="lazy"></p>
+<ul>
+<li>完全二叉树的高度：$log_2(n+1)$</li>
+<li>从0开始按照层序遍历对结点编号：<ul>
+<li>i &#x3D; 0：根结点</li>
+<li>i &gt; 0：父结点为 $[(i-1)&#x2F;2]$</li>
+<li>2i +1 &lt; n：则该节点的左子结点为 $2i+1$</li>
+<li>2i +2 &lt; n：则该节点的右子结点为 $2i+2$</li>
+</ul>
+</li>
+</ul>
+<h4 id="扩充二叉树"><a href="#扩充二叉树" class="headerlink" title="扩充二叉树"></a>扩充二叉树</h4><p>除叶结点外，其余结点都必须有两个子结点</p>
+<h3 id="二叉树的实现"><a href="#二叉树的实现" class="headerlink" title="二叉树的实现"></a>二叉树的实现</h3><h4 id="存储实现（数组）"><a href="#存储实现（数组）" class="headerlink" title="存储实现（数组）"></a>存储实现（数组）</h4><p>首先来看完全二叉树的数组实现（这里选择从1开始编号）</p>
+<img src="https://imgbed-1304793179.cos.ap-nanjing.myqcloud.com/typora/20211008092744.png" alt="image-20210328170317981" style="zoom:50%;" / loading="lazy">
+
+<ul>
+<li>非根结点的父结点的序号是**[i&#x2F;2]**（[]表示向下取整）</li>
+<li>结点的左子结点的序号是<strong>2i</strong>（2i$\le$n）</li>
+<li>结点的右子结点的序号是<strong>2i+1</strong>（2i+1$\le$n）</li>
+</ul>
+<p>那么考虑一般的二叉树，是否也可以通过补全为完全二叉树的方式来进行数组的存储实现呢？</p>
+<p>来看这样一个普通的二叉树：</p>
+<img src="https://imgbed-1304793179.cos.ap-nanjing.myqcloud.com/typora/20211008092742.png" alt="graph" style="zoom:50%;" / loading="lazy">
+
+<p>将其补全为完全二叉树：</p>
+<img src="https://imgbed-1304793179.cos.ap-nanjing.myqcloud.com/typora/20211008092737.png" alt="graph (2)" style="zoom:50%;" / loading="lazy">
+
+
+
+<table>
+<thead>
+<tr>
+<th align="left">结点名称</th>
+<th align="left">A</th>
+<th align="left">B</th>
+<th align="left">C</th>
+<th align="left">1</th>
+<th align="left">2</th>
+<th align="left">D</th>
+<th align="left">3</th>
+<th align="left">4</th>
+<th>5</th>
+<th>6</th>
+<th>7</th>
+<th>E</th>
+<th>8</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">数组序号</td>
+<td align="left">1</td>
+<td align="left">2</td>
+<td align="left">3</td>
+<td align="left">4</td>
+<td align="left">5</td>
+<td align="left">6</td>
+<td align="left">7</td>
+<td align="left">8</td>
+<td>9</td>
+<td>10</td>
+<td>11</td>
+<td>12</td>
+<td>13</td>
+</tr>
+</tbody></table>
+<p>显然也符合完全二叉树的规律。但毫无疑问，这会造成空间的浪费。比如十个结点的树，考虑最坏情况就得开1024+5的数组。</p>
+<pre class="language-c" data-language="c"><code class="language-c"><span class="token keyword">void</span> <span class="token function">createTree</span><span class="token punctuation">(</span><span class="token keyword">int</span> n<span class="token punctuation">,</span> <span class="token keyword">int</span> <span class="token operator">*</span>BinTree<span class="token punctuation">)</span>
+<span class="token punctuation">&#123;</span>
+  <span class="token keyword">int</span> Data<span class="token punctuation">;</span>
+  <span class="token keyword">int</span> index<span class="token punctuation">;</span>
+  <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> n<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span>
+  <span class="token punctuation">&#123;</span>
+    cin <span class="token operator">>></span> Data<span class="token punctuation">;</span>
+    index <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span><span class="token comment">//index从1开始避免后续奇怪的麻烦</span>
+    <span class="token keyword">while</span> <span class="token punctuation">(</span>BinTree<span class="token punctuation">[</span>index<span class="token punctuation">]</span> <span class="token operator">!=</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token comment">//父节点不为空</span>
+    <span class="token punctuation">&#123;</span> <span class="token comment">// 寻找插入点</span>
+      <span class="token keyword">if</span> <span class="token punctuation">(</span>Data <span class="token operator">>=</span> BinTree<span class="token punctuation">[</span>index<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token comment">//右子结点</span>
+        index <span class="token operator">=</span> index <span class="token operator">*</span> <span class="token number">2</span> <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">;</span>
+      <span class="token keyword">else</span><span class="token comment">//左子结点</span>
+        index <span class="token operator">*=</span> <span class="token number">2</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+    BinTree<span class="token punctuation">[</span>index<span class="token punctuation">]</span> <span class="token operator">=</span> Data<span class="token punctuation">;</span>
+  <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span></code></pre>
+
+
+
+<h4 id="存储实现（链表）"><a href="#存储实现（链表）" class="headerlink" title="存储实现（链表）"></a>存储实现（链表）</h4><p>先说说比较简单的<strong>静态链表：</strong></p>
+<pre class="language-c" data-language="c"><code class="language-c"><span class="token keyword">struct</span> <span class="token class-name">TreeNode</span>
+<span class="token punctuation">&#123;</span>
+  ElementType Data<span class="token punctuation">;</span>
+  <span class="token keyword">int</span> Left<span class="token punctuation">;</span>
+  <span class="token keyword">int</span> Right<span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span>T<span class="token punctuation">[</span>MaxN<span class="token punctuation">]</span><span class="token punctuation">;</span></code></pre>
+
+<img src="https://imgbed-1304793179.cos.ap-nanjing.myqcloud.com/typora/20211008092811.png" alt="image-20210331202227774" style="zoom:50%;" / loading="lazy">
+
+<ul>
+<li><p>-1表示空节点</p>
+</li>
+<li><p>可以通过建立一个flag数组，在记录二叉树时的左右结点时修改flag，最后遍历flag数组，就可以发现根节点。</p>
+</li>
+</ul>
+<p>以下是<strong>动态链表：</strong></p>
+<pre class="language-c" data-language="c"><code class="language-c"><span class="token keyword">typedef</span> <span class="token keyword">struct</span> <span class="token class-name">TreeNode</span> <span class="token operator">*</span>BinTree<span class="token punctuation">;</span>
+<span class="token keyword">struct</span> <span class="token class-name">TreeNode</span>
+<span class="token punctuation">&#123;</span>
+ElementType Data<span class="token punctuation">;</span>
+BinTree Left<span class="token punctuation">;</span>		<span class="token comment">//指向左子结点</span>
+BinTree Right<span class="token punctuation">;</span>	<span class="token comment">//指向右子结点</span>
+<span class="token punctuation">(</span>BinTree Parent<span class="token punctuation">;</span>	<span class="token comment">//指向父结点)</span>
+<span class="token punctuation">&#125;</span></code></pre>
+
+<pre class="language-c" data-language="c"><code class="language-c">BinTree <span class="token function">Insert</span><span class="token punctuation">(</span>ElementType Data<span class="token punctuation">)</span>
+<span class="token punctuation">&#123;</span>
+  BinTree BT<span class="token punctuation">;</span>
+  BT <span class="token operator">=</span> <span class="token punctuation">(</span>BinTree<span class="token punctuation">)</span><span class="token function">malloc</span><span class="token punctuation">(</span><span class="token keyword">sizeof</span><span class="token punctuation">(</span><span class="token keyword">struct</span> <span class="token class-name">TreeNode</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  BT<span class="token operator">-></span>Data <span class="token operator">=</span> Data<span class="token punctuation">;</span>
+  BT<span class="token operator">-></span>Left <span class="token operator">=</span> nullptr<span class="token punctuation">;</span>
+  BT<span class="token operator">-></span>Right <span class="token operator">=</span> nullptr<span class="token punctuation">;</span>
+  <span class="token keyword">return</span> BT<span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span>
+<span class="token comment">// 初始化二叉树</span>
+BinTree <span class="token function">CreatBinTree</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">&#123;</span>
+  BinTree BT<span class="token punctuation">;</span>
+  BT <span class="token operator">=</span> <span class="token punctuation">(</span>BinTree<span class="token punctuation">)</span><span class="token function">malloc</span><span class="token punctuation">(</span><span class="token keyword">sizeof</span><span class="token punctuation">(</span><span class="token keyword">struct</span> <span class="token class-name">TreeNode</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  BT<span class="token operator">-></span>Data <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span>
+  BT<span class="token operator">-></span>Left <span class="token operator">=</span> <span class="token function">Insert</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  BT<span class="token operator">-></span>Right <span class="token operator">=</span> <span class="token function">Insert</span><span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  BT<span class="token operator">-></span>Left<span class="token operator">-></span>Left <span class="token operator">=</span> <span class="token function">Insert</span><span class="token punctuation">(</span><span class="token number">4</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  BT<span class="token operator">-></span>Left<span class="token operator">-></span>Right <span class="token operator">=</span> <span class="token function">Insert</span><span class="token punctuation">(</span><span class="token number">6</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  BT<span class="token operator">-></span>Left<span class="token operator">-></span>Right<span class="token operator">-></span>Left <span class="token operator">=</span> <span class="token function">Insert</span><span class="token punctuation">(</span><span class="token number">5</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  BT<span class="token operator">-></span>Right<span class="token operator">-></span>Left <span class="token operator">=</span> <span class="token function">Insert</span><span class="token punctuation">(</span><span class="token number">7</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  BT<span class="token operator">-></span>Right<span class="token operator">-></span>Right <span class="token operator">=</span> <span class="token function">Insert</span><span class="token punctuation">(</span><span class="token number">9</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  BT<span class="token operator">-></span>Right<span class="token operator">-></span>Left<span class="token operator">-></span>Right <span class="token operator">=</span> <span class="token function">Insert</span><span class="token punctuation">(</span><span class="token number">8</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword">return</span> BT<span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span></code></pre>
+
+<img src="https://imgbed-1304793179.cos.ap-nanjing.myqcloud.com/typora/20211008092813.png" alt="graph (3)" style="zoom:50%;" / loading="lazy">
+
+<p>通过以上初始化，我们就创建了一个如图所示的二叉树，现在我们康康怎么遍历他们。</p>
+<h3 id="二叉树的遍历"><a href="#二叉树的遍历" class="headerlink" title="二叉树的遍历"></a>二叉树的遍历</h3><h4 id="1）先-x2F-前序遍历"><a href="#1）先-x2F-前序遍历" class="headerlink" title="1）先&#x2F;前序遍历"></a>1）先&#x2F;前序遍历</h4><p>遍历过程为:</p>
+<p>①访问根结点<br>②先序遍历其左子树<br>③先序遍历其右子树</p>
+<img src="https://imgbed-1304793179.cos.ap-nanjing.myqcloud.com/typora/20211008092815.png" style="zoom:50%;" / loading="lazy">
+
+<p>遍历顺序：A(BDFE)(CGHI)</p>
+<pre class="language-c" data-language="c"><code class="language-c"><span class="token keyword">void</span> <span class="token function">PreOrderTraversal</span><span class="token punctuation">(</span>BinTree BT<span class="token punctuation">)</span>
+<span class="token punctuation">&#123;</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span>BT<span class="token punctuation">)</span>
+  <span class="token punctuation">&#123;</span>
+    cout <span class="token operator">&lt;&lt;</span> BT<span class="token operator">-></span>Data<span class="token punctuation">;</span><span class="token comment">//***</span>
+    <span class="token function">PreOrderTraversal</span><span class="token punctuation">(</span>BT<span class="token operator">-></span>Left<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">PreOrderTraversal</span><span class="token punctuation">(</span>BT<span class="token operator">-></span>Right<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span></code></pre>
+
+<h4 id="2）中序遍历"><a href="#2）中序遍历" class="headerlink" title="2）中序遍历"></a>2）中序遍历</h4><p>遍历过程为：</p>
+<p>①中序遍历其左子树<br>②访问根结点<br>③中序遍历其右子树</p>
+<img src="https://imgbed-1304793179.cos.ap-nanjing.myqcloud.com/typora/20211008092818.png" alt="image-20210328191833131" style="zoom:50%;" / loading="lazy">
+
+<p>遍历顺序：（DBFE)A(GHCI)</p>
+<pre class="language-c" data-language="c"><code class="language-c"><span class="token keyword">void</span> <span class="token function">InOrderTraversal</span><span class="token punctuation">(</span>BinTree BT<span class="token punctuation">)</span>
+<span class="token punctuation">&#123;</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span>BT<span class="token punctuation">)</span>
+  <span class="token punctuation">&#123;</span>
+    <span class="token function">InOrderTraversal</span><span class="token punctuation">(</span>BT<span class="token operator">-></span>Left<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    cout <span class="token operator">&lt;&lt;</span> BT<span class="token operator">-></span>Data<span class="token punctuation">;</span><span class="token comment">//***</span>
+    <span class="token function">InOrderTraversal</span><span class="token punctuation">(</span>BT<span class="token operator">-></span>Right<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span></code></pre>
+
+<h4 id="3）后序遍历"><a href="#3）后序遍历" class="headerlink" title="3）后序遍历"></a>3）后序遍历</h4><p>遍历过程为：</p>
+<p>①后序遍历其左子树<br>②后序遍历其右子树<br>③访问根节点</p>
+<img src="https://imgbed-1304793179.cos.ap-nanjing.myqcloud.com/typora/20211008092820.png" style="zoom:50%;" / loading="lazy">
+
+<p>遍历顺序：(DEFB)(HGIC)A</p>
+<pre class="language-c" data-language="c"><code class="language-c"><span class="token keyword">void</span> <span class="token function">PostOrderTraversal</span><span class="token punctuation">(</span>BinTree BT<span class="token punctuation">)</span>
+<span class="token punctuation">&#123;</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span>BT<span class="token punctuation">)</span>
+  <span class="token punctuation">&#123;</span>
+    <span class="token function">PostOrderTraversal</span><span class="token punctuation">(</span>BT<span class="token operator">-></span>Left<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">PostOrderTraversal</span><span class="token punctuation">(</span>BT<span class="token operator">-></span>Right<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    cout <span class="token operator">&lt;&lt;</span> BT<span class="token operator">-></span>Data<span class="token punctuation">;</span><span class="token comment">//***</span>
+  <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span></code></pre>
+
+<h4 id="4）非递归（利用堆栈）实现遍历"><a href="#4）非递归（利用堆栈）实现遍历" class="headerlink" title="4）非递归（利用堆栈）实现遍历"></a>4）非递归（利用堆栈）实现遍历</h4><p>前三种遍历方法都是利用<strong>递归</strong>，其本质是<strong>堆栈</strong>。下面开始尝试直接使用堆栈进行对树的遍历。</p>
+<img src="https://imgbed-1304793179.cos.ap-nanjing.myqcloud.com/typora/20211008092821.png" alt="image-20210328191833131" style="zoom:50%;" / loading="lazy">
+
+<p>以这张中序遍历的图为例，假设我们现在有一个堆栈，我们的目的就是制造一个出栈序列为DBFEAGHCI的堆栈</p>
+<p>OK，开始遍历左子树，中途遇见的结点全部push进栈中，一直到左子树为空，也就是遍历到了D。</p>
+<p>此时pop(D)，然后开始遍历右子树，发现也为空。</p>
+<p>此时回到栈顶元素B，pop掉，然后遍历B的右子树的左子树……</p>
+<p>通过简单的模拟，我们可以得到规律如下：</p>
+<ul>
+<li>遇到一个结点,就把它压栈,并去遍历它的左子树</li>
+<li>当左子树遍历结束后,从栈顶弹出这个结点并访问它</li>
+<li>然后按其右指针再去中序遍历该结点的右子树，如此循环往复</li>
+</ul>
+<pre class="language-c" data-language="c"><code class="language-c"><span class="token keyword">void</span> <span class="token function">InOrderTraversal</span><span class="token punctuation">(</span>BinTree BT<span class="token punctuation">)</span><span class="token comment">//非递归中序遍历</span>
+<span class="token punctuation">&#123;</span>
+  BinTree T <span class="token operator">=</span> BT<span class="token punctuation">;</span>
+  stack<span class="token operator">&lt;</span>BinTree<span class="token operator">></span> S<span class="token punctuation">;</span><span class="token comment">//初始化栈</span>
+  <span class="token keyword">while</span> <span class="token punctuation">(</span>T <span class="token operator">||</span> <span class="token operator">!</span>S<span class="token punctuation">.</span><span class="token function">empty</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+  <span class="token punctuation">&#123;</span>
+    <span class="token keyword">while</span> <span class="token punctuation">(</span>T<span class="token punctuation">)</span><span class="token comment">//一路向左遍历左子树</span>
+    <span class="token punctuation">&#123;</span>
+      S<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span>T<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment">//沿途压栈</span>
+      T <span class="token operator">=</span> T<span class="token operator">-></span>Left<span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span><span class="token function">empty</span><span class="token punctuation">(</span>S<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token comment">//压无可压</span>
+    <span class="token punctuation">&#123;</span>
+      T <span class="token operator">=</span> S<span class="token punctuation">.</span><span class="token function">top</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment">//访问</span>
+      S<span class="token punctuation">.</span><span class="token function">pop</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment">//出栈</span>
+      cout <span class="token operator">&lt;&lt;</span> T<span class="token operator">-></span>Data<span class="token punctuation">;</span>
+      T <span class="token operator">=</span> T<span class="token operator">-></span>Right<span class="token punctuation">;</span><span class="token comment">//开始遍历右子树</span>
+    <span class="token punctuation">&#125;</span>
+  <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span></code></pre>
+
+<pre class="language-c" data-language="c"><code class="language-c"><span class="token keyword">void</span> <span class="token function">PreOrderTraversal</span><span class="token punctuation">(</span>BinTree BT<span class="token punctuation">)</span><span class="token comment">//非递归先序遍历</span>
+<span class="token punctuation">&#123;</span>
+  BinTree T <span class="token operator">=</span> BT<span class="token punctuation">;</span>
+  stack<span class="token operator">&lt;</span>BinTree<span class="token operator">></span> S<span class="token punctuation">;</span><span class="token comment">//初始化栈</span>
+  <span class="token keyword">while</span> <span class="token punctuation">(</span>T <span class="token operator">||</span> <span class="token operator">!</span>S<span class="token punctuation">.</span><span class="token function">empty</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+  <span class="token punctuation">&#123;</span>
+    <span class="token keyword">while</span> <span class="token punctuation">(</span>T<span class="token punctuation">)</span><span class="token comment">//一路向左遍历左子树</span>
+    <span class="token punctuation">&#123;</span>
+      cout <span class="token operator">&lt;&lt;</span> T<span class="token operator">-></span>Data<span class="token punctuation">;</span><span class="token comment">//前序和先序的差别只在这</span>
+      S<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span>T<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment">//沿途压栈</span>
+      T <span class="token operator">=</span> T<span class="token operator">-></span>Left<span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span><span class="token function">empty</span><span class="token punctuation">(</span>S<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token comment">//压无可压</span>
+    <span class="token punctuation">&#123;</span>
+      T <span class="token operator">=</span> S<span class="token punctuation">.</span><span class="token function">top</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment">//访问</span>
+      S<span class="token punctuation">.</span><span class="token function">pop</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment">//出栈</span>
+      T <span class="token operator">=</span> T<span class="token operator">-></span>Right<span class="token punctuation">;</span><span class="token comment">//开始遍历右子树</span>
+    <span class="token punctuation">&#125;</span>
+  <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span></code></pre>
+
+<ul>
+<li>关于中序和先序只需调换打印语句的位置这件事，可以这么理解：</li>
+</ul>
+<p>对于先序来说，打印一个结点的时机是第一次访问该节点时；</p>
+<p>对于中序来说，打印一个结点的时机是第二次访问该结点时；</p>
+<p>但是！对于后序来说，打印一个结点是第三次访问该节点时（开始访问，左子树遍历完，右子树遍历完）难点在于：<strong>需要判断上次访问的节点是位于左子树，还是右子树。</strong>若是位于左子树，则需跳过根节点，先进入右子树，再回头访问根节点；若是位于右子树，则直接访问根节点。总结：</p>
+<ul>
+<li>当前结点是叶结点。</li>
+<li>当前结点的右子结点是上一次访问的结点。</li>
+</ul>
+<pre class="language-c" data-language="c"><code class="language-c"><span class="token keyword">void</span> <span class="token function">PostOrderTraversal</span><span class="token punctuation">(</span>BinTree BT<span class="token punctuation">)</span><span class="token comment">//非递归后序遍历</span>
+<span class="token punctuation">&#123;</span>
+  stack<span class="token operator">&lt;</span>BinTree<span class="token operator">></span> S<span class="token punctuation">;</span>
+  BinTree T<span class="token operator">=</span> BT<span class="token punctuation">;</span>
+  BinTree pre <span class="token operator">=</span> nullptr<span class="token punctuation">;</span><span class="token comment">//pre指针是为了保存上一次访问的结点状态</span>
+
+  <span class="token keyword">while</span> <span class="token punctuation">(</span>T <span class="token operator">!=</span> nullptr <span class="token operator">||</span> <span class="token operator">!</span>S<span class="token punctuation">.</span><span class="token function">empty</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+  <span class="token punctuation">&#123;</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>T <span class="token operator">!=</span> nullptr<span class="token punctuation">)</span>
+    <span class="token punctuation">&#123;</span>
+      S<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span>T<span class="token punctuation">)</span><span class="token punctuation">;</span>
+      T <span class="token operator">=</span> T<span class="token operator">-></span>Left<span class="token punctuation">;</span> <span class="token comment">//遍历左子树</span>
+    <span class="token punctuation">&#125;</span>
+    <span class="token keyword">else</span>
+    <span class="token punctuation">&#123;</span>
+      <span class="token comment">//每次取栈顶元素</span>
+      <span class="token comment">//判断栈顶元素的右孩子是否为空，</span>
+      <span class="token comment">//如果不为空，查看之前访问的节点是不是该栈顶元素的右孩子</span>
+      T <span class="token operator">=</span> S<span class="token punctuation">.</span><span class="token function">top</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token keyword">if</span> <span class="token punctuation">(</span>T<span class="token operator">-></span>Right <span class="token operator">!=</span> nullptr <span class="token operator">&amp;&amp;</span> T<span class="token operator">-></span>Right <span class="token operator">!=</span> pre<span class="token punctuation">)</span><span class="token comment">//如果之前访问的不是当前结点的右结点</span>
+      <span class="token punctuation">&#123;</span>
+        T <span class="token operator">=</span> T<span class="token operator">-></span>Right<span class="token punctuation">;</span> <span class="token comment">//遍历右子树</span>
+      <span class="token punctuation">&#125;</span>
+      <span class="token keyword">else</span>
+      <span class="token punctuation">&#123;</span>
+        cout <span class="token operator">&lt;&lt;</span> T<span class="token operator">-></span>Data<span class="token punctuation">;</span> <span class="token comment">//根</span>
+        S<span class="token punctuation">.</span><span class="token function">pop</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token comment">//每次访问节点之后，需要将缓存上一次访问的节点为pre，并且将当前指针置空</span>
+        pre <span class="token operator">=</span> T<span class="token punctuation">;</span>
+        T <span class="token operator">=</span> nullptr<span class="token punctuation">;</span>
+      <span class="token punctuation">&#125;</span>
+    <span class="token punctuation">&#125;</span>
+  <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span></code></pre>
+
+<h4 id="5）层序遍历"><a href="#5）层序遍历" class="headerlink" title="5）层序遍历"></a>5）层序遍历</h4><p>所谓层序遍历就是按照树的层次从上至下，从左至右地遍历树。也就是所谓的树型BFS。</p>
+<p><strong>通过引入一个队列来进行层序遍历：</strong></p>
+<ul>
+<li>先将根结点入队；</li>
+<li>只要队列不为空：<ul>
+<li>出队队首结点，并遍历；</li>
+<li>如果队首结点有左子结点，将左子结点入队；</li>
+<li>如果队首结点有右子结点，将右子结点入队；</li>
+</ul>
+</li>
+</ul>
+<pre class="language-c" data-language="c"><code class="language-c"><span class="token keyword">void</span> <span class="token function">LevelorderTraversal</span> <span class="token punctuation">(</span> BinTree BT <span class="token punctuation">)</span>
+<span class="token punctuation">&#123;</span> 
+  queue<span class="token operator">&lt;</span>BinTree<span class="token operator">></span> Q<span class="token punctuation">;</span>	<span class="token comment">//初始化队列</span>
+  BinTree T<span class="token punctuation">;</span>				<span class="token comment">//T作为临时变量</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>BT<span class="token punctuation">)</span>
+    <span class="token keyword">return</span><span class="token punctuation">;</span>					<span class="token comment">//若为空树直接返回</span>
+  Q<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span>BT<span class="token punctuation">)</span><span class="token punctuation">;</span> 			<span class="token comment">// 根节点入队</span>
+  <span class="token keyword">while</span> <span class="token punctuation">(</span><span class="token operator">!</span>Q<span class="token punctuation">.</span><span class="token function">empty</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+  <span class="token punctuation">&#123;</span>
+    T <span class="token operator">=</span> Q<span class="token punctuation">.</span><span class="token function">front</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> 	<span class="token comment">// 访问队首元素</span>
+    Q<span class="token punctuation">.</span><span class="token function">pop</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>      	<span class="token comment">// 出队</span>
+    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"%d"</span><span class="token punctuation">,</span> T<span class="token operator">-></span>Data<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>T<span class="token operator">-></span>Left<span class="token punctuation">)</span>
+      Q<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span>T<span class="token operator">-></span>Left<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>T<span class="token operator">-></span>Right<span class="token punctuation">)</span>
+      Q<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span>T<span class="token operator">-></span>Right<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span></code></pre>
+
+<ul>
+<li>已知二叉树的 先序遍历和中序遍历 或者 后序遍历和中序遍历。可以唯一确定一颗二叉树</li>
+</ul>
+<h3 id="二叉树的操作集及基础应用"><a href="#二叉树的操作集及基础应用" class="headerlink" title="二叉树的操作集及基础应用"></a>二叉树的操作集及基础应用</h3><h4 id="1）输出叶结点（PrintLeaves）"><a href="#1）输出叶结点（PrintLeaves）" class="headerlink" title="1）输出叶结点（PrintLeaves）"></a>1）输出叶结点（PrintLeaves）</h4><p>思路非常简单，在上述遍历的基础上，加上<strong>左右子树皆空的条件即可</strong></p>
+<pre class="language-c" data-language="c"><code class="language-c"><span class="token keyword">void</span> <span class="token function">PrintLeaves</span><span class="token punctuation">(</span>BinTree BT<span class="token punctuation">)</span>
+<span class="token punctuation">&#123;</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span>BT<span class="token punctuation">)</span>
+  <span class="token punctuation">&#123;</span>
+    <span class="token function">PrintLeaves</span><span class="token punctuation">(</span>BT<span class="token operator">-></span>Left<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>BT<span class="token operator">-></span>Left <span class="token operator">&amp;&amp;</span> <span class="token operator">!</span>BT<span class="token operator">-></span>Right<span class="token punctuation">)</span>
+      <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"%d"</span><span class="token punctuation">,</span> BT<span class="token operator">-></span>Data<span class="token punctuation">)</span><span class="token punctuation">;</span> 
+    <span class="token function">PrintLeaves</span><span class="token punctuation">(</span>BT<span class="token operator">-></span>Right<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span></code></pre>
+
+<h4 id="2）求高度（getHeight）"><a href="#2）求高度（getHeight）" class="headerlink" title="2）求高度（getHeight）"></a>2）求高度（getHeight）</h4><p>递推公式：<strong>高度&#x3D;max（左子树高度，右子树高度）+1</strong></p>
+<p>思路也很简单，同样是递归遍历求高度</p>
+<pre class="language-c" data-language="c"><code class="language-c"> <span class="token keyword">int</span> <span class="token function">getHeight</span><span class="token punctuation">(</span>BinTree BT<span class="token punctuation">)</span>
+<span class="token punctuation">&#123;</span>
+  <span class="token keyword">int</span> HL<span class="token punctuation">,</span> HR<span class="token punctuation">,</span> MaxH<span class="token punctuation">;</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span>BT<span class="token punctuation">)</span>
+  <span class="token punctuation">&#123;</span>
+    HL<span class="token operator">=</span><span class="token function">getHeight</span><span class="token punctuation">(</span>BT<span class="token operator">-></span>Left<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    HR <span class="token operator">=</span> <span class="token function">getHeight</span><span class="token punctuation">(</span>BT<span class="token operator">-></span>Right<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    MaxH <span class="token operator">=</span> HL <span class="token operator">></span> HR <span class="token operator">?</span> HL <span class="token operator">:</span> HR<span class="token punctuation">;</span>
+    <span class="token keyword">return</span> <span class="token punctuation">(</span>MaxH <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">&#125;</span>
+  <span class="token keyword">else</span>
+    <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span><span class="token comment">//空树返回0</span>
+<span class="token punctuation">&#125;</span></code></pre>
+
+<h4 id="3）二元运算表达式树"><a href="#3）二元运算表达式树" class="headerlink" title="3）二元运算表达式树"></a>3）二元运算表达式树</h4><img src="https://imgbed-1304793179.cos.ap-nanjing.myqcloud.com/typora/20211008092826.png" alt="QQ截图20210329185128" style="zoom:50%;" / loading="lazy">
+
+<p>让我们遍历一下试试:</p>
+<p>后序遍历: abc*+de*f+g*+ &#x2F;&#x2F;后缀表达式<br>中序遍历: a+b*c+d*e+f*g &#x2F;&#x2F;异常的中缀表达式（收到<strong>优先级影响</strong>）<br>前序遍历: ++a*bc*+*defg &#x2F;&#x2F;前缀表达式</p>
+<p>那么接下来考虑解决中序的异常情况，这里有一种很讨巧的加括号的方式：</p>
+<ul>
+<li>进入左子树前 打印左括号</li>
+<li>退出右子树后 打印右括号</li>
+</ul>
+<p>不过打印出来的 (((a)+((b)*(c)))+((((d)*(e))+(f))*(g))) 可读性也不怎么样</p>
+<pre class="language-c" data-language="c"><code class="language-c"><span class="token keyword">void</span> <span class="token function">InOrderBinaryExpressionTrees</span><span class="token punctuation">(</span>BinTree BT<span class="token punctuation">)</span>
+<span class="token punctuation">&#123;</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span>BT<span class="token punctuation">)</span>
+  <span class="token punctuation">&#123;</span>
+    cout <span class="token operator">&lt;&lt;</span> <span class="token string">"("</span><span class="token punctuation">;</span>
+    <span class="token function">InOrderBinaryExpressionTrees</span><span class="token punctuation">(</span>BT<span class="token operator">-></span>Left<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    cout <span class="token operator">&lt;&lt;</span> BT<span class="token operator">-></span>Data<span class="token punctuation">;</span> <span class="token comment">//***</span>
+    <span class="token function">InOrderBinaryExpressionTrees</span><span class="token punctuation">(</span>BT<span class="token operator">-></span>Right<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    cout <span class="token operator">&lt;&lt;</span> <span class="token string">")"</span><span class="token punctuation">;</span>
+  <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span></code></pre>
+
+<h4 id="4）前序-中序-gt-后序"><a href="#4）前序-中序-gt-后序" class="headerlink" title="4）前序+中序-&gt;后序"></a>4）前序+中序-&gt;后序</h4><p>假定有某二叉树的前序遍历序列和中序遍历序列那么是否能还原出后序遍历序列呢？</p>
+<p>例：</p>
+<p>前序遍历:     GDAFEMHZ</p>
+<p>中序遍历:     ADEFGHMZ</p>
+<blockquote>
+<p>第一步，根据前序遍历的特点(根左右)，我们知道根结点为G</p>
+<p>第二步，观察中序遍历(左根右)ADEFGHMZ。其中root节点G左侧的ADEF必然是root的左子树，G右侧的HMZ必然是root的右子树。</p>
+<p>第三步，观察左子树ADEF，左子树的中的根节点必然是大树的root的leftchild。在前序遍历中，大树的root的leftchild位于root之后，所以左子树的根节点为D。</p>
+<p>第四步，同样的道理，root的右子树节点HMZ中的根节点也可以通过前序遍历求得。在前序遍历中，一定是先把root和root的所有左子树节点遍历完之后才会遍历右子树，并且遍历的左子树的第一个节点就是左子树的根节点。同理，遍历的右子树的第一个节点就是右子树的根节点。</p>
+<p>第五步，观察发现，上面的过程是<strong>递归</strong>的。</p>
+<p>先找到当前树的根节点，然后划分为左子树，右子树，然后进入左子树重复上面的过程，然后进入右子树重复上面的过程。最后就可以还原一棵树了。该步递归的过程可以简洁表达如下：</p>
+<p>1 确定根,确定左子树，确定右子树。</p>
+<p>2 在左子树中递归。</p>
+<p>3 在右子树中递归。</p>
+<p>4 打印当前根。</p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/u011068702/article/details/51914220">二叉树前序、中序、后序遍历相互求法</a></p>
+</blockquote>
+<p><img src="https://imgbed-1304793179.cos.ap-nanjing.myqcloud.com/typora/20211008092828.jpeg" alt="img" loading="lazy"></p>
+<p>这里都是用的字符串指针，在洛谷有看见大佬用stl的string非常惊艳</p>
+<pre class="language-c" data-language="c"><code class="language-c"><span class="token keyword">void</span> <span class="token function">toPostOrder</span><span class="token punctuation">(</span><span class="token keyword">char</span> <span class="token operator">*</span>inorder<span class="token punctuation">,</span> <span class="token keyword">char</span> <span class="token operator">*</span>preorder<span class="token punctuation">,</span> <span class="token keyword">int</span> length<span class="token punctuation">)</span>
+<span class="token punctuation">&#123;</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span>length <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">)</span>
+  <span class="token punctuation">&#123;</span>
+    <span class="token comment">//cout&lt;&lt;"invalid length";</span>
+    <span class="token keyword">return</span><span class="token punctuation">;</span>
+  <span class="token punctuation">&#125;</span>
+  BinTree node <span class="token operator">=</span> new TreeNode<span class="token punctuation">;</span>
+  node<span class="token operator">-></span>Data <span class="token operator">=</span> <span class="token operator">*</span>preorder<span class="token punctuation">;</span> <span class="token comment">//记录先序的首元素，即树的根</span>
+  <span class="token keyword">int</span> rootIndex <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+  <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token punctuation">;</span> rootIndex <span class="token operator">&lt;</span> length<span class="token punctuation">;</span> rootIndex<span class="token operator">++</span><span class="token punctuation">)</span>
+  <span class="token punctuation">&#123;</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>inorder<span class="token punctuation">[</span>rootIndex<span class="token punctuation">]</span> <span class="token operator">==</span> <span class="token operator">*</span>preorder<span class="token punctuation">)</span>
+      <span class="token keyword">break</span><span class="token punctuation">;</span>
+  <span class="token punctuation">&#125;</span> <span class="token comment">//在中序序列中寻找root，并记录其下标rootIndex</span>
+  <span class="token comment">//特别注意到 左子树的长度 == rootIndex ,右子树的长度 == length - (rootIndex + 1)</span>
+  <span class="token comment">//Left</span>
+  <span class="token function">toPostOrder</span><span class="token punctuation">(</span>inorder<span class="token punctuation">,</span> preorder <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">,</span> rootIndex<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token comment">//Right</span>
+  <span class="token function">toPostOrder</span><span class="token punctuation">(</span>inorder <span class="token operator">+</span> rootIndex <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">,</span> preorder <span class="token operator">+</span> rootIndex <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">,</span> length <span class="token operator">-</span> <span class="token punctuation">(</span>rootIndex <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  cout <span class="token operator">&lt;&lt;</span> node<span class="token operator">-></span>Data<span class="token punctuation">;</span>
+  <span class="token keyword">return</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span></code></pre>
+
+<p>类似的，不难得出中序和后序求先序的算法。</p>
+<pre class="language-c" data-language="c"><code class="language-c"><span class="token keyword">void</span> <span class="token function">toPreOrder</span><span class="token punctuation">(</span><span class="token keyword">char</span> <span class="token operator">*</span>inorder<span class="token punctuation">,</span> <span class="token keyword">char</span> <span class="token operator">*</span>postorder<span class="token punctuation">,</span> <span class="token keyword">int</span> length<span class="token punctuation">)</span>
+<span class="token punctuation">&#123;</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span>length <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">)</span>
+  <span class="token punctuation">&#123;</span>
+    <span class="token comment">//cout&lt;&lt;"invalid length";</span>
+    <span class="token keyword">return</span><span class="token punctuation">;</span>
+  <span class="token punctuation">&#125;</span>
+  BinTree node <span class="token operator">=</span> new TreeNode<span class="token punctuation">;</span>
+  node<span class="token operator">-></span>Data <span class="token operator">=</span> <span class="token operator">*</span><span class="token punctuation">(</span>postorder <span class="token operator">+</span> length <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">//取后序排列的末尾，即为根</span>
+  cout <span class="token operator">&lt;&lt;</span> node<span class="token operator">-></span>Data<span class="token punctuation">;</span>                     <span class="token comment">//由于先序序列第一位是根，直接打印</span>
+
+  <span class="token keyword">int</span> rootIndex <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+  <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token punctuation">;</span> rootIndex <span class="token operator">&lt;</span> length<span class="token punctuation">;</span> rootIndex<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token comment">//a variation of the loop</span>
+  <span class="token punctuation">&#123;</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>inorder<span class="token punctuation">[</span>rootIndex<span class="token punctuation">]</span> <span class="token operator">==</span> <span class="token operator">*</span><span class="token punctuation">(</span>postorder <span class="token operator">+</span> length <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+      <span class="token keyword">break</span><span class="token punctuation">;</span>
+  <span class="token punctuation">&#125;</span> <span class="token comment">//在中序序列中寻找根,返回其下标</span>
+  <span class="token comment">//然后得到中序根下标左边为左子树，右边为右子树</span>
+  <span class="token function">toPreOrder</span><span class="token punctuation">(</span>inorder<span class="token punctuation">,</span> postorder<span class="token punctuation">,</span>rootIndex<span class="token punctuation">)</span><span class="token punctuation">;</span> 
+  <span class="token comment">//中序左根右，后序左右根，两序列的左子树长度相等</span>
+  <span class="token function">toPreOrder</span><span class="token punctuation">(</span>inorder <span class="token operator">+</span> rootIndex <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">,</span> postorder <span class="token operator">+</span> rootIndex<span class="token punctuation">,</span> length <span class="token operator">-</span> <span class="token punctuation">(</span>rootIndex <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token comment">//遍历右子树，中序直接遍历到尾</span>
+<span class="token punctuation">&#125;</span></code></pre>
+
+<h2 id="并查集"><a href="#并查集" class="headerlink" title="并查集"></a>并查集</h2><blockquote>
+<p>并查集是一种<strong>树形的</strong>数据结构，顾名思义，它用于处理一些不交集的 <strong>合并</strong> 及 <strong>查询</strong> 问题。 它支持两种操作：</p>
+<ul>
+<li>查找（Find）：确定某个元素处于哪个子集；</li>
+<li>合并（Union）：将两个子集合并成一个集合。</li>
+</ul>
+</blockquote>
+<h3 id="并查集的表示"><a href="#并查集的表示" class="headerlink" title="并查集的表示"></a>并查集的表示</h3><p>利用结构体数组进行存储,规定祖先的父结点值为负数。</p>
+<pre class="language-c" data-language="c"><code class="language-c"><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">define</span> <span class="token macro-name">MaxSize</span> <span class="token expression"><span class="token number">1000</span></span></span>
+<span class="token keyword">typedef</span> <span class="token keyword">int</span> ElementType<span class="token punctuation">;</span>
+<span class="token keyword">typedef</span> <span class="token keyword">struct</span><span class="token punctuation">&#123;</span>
+	ElementType Data<span class="token punctuation">;</span> <span class="token comment">// 存值</span>
+	<span class="token keyword">int</span> parent<span class="token punctuation">;</span>  <span class="token comment">// 指向父结点 </span>
+<span class="token punctuation">&#125;</span>SetType<span class="token punctuation">;</span>
+SetType s<span class="token punctuation">[</span>MaxSize<span class="token punctuation">]</span><span class="token punctuation">;</span></code></pre>
+
+<h3 id="查找"><a href="#查找" class="headerlink" title="查找"></a>查找</h3><p>方案一（暴力）：</p>
+<pre class="language-c" data-language="c"><code class="language-c"><span class="token keyword">int</span> <span class="token function">Find</span><span class="token punctuation">(</span>ElementType x<span class="token punctuation">)</span>
+<span class="token punctuation">&#123;</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span>s<span class="token punctuation">[</span>x<span class="token punctuation">]</span><span class="token punctuation">.</span>parent<span class="token operator">&lt;</span><span class="token number">0</span><span class="token punctuation">)</span> <span class="token comment">//x恰好就是根节点</span>
+    <span class="token keyword">return</span> x<span class="token punctuation">;</span>
+ <span class="token keyword">else</span>
+   <span class="token keyword">return</span> <span class="token function">Find</span><span class="token punctuation">(</span>s<span class="token punctuation">[</span>x<span class="token punctuation">]</span><span class="token punctuation">.</span>parent<span class="token punctuation">)</span>
+<span class="token punctuation">&#125;</span></code></pre>
+
+<ul>
+<li>从叶结点开始，一层一层向父结点访问，思路简单，但是效率太低，因为对于一个集合来说我只关心他的根节点（祖宗结点），而不关心他的父结点。<del>那么，有没有一种方法</del><strong>那就是把在路径上的每个节点都直接连接到根上</strong>，这就是<strong>路径压缩</strong>。</li>
+</ul>
+<pre class="language-c" data-language="c"><code class="language-c"><span class="token keyword">int</span> <span class="token function">Find</span><span class="token punctuation">(</span>ElementType x<span class="token punctuation">)</span>
+<span class="token punctuation">&#123;</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span>s<span class="token punctuation">[</span>x<span class="token punctuation">]</span><span class="token punctuation">.</span>parent<span class="token operator">>=</span><span class="token number">0</span><span class="token punctuation">)</span>  					<span class="token comment">// x不是根节点</span>
+    s<span class="token punctuation">[</span>x<span class="token punctuation">]</span><span class="token punctuation">.</span>parent <span class="token operator">=</span> <span class="token function">Find</span><span class="token punctuation">(</span>s<span class="token punctuation">[</span>x<span class="token punctuation">]</span><span class="token punctuation">.</span>parent<span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment">// 查找x的祖先直到找到代表,于是顺手路径压缩</span>
+  <span class="token keyword">return</span> s<span class="token punctuation">[</span>x<span class="token punctuation">]</span><span class="token punctuation">.</span>parent<span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span></code></pre>
+
+<h3 id="合并"><a href="#合并" class="headerlink" title="合并"></a>合并</h3><pre class="language-c" data-language="c"><code class="language-c"><span class="token keyword">void</span> <span class="token function">Union</span><span class="token punctuation">(</span>SetName Root1<span class="token punctuation">,</span> SetName Root2 <span class="token punctuation">)</span>
+<span class="token punctuation">&#123;</span> <span class="token comment">/* 这里默认Root1和Root2是不同集合的根结点 */</span>
+    <span class="token comment">/* 保证小集合并入大集合 */</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span> s<span class="token punctuation">[</span>Root2<span class="token punctuation">]</span> <span class="token operator">&lt;</span> s<span class="token punctuation">[</span>Root1<span class="token punctuation">]</span> <span class="token punctuation">)</span> <span class="token punctuation">&#123;</span> <span class="token comment">/* 如果集合2比较大 */</span>
+        s<span class="token punctuation">[</span>Root2<span class="token punctuation">]</span> <span class="token operator">+=</span> s<span class="token punctuation">[</span>Root1<span class="token punctuation">]</span><span class="token punctuation">;</span>     <span class="token comment">/* 集合1并入集合2  */</span>
+        s<span class="token punctuation">[</span>Root1<span class="token punctuation">]</span> <span class="token operator">=</span> Root2<span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+    <span class="token keyword">else</span> <span class="token punctuation">&#123;</span>                         <span class="token comment">/* 如果集合1比较大 */</span>
+        s<span class="token punctuation">[</span>Root1<span class="token punctuation">]</span> <span class="token operator">+=</span> s<span class="token punctuation">[</span>Root2<span class="token punctuation">]</span><span class="token punctuation">;</span>     <span class="token comment">/* 集合2并入集合1  */</span>
+        s<span class="token punctuation">[</span>Root2<span class="token punctuation">]</span> <span class="token operator">=</span> Root1<span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span></code></pre>
+
+
+
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/ac95b5a7de8b">https://www.jianshu.com/p/ac95b5a7de8b</a></p>
+<p><a target="_blank" rel="noopener" href="https://cloud.tencent.com/developer/article/1353388">https://cloud.tencent.com/developer/article/1353388</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/dolphin0520/archive/2011/08/25/2153720.html">https://www.cnblogs.com/dolphin0520/archive/2011/08/25/2153720.html</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.runoob.com/data-structures/binary-search-level-traverse.html">https://www.runoob.com/data-structures/binary-search-level-traverse.html</a></p>
+<p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/34147390">https://zhuanlan.zhihu.com/p/34147390</a></p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/u011068702/article/details/51914220">https://blog.csdn.net/u011068702/article/details/51914220</a></p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/snowsnowsnow1991/article/details/52541760">https://blog.csdn.net/snowsnowsnow1991/article/details/52541760</a></p>
+<p><a target="_blank" rel="noopener" href="https://oi-wiki.org/ds/dsu/">https://oi-wiki.org/ds/dsu/</a></p>
+</div></section><ul class="post-copyright"><li class="post-copyright-author"><strong>Post author: </strong>Anduin9527</li><li class="post-copyright-link"><strong>Post link: </strong><a href="http://lapras.xyz/2021/03/28/389e8dec.html" title="从零开始的数据结构-树（上）">http://lapras.xyz/2021/03/28/389e8dec.html</a></li><li class="post-copyright-license"><strong>Copyright Notice: </strong>All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank" rel="noopener" title="CC BY-NC-SA 4.0 "><span class="icon iconify" data-icon="ri:creative-commons-line"></span><span class="icon iconify" data-icon="ri:creative-commons-by-line"></span><span class="icon iconify" data-icon="ri:creative-commons-nc-line"></span><span class="icon iconify" data-icon="ri:creative-commons-sa-line"></span></a> unless otherwise stated.</li></ul></article><div class="post-nav"><div class="post-nav-item"><a class="post-nav-prev" href="/2021/04/01/8022ea89.html" rel="prev" title="从零开始的数据结构-树（下）"><span class="icon iconify" data-icon="ri:arrow-left-s-line"></span><span class="post-nav-text">从零开始的数据结构-树（下）</span></a></div><div class="post-nav-item"><a class="post-nav-next" href="/2021/03/28/c335c6ca.html" rel="next" title="从零开始的数据结构-线性结构"><span class="post-nav-text">从零开始的数据结构-线性结构</span><span class="icon iconify" data-icon="ri:arrow-right-s-line"></span></a></div></div></div><div class="hty-card" id="comment"><div class="comment-tooltip text-center"><span>如果您有任何关于博客内容的相关讨论，欢迎与我交流。</span><br></div></div></main><footer class="sidebar-translate" id="footer"><div class="beian"><a rel="noopener" href="https://beian.miit.gov.cn/" target="_blank">闽ICP备2021012704号</a></div><div class="copyright"><span>&copy; 2020 – 2022 </span><span class="with-love" id="animate"><span class="icon iconify" data-icon="ri:cloud-line"></span></span><span class="author"> Anduin9527</span></div><div class="powered"><span>Powered by <a href="https://hexo.io" target="_blank" rel="noopener">Hexo</a> v6.2.0</span><span class="footer-separator">|</span><span>Theme - <a rel="noopener" href="https://github.com/YunYouJun/hexo-theme-yun" target="_blank"><span>Yun</span></a> v1.10.4</span></div></footer></div><a class="hty-icon-button" id="back-to-top" aria-label="back-to-top" href="#"><span class="icon iconify" data-icon="ri:arrow-up-s-line"></span><svg class="progress-circle-container" viewBox="0 0 100 100"><circle class="progress-circle" id="progressCircle" cx="50" cy="50" r="48" fill="none" stroke="#66d6ff" stroke-width="2" stroke-linecap="round"></circle></svg></a><a class="popup-trigger hty-icon-button icon-search" id="search" target="_blank" rel="noopener" href="https://www.google.com/search?q=site:lapras.xyz" title="Search"><span class="site-state-item-icon"><span class="icon iconify" data-icon="ri:search-line"></span></span></a><script>function initMourn() {
+  const date = new Date();
+  const today = (date.getMonth() + 1) + "-" + date.getDate()
+  const mourn_days = ["4-4","9-18","5-12","12-13"]
+  if (mourn_days.includes(today)) {
+    document.documentElement.style.filter = "grayscale(1)";
+  }
+}
+initMourn();</script></body></html>

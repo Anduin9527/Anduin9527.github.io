@@ -1,0 +1,234 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="theme-color" content="#66d6ff"><meta name="author" content="Anduin9527"><meta name="copyright" content="Anduin9527"><meta name="generator" content="Hexo 6.2.0"><meta name="theme" content="hexo-theme-yun"><title>UE4学习笔记--基础篇 | Anduin9527的乖离器</title><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@900&amp;display=swap" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://fastly.jsdelivr.net/npm/star-markdown-css@0.3.3/dist/yun/yun-markdown.min.css"><link rel="stylesheet" href="https://fastly.jsdelivr.net/npm/prism-theme-vars/base.css"><script src="https://fastly.jsdelivr.net/npm/scrollreveal/dist/scrollreveal.min.js" defer></script><script>function initScrollReveal() {
+  [".post-card",".markdown-body img"].forEach((target)=> {
+    ScrollReveal().reveal(target);
+  })
+}
+document.addEventListener("DOMContentLoaded", initScrollReveal);
+document.addEventListener("pjax:success", initScrollReveal);
+</script><link rel="icon" type="image/svg+xml" href="/images/favicon.svg"><link rel="mask-icon" href="/images/favicon.svg" color="#66d6ff"><link rel="preload" href="/css/hexo-theme-yun.css" as="style"><link rel="prefetch" href="/js/sidebar.js" as="script"><link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin><link rel="preconnect" href="https://fastly.jsdelivr.net/npm/" crossorigin><script id="yun-config">
+    window.Yun = {}
+    window.CONFIG = {"hostname":"lapras.xyz","root":"/","title":["拉普","拉斯~","的","乖离器"],"version":"1.10.4","mode":"auto","copycode":true,"page":{"isPost":true},"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}.","hits":"${hits} results found","hits_time":"${hits} results found in ${time} ms"},"anonymous_image":"https://cdn.yunyoujun.cn/img/avatar/none.jpg","fireworks":{"colors":["#00D1CE","#66D6FF","#919191"]},"vendors":{"darken":"https://fastly.jsdelivr.net/npm/darken@1.5.0"}};
+  </script><link rel="stylesheet" href="/css/hexo-theme-yun.css"><script src="/js/hexo-theme-yun.js" type="module"></script><link rel="alternate" href="/atom.xml" title="Anduin9527的乖离器" type="application/atom+xml"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@900&amp;display=swap"><script src="/h" async></script><script src="/t" async></script><script src="/t" async></script><script src="/p" async></script><script src="/s" async></script><script src="/:" async></script><script src="/" async></script><script src="/" async></script><script src="/c" async></script><script src="/d" async></script><script src="/n" async></script><script src="/." async></script><script src="/j" async></script><script src="/s" async></script><script src="/d" async></script><script src="/e" async></script><script src="/l" async></script><script src="/i" async></script><script src="/v" async></script><script src="/r" async></script><script src="/." async></script><script src="/n" async></script><script src="/e" async></script><script src="/t" async></script><script src="/" async></script><script src="/n" async></script><script src="/p" async></script><script src="/m" async></script><script src="/" async></script><script src="/i" async></script><script src="/o" async></script><script src="/n" async></script><script src="/i" async></script><script src="/c" async></script><script src="/o" async></script><script src="/n" async></script><script src="/s" async></script><script src="/" async></script><script src="/d" async></script><script src="/i" async></script><script src="/s" async></script><script src="/t" async></script><script src="/" async></script><script src="/i" async></script><script src="/o" async></script><script src="/n" async></script><script src="/i" async></script><script src="/c" async></script><script src="/o" async></script><script src="/n" async></script><script src="/s" async></script><script src="/." async></script><script src="/j" async></script><script src="/s" async></script><link rel="preconnect" href="https://www.google-analytics.com" crossorigin><script async src="https://www.googletagmanager.com/gtag/js?id=G-NSLVQ2H5JH"></script><script>if (CONFIG.hostname === location.hostname) {
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-NSLVQ2H5JH');
+}</script><script>(function(){
+  var bp = document.createElement('script');
+  var curProtocol = window.location.protocol.split(':')[0];
+  if (curProtocol === 'https') {
+    bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+  }
+  else {
+    bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+  }
+  var s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(bp, s);
+})();</script><meta name="description" content="前言EPIC牛逼! 本笔记全程跟着谌老师的教学走。 全程参照官方文档,第一次认真看文档。 多上手，多上手。有当年YDWE那味了">
+<meta property="og:type" content="article">
+<meta property="og:title" content="UE4学习笔记--基础篇">
+<meta property="og:url" content="http://lapras.xyz/2021/03/09/f4f1bbb0.html">
+<meta property="og:site_name" content="Anduin9527的乖离器">
+<meta property="og:description" content="前言EPIC牛逼! 本笔记全程跟着谌老师的教学走。 全程参照官方文档,第一次认真看文档。 多上手，多上手。有当年YDWE那味了">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://i.loli.net/2021/03/10/AJby1hjnlotvWS6.png">
+<meta property="og:image" content="https://i.loli.net/2021/03/10/RPtFmUpOM82nxkG.png#pic_left">
+<meta property="og:image" content="https://i.loli.net/2021/03/10/YQFzXaMPZT5wONB.png#pic_right">
+<meta property="og:image" content="https://i.loli.net/2021/03/10/c5vtlDq7VCEpF3x.jpg#pic_left">
+<meta property="article:published_time" content="2021-03-09T14:51:30.000Z">
+<meta property="article:modified_time" content="2021-09-03T03:43:09.065Z">
+<meta property="article:author" content="Anduin9527">
+<meta property="article:tag" content="UE4">
+<meta property="article:tag" content="游戏">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://i.loli.net/2021/03/10/AJby1hjnlotvWS6.png"><script type="module">import { getScript } from '/js/utils.js'
+getScript("https://fastly.jsdelivr.net/npm/mermaid/dist/mermaid.min.js", () => {
+  const mermaidOptions = {"startOnload":true}
+  mermaid.initialize(mermaidOptions);
+}, window.mermaid);
+</script><style>.mermaid{background: transparent;}</style><script>(function() {
+  const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
+  const setting = localStorage.getItem('darken-mode') || 'auto'
+  if (setting === 'dark' || (prefersDark && setting !== 'light'))
+    document.documentElement.classList.toggle('dark', true)
+})()</script></head><body><script src="https://code.iconify.design/2/2.1.1/iconify.min.js"></script><script>// Define global variable
+IconifyProviders = {
+  // Empty prefix: overwrite default API provider configuration
+  '': {
+    // Use custom API first, use Iconify public API as backup
+    resources: [
+        'https://api.iconify.design',
+    ],
+    // Wait for 1 second before switching API hosts
+    rotate: 1000,
+  },
+};</script><script defer src="https://fastly.jsdelivr.net/npm/animejs@latest"></script><script defer src="/js/ui/fireworks.js" type="module"></script><canvas class="fireworks"></canvas><div class="container"><a class="sidebar-toggle hty-icon-button" id="menu-btn"><div class="hamburger hamburger--spin" type="button"><span class="hamburger-box"><span class="hamburger-inner"></span></span></div></a><div class="sidebar-toggle sidebar-overlay"></div><aside class="sidebar"><script src="/js/sidebar.js" type="module"></script><ul class="sidebar-nav"><li class="sidebar-nav-item sidebar-nav-toc hty-icon-button sidebar-nav-active" data-target="post-toc-wrap" title="Table of Contents"><span class="icon iconify" data-icon="ri:list-ordered"></span></li><li class="sidebar-nav-item sidebar-nav-overview hty-icon-button" data-target="site-overview-wrap" title="Overview"><span class="icon iconify" data-icon="ri:passport-line"></span></li></ul><div class="sidebar-panel" id="site-overview-wrap"><div class="site-info fix-top"><a class="site-author-avatar" href="/about/" title="Anduin9527"><img width="96" loading="lazy" src="/images/avatar.jpg" alt="Anduin9527"><span class="site-author-status" title="建模建模呜呜呜！">😭</span></a><div class="site-author-name"><a href="/about/">Anduin9527</a></div><span class="site-name">Anduin9527的乖离器</span><sub class="site-subtitle">正在进修摸鱼学导论</sub><div class="site-description">南邮摸鱼ing</div></div><nav class="site-state"><a class="site-state-item hty-icon-button icon-home" href="/" title="Home"><span class="site-state-item-icon"><span class="icon iconify" data-icon="ri:home-4-line"></span></span></a><div class="site-state-item"><a href="/archives/" title="Archives"><span class="site-state-item-icon"><span class="icon iconify" data-icon="ri:archive-line"></span></span><span class="site-state-item-count">24</span></a></div><div class="site-state-item"><a href="/categories/" title="Categories"><span class="site-state-item-icon"><span class="icon iconify" data-icon="ri:folder-2-line"></span></span><span class="site-state-item-count">5</span></a></div><div class="site-state-item"><a href="/tags/" title="Tags"><span class="site-state-item-icon"><span class="icon iconify" data-icon="ri:price-tag-3-line"></span></span><span class="site-state-item-count">24</span></a></div><a class="site-state-item hty-icon-button" target="_blank" rel="noopener" href="https://yun.yunyoujun.cn" title="文档"><span class="site-state-item-icon"><span class="icon iconify" data-icon="ri:settings-line"></span></span></a></nav><hr style="margin-bottom:0.5rem"><div class="links-of-author"><a class="links-of-author-item hty-icon-button" rel="noopener" href="tencent://message/?uin=2676057183&amp;Site=&amp;Menu=yes" title="QQ" target="_blank" style="color:#12B7F5"><span class="icon iconify" data-icon="ri:qq-line"></span></a><a class="links-of-author-item hty-icon-button" rel="noopener" href="https://github.com/Anduin9527" title="GitHub" target="_blank" style="color:#181717"><span class="icon iconify" data-icon="ri:github-line"></span></a><a class="links-of-author-item hty-icon-button" rel="noopener" href="mailto:2676057183@qq.com" title="E-Mail" target="_blank" style="color:#8E71C1"><span class="icon iconify" data-icon="ri:mail-line"></span></a><a class="links-of-author-item hty-icon-button" rel="noopener" href="https://music.163.com/#/user/home?id=579015212" title="网易云音乐" target="_blank" style="color:#C10D0C"><span class="icon iconify" data-icon="ri:netease-cloud-music-line"></span></a><a class="links-of-author-item hty-icon-button" rel="noopener" href="https://www.zhihu.com/people/chu-liu-16-64" title="知乎" target="_blank" style="color:#0084FF"><span class="icon iconify" data-icon="ri:zhihu-line"></span></a><a class="links-of-author-item hty-icon-button" rel="noopener" href="https://space.bilibili.com/21994551" title="哔哩哔哩动画" target="_blank" style="color:#FF8EB3"><span class="icon iconify" data-icon="ri:bilibili-line"></span></a><a class="links-of-author-item hty-icon-button" rel="noopener" href="/atom.xml" title="RSS" target="_blank" style="color:orange"><span class="icon iconify" data-icon="ri:rss-line"></span></a></div><hr style="margin:0.5rem 1rem"><div class="links"><a class="links-item hty-icon-button" href="/links/" title="我的小伙伴们" style="color:dodgerblue"><span class="icon iconify" data-icon="ri:genderless-line"></span></a><a class="links-item hty-icon-button" href="/girls/" title="我永远喜欢oo" style="color:hotpink"><span class="icon iconify" data-icon="ri:women-line"></span></a></div><br><a class="links-item hty-icon-button" id="toggle-mode-btn" href="javascript:;" title="Mode" style="color: #f1cb64"><span class="icon iconify" data-icon="ri:contrast-2-line"></span></a></div><div class="sidebar-panel sidebar-panel-active" id="post-toc-wrap"><div class="post-toc"><div class="post-toc-content"><ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%89%8D%E8%A8%80"><span class="toc-text">前言</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A7%86%E5%8F%A3%E5%AF%BC%E8%88%AA"><span class="toc-text">视口导航</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%A7%86%E5%8F%A3%E7%95%8C%E9%9D%A2%E7%9A%84%E6%93%8D%E4%BD%9C"><span class="toc-text">视口界面的操作</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%A7%86%E5%8F%A3%E7%9A%84%E7%B1%BB%E5%9E%8B"><span class="toc-text">视口的类型</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%89%A9%E4%BD%93%E7%BC%96%E8%BE%91%E5%99%A8"><span class="toc-text">物体编辑器</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9D%90%E6%A0%87%E8%BD%B4"><span class="toc-text">坐标轴</span></a></li></ol></div></div></div></aside><main class="sidebar-translate" id="content"><div id="post"><article class="hty-card post-block" itemscope itemtype="https://schema.org/Article" style="--smc-primary:#66d6ff;"><link itemprop="mainEntityOfPage" href="http://lapras.xyz/2021/03/09/f4f1bbb0.html"><span hidden itemprop="author" itemscope itemtype="https://schema.org/Person"><meta itemprop="name" content="Anduin9527"><meta itemprop="description"></span><span hidden itemprop="publisher" itemscope itemtype="https://schema.org/Organization"><meta itemprop="name" content="Anduin9527的乖离器"></span><header class="post-header"><h1 class="post-title" itemprop="name headline">UE4学习笔记--基础篇</h1><div class="post-meta"><div class="post-time" style="display:block"><span class="post-meta-item-icon"><span class="icon iconify" data-icon="ri:calendar-line"></span></span> <time title="Created: 2021-03-09 22:51:30" itemprop="dateCreated datePublished" datetime="2021-03-09T22:51:30+08:00">2021-03-09</time><span class="post-meta-divider">-</span><span class="post-meta-item-icon"><span class="icon iconify" data-icon="ri:calendar-2-line"></span></span> <time title="Modified: 2021-09-03 11:43:09" itemprop="dateModified" datetime="2021-09-03T11:43:09+08:00">2021-09-03</time></div><span class="post-count"><span class="post-symbolcount"><span class="post-meta-item-icon" title="Word count in article"><span class="icon iconify" data-icon="ri:file-word-line"></span></span> <span title="Word count in article">620</span><span class="post-meta-divider">-</span><span class="post-meta-item-icon" title="Reading time"><span class="icon iconify" data-icon="ri:timer-line"></span></span> <span title="Reading time">2m</span></span></span><div class="post-classify"><span class="post-tag"><a class="tag-item" href="/tags/UE4/" style="--text-color:var(--hty-text-color)"><span class="post-meta-item-icon"><span class="icon iconify" data-icon="ri:price-tag-3-line"></span></span><span class="tag-name">UE4</span></a><a class="tag-item" href="/tags/%E6%B8%B8%E6%88%8F/" style="--text-color:midnightblue"><span class="post-meta-item-icon"><span class="icon iconify" data-icon="ri:price-tag-3-line"></span></span><span class="tag-name">游戏</span></a></span></div></div></header><section class="post-body" itemprop="articleBody"><div class="post-content markdown-body"><h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>EPIC牛逼!</p>
+<p>本笔记全程跟着<a target="_blank" rel="noopener" href="https://space.bilibili.com/31898841">谌老师</a>的教学走。</p>
+<p>全程参照<a target="_blank" rel="noopener" href="https://docs.unrealengine.com/zh-CN/index.html">官方文档</a>,第一次认真看文档。</p>
+<p>多上手，多上手。有当年YDWE那味了</p>
+<span id="more"></span>
+
+<h2 id="视口导航"><a href="#视口导航" class="headerlink" title="视口导航"></a>视口导航</h2><p><img src="https://i.loli.net/2021/03/10/AJby1hjnlotvWS6.png" alt="image-20210310223714226" loading="lazy"></p>
+<h3 id="视口界面的操作"><a href="#视口界面的操作" class="headerlink" title="视口界面的操作"></a>视口界面的操作</h3><table>
+<thead>
+<tr>
+<th>操作</th>
+<th>行为</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>左键单击 + 拖动</strong></td>
+<td>前后移动摄像机和左右旋转摄像机。</td>
+</tr>
+<tr>
+<td><strong>右键单击 + 拖动</strong></td>
+<td>左右旋转摄像机。</td>
+</tr>
+<tr>
+<td><strong>左键单击 + 右键单击 + 拖动</strong></td>
+<td>上下移动摄像机</td>
+</tr>
+<tr>
+<td><strong>Ctrl + Alt + 单击 + 拖动</strong></td>
+<td>创建方形选取框</td>
+</tr>
+<tr>
+<td><strong>按住右键 + WASD</strong></td>
+<td>类游戏操作</td>
+</tr>
+<tr>
+<td><strong>选中后按 F</strong></td>
+<td><strong>聚焦</strong></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<ul>
+<li><p>推荐使用WASD。</p>
+</li>
+<li><p>按住右键后：</p>
+<table>
+<thead>
+<tr>
+<th><strong>操作</strong></th>
+<th><strong>行为</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Q</strong></td>
+<td>上升摄像头</td>
+</tr>
+<tr>
+<td><strong>E</strong></td>
+<td>下降摄像头</td>
+</tr>
+<tr>
+<td><strong>Z</strong></td>
+<td>拉远摄像头</td>
+</tr>
+<tr>
+<td><strong>C</strong></td>
+<td>拉近摄像头</td>
+</tr>
+</tbody></table>
+</li>
+<li><p>选中后按住Alt：</p>
+<table>
+<thead>
+<tr>
+<th>操作</th>
+<th>行为</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>左键</strong></td>
+<td>原地旋转摄像头</td>
+</tr>
+<tr>
+<td><strong>右键</strong></td>
+<td>拉近拉远摄像头</td>
+</tr>
+</tbody></table>
+</li>
+</ul>
+<h3 id="视口的类型"><a href="#视口的类型" class="headerlink" title="视口的类型"></a>视口的类型</h3><p>  <img src="https://i.loli.net/2021/03/10/RPtFmUpOM82nxkG.png#pic_left" alt="image-20210310222500040" loading="lazy"></p>
+<ul>
+<li><p>其中的<strong>模拟</strong>指的是进入游戏后进入上帝视角，点击控制(F8)后恢复正常角色游玩。</p>
+</li>
+<li><p>分辨率可在高级设置中更改</p>
+</li>
+</ul>
+<h2 id="物体编辑器"><a href="#物体编辑器" class="headerlink" title="物体编辑器"></a>物体编辑器</h2><h3 id="坐标轴"><a href="#坐标轴" class="headerlink" title="坐标轴"></a>坐标轴</h3><p>笛卡尔坐标系应该都懂把XDD</p>
+<p>UE4提供三种的坐标轴：<img src="https://i.loli.net/2021/03/10/YQFzXaMPZT5wONB.png#pic_right" alt="image-20210310225142680" loading="lazy">平移W、旋转E、缩放R用于对物体（Actor）进行操作</p>
+<p><img src="https://i.loli.net/2021/03/10/c5vtlDq7VCEpF3x.jpg#pic_left" alt="Move9.png" loading="lazy">更精确的操作可以开启三种坐标轴的<strong>网格对齐模式</strong>。</p>
+<p>而中间这个地球图标是<strong>世界坐标系</strong>和<strong>物体坐标</strong>的切换。最右边的则是<strong>摄像机速度</strong></p>
+<table>
+<thead>
+<tr>
+<th align="left">操作</th>
+<th align="left">行为</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><strong>鼠标左键 + 拖拽 （目标为变换工具）</strong></td>
+<td align="left">根据当前激活的变换控件，对选中 Actor 进行移动、旋转、缩放。</td>
+</tr>
+<tr>
+<td align="left"><strong>W</strong></td>
+<td align="left">选择移动工具。</td>
+</tr>
+<tr>
+<td align="left"><strong>E</strong></td>
+<td align="left">选择旋转工具。</td>
+</tr>
+<tr>
+<td align="left"><strong>R</strong></td>
+<td align="left">选择缩放工具。</td>
+</tr>
+<tr>
+<td align="left"><strong>V</strong></td>
+<td align="left">开启&#x2F;关闭顶点对齐，它允许对象吸附到关卡中的其他对象上。</td>
+</tr>
+<tr>
+<td align="left"><strong>鼠标中键 + 拖拽（目标为枢轴点）</strong></td>
+<td align="left">临时移动物体的枢轴点，以便进一步的旋转缩放调整。</td>
+</tr>
+<tr>
+<td align="left"><strong>Ctrl + W （目标为Actor）</strong></td>
+<td align="left">复制当前选中的 Actor。</td>
+</tr>
+<tr>
+<td align="left"><strong>H （目标为Actor）</strong></td>
+<td align="left">隐藏当前选中的 Actor。</td>
+</tr>
+<tr>
+<td align="left"><strong>Ctrl + H</strong></td>
+<td align="left">取消隐藏所有的 Actor</td>
+</tr>
+<tr>
+<td align="left"><strong>Shift + E （目标为Actor）</strong></td>
+<td align="left">依照当前选中的 Actor，选择关卡中所有同类型的其他 Actor。</td>
+</tr>
+<tr>
+<td align="left"><strong>Ctrl + 鼠标左键 （目标为Actor）</strong></td>
+<td align="left">将该 Actor 添加到当前选中 Actor 组中。</td>
+</tr>
+<tr>
+<td align="left"><strong>Alt + 鼠标左键对轴操作</strong></td>
+<td align="left">沿轴进行复制</td>
+</tr>
+</tbody></table>
+<ul>
+<li>所谓枢轴点可以在3DMAX等软件中调整，在UE4中调整的枢轴点只适用于当前关卡</li>
+</ul>
+</div></section><ul class="post-copyright"><li class="post-copyright-author"><strong>Post author: </strong>Anduin9527</li><li class="post-copyright-link"><strong>Post link: </strong><a href="http://lapras.xyz/2021/03/09/f4f1bbb0.html" title="UE4学习笔记--基础篇">http://lapras.xyz/2021/03/09/f4f1bbb0.html</a></li><li class="post-copyright-license"><strong>Copyright Notice: </strong>All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank" rel="noopener" title="CC BY-NC-SA 4.0 "><span class="icon iconify" data-icon="ri:creative-commons-line"></span><span class="icon iconify" data-icon="ri:creative-commons-by-line"></span><span class="icon iconify" data-icon="ri:creative-commons-nc-line"></span><span class="icon iconify" data-icon="ri:creative-commons-sa-line"></span></a> unless otherwise stated.</li></ul></article><div class="post-nav"><div class="post-nav-item"><a class="post-nav-prev" href="/2021/03/18/330cb86d.html" rel="prev" title="UE4学习笔记--地编篇"><span class="icon iconify" data-icon="ri:arrow-left-s-line"></span><span class="post-nav-text">UE4学习笔记--地编篇</span></a></div><div class="post-nav-item"><a class="post-nav-next" href="/2021/02/14/c84b9f7b.html" rel="next" title="情人节长夜漫漫，不如出道成为偶像"><span class="post-nav-text">情人节长夜漫漫，不如出道成为偶像</span><span class="icon iconify" data-icon="ri:arrow-right-s-line"></span></a></div></div></div><div class="hty-card" id="comment"><div class="comment-tooltip text-center"><span>如果您有任何关于博客内容的相关讨论，欢迎与我交流。</span><br></div></div></main><footer class="sidebar-translate" id="footer"><div class="beian"><a rel="noopener" href="https://beian.miit.gov.cn/" target="_blank">闽ICP备2021012704号</a></div><div class="copyright"><span>&copy; 2020 – 2022 </span><span class="with-love" id="animate"><span class="icon iconify" data-icon="ri:cloud-line"></span></span><span class="author"> Anduin9527</span></div><div class="powered"><span>Powered by <a href="https://hexo.io" target="_blank" rel="noopener">Hexo</a> v6.2.0</span><span class="footer-separator">|</span><span>Theme - <a rel="noopener" href="https://github.com/YunYouJun/hexo-theme-yun" target="_blank"><span>Yun</span></a> v1.10.4</span></div></footer></div><a class="hty-icon-button" id="back-to-top" aria-label="back-to-top" href="#"><span class="icon iconify" data-icon="ri:arrow-up-s-line"></span><svg class="progress-circle-container" viewBox="0 0 100 100"><circle class="progress-circle" id="progressCircle" cx="50" cy="50" r="48" fill="none" stroke="#66d6ff" stroke-width="2" stroke-linecap="round"></circle></svg></a><a class="popup-trigger hty-icon-button icon-search" id="search" target="_blank" rel="noopener" href="https://www.google.com/search?q=site:lapras.xyz" title="Search"><span class="site-state-item-icon"><span class="icon iconify" data-icon="ri:search-line"></span></span></a><script>function initMourn() {
+  const date = new Date();
+  const today = (date.getMonth() + 1) + "-" + date.getDate()
+  const mourn_days = ["4-4","9-18","5-12","12-13"]
+  if (mourn_days.includes(today)) {
+    document.documentElement.style.filter = "grayscale(1)";
+  }
+}
+initMourn();</script></body></html>
