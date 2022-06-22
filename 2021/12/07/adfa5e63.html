@@ -1,0 +1,285 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="theme-color" content="#66d6ff"><meta name="author" content="Anduin9527"><meta name="copyright" content="Anduin9527"><meta name="generator" content="Hexo 6.2.0"><meta name="theme" content="hexo-theme-yun"><title>从零开始的算法-最短路问题 | Anduin9527的乖离器</title><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@900&amp;display=swap" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://fastly.jsdelivr.net/npm/star-markdown-css@0.3.3/dist/yun/yun-markdown.min.css"><link rel="stylesheet" href="https://fastly.jsdelivr.net/npm/prism-theme-vars/base.css"><script src="https://fastly.jsdelivr.net/npm/scrollreveal/dist/scrollreveal.min.js" defer></script><script>function initScrollReveal() {
+  [".post-card",".markdown-body img"].forEach((target)=> {
+    ScrollReveal().reveal(target);
+  })
+}
+document.addEventListener("DOMContentLoaded", initScrollReveal);
+document.addEventListener("pjax:success", initScrollReveal);
+</script><link rel="stylesheet" type="text/css" href="https://fastly.jsdelivr.net/npm/katex@latest/dist/katex.min.css"><script defer src="https://fastly.jsdelivr.net/npm/katex@latest/dist/katex.min.js"></script><script defer src="https://fastly.jsdelivr.net/npm/katex@latest/dist/contrib/auto-render.min.js"></script><script type="module">import { renderKatex } from '/js/utils.js'
+document.addEventListener("DOMContentLoaded", () => {
+  renderKatex({
+    ...{},
+    ...true?.options,
+  });
+});</script><link rel="icon" type="image/svg+xml" href="/images/favicon.svg"><link rel="mask-icon" href="/images/favicon.svg" color="#66d6ff"><link rel="preload" href="/css/hexo-theme-yun.css" as="style"><link rel="prefetch" href="/js/sidebar.js" as="script"><link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin><link rel="preconnect" href="https://fastly.jsdelivr.net/npm/" crossorigin><script id="yun-config">
+    window.Yun = {}
+    window.CONFIG = {"hostname":"lapras.xyz","root":"/","title":["拉普","拉斯~","的","乖离器"],"version":"1.10.4","mode":"auto","copycode":true,"page":{"isPost":true},"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}.","hits":"${hits} results found","hits_time":"${hits} results found in ${time} ms"},"anonymous_image":"https://cdn.yunyoujun.cn/img/avatar/none.jpg","fireworks":{"colors":["#00D1CE","#66D6FF","#919191"]},"vendors":{"darken":"https://fastly.jsdelivr.net/npm/darken@1.5.0"}};
+  </script><link rel="stylesheet" href="/css/hexo-theme-yun.css"><script src="/js/hexo-theme-yun.js" type="module"></script><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@900&amp;display=swap"><link rel="preconnect" href="https://www.google-analytics.com" crossorigin><script async src="https://www.googletagmanager.com/gtag/js?id=G-NSLVQ2H5JH"></script><script>if (CONFIG.hostname === location.hostname) {
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-NSLVQ2H5JH');
+}</script><script>(function(){
+  var bp = document.createElement('script');
+  var curProtocol = window.location.protocol.split(':')[0];
+  if (curProtocol === 'https') {
+    bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+  }
+  else {
+    bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+  }
+  var s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(bp, s);
+})();</script><meta name="description" content="前言呜呜呜，考试月要来li">
+<meta property="og:type" content="article">
+<meta property="og:title" content="从零开始的算法-最短路问题">
+<meta property="og:url" content="http://lapras.xyz/2021/12/07/adfa5e63.html">
+<meta property="og:site_name" content="Anduin9527的乖离器">
+<meta property="og:description" content="前言呜呜呜，考试月要来li">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://imgbed-1304793179.cos.ap-nanjing.myqcloud.com/typora/20211207175750.png">
+<meta property="article:published_time" content="2021-12-07T09:51:02.000Z">
+<meta property="article:modified_time" content="2022-06-14T06:10:07.983Z">
+<meta property="article:author" content="Anduin9527">
+<meta property="article:tag" content="算法">
+<meta property="article:tag" content="优先队列">
+<meta property="article:tag" content="图">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://imgbed-1304793179.cos.ap-nanjing.myqcloud.com/typora/20211207175750.png"><script type="module">import { getScript } from '/js/utils.js'
+getScript("https://fastly.jsdelivr.net/npm/mermaid/dist/mermaid.min.js", () => {
+  const mermaidOptions = {"startOnload":true}
+  mermaid.initialize(mermaidOptions);
+}, window.mermaid);
+</script><style>.mermaid{background: transparent;}</style><script>(function() {
+  const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
+  const setting = localStorage.getItem('darken-mode') || 'auto'
+  if (setting === 'dark' || (prefersDark && setting !== 'light'))
+    document.documentElement.classList.toggle('dark', true)
+})()</script></head><body><script src="https://code.iconify.design/2/2.1.1/iconify.min.js"></script><script>// Define global variable
+IconifyProviders = {
+  // Empty prefix: overwrite default API provider configuration
+  '': {
+    // Use custom API first, use Iconify public API as backup
+    resources: [
+        'https://api.iconify.design',
+    ],
+    // Wait for 1 second before switching API hosts
+    rotate: 1000,
+  },
+};</script><script defer src="https://fastly.jsdelivr.net/npm/animejs@latest"></script><script defer src="/js/ui/fireworks.js" type="module"></script><canvas class="fireworks"></canvas><div class="container"><a class="sidebar-toggle hty-icon-button" id="menu-btn"><div class="hamburger hamburger--spin" type="button"><span class="hamburger-box"><span class="hamburger-inner"></span></span></div></a><div class="sidebar-toggle sidebar-overlay"></div><aside class="sidebar"><script src="/js/sidebar.js" type="module"></script><ul class="sidebar-nav"><li class="sidebar-nav-item sidebar-nav-toc hty-icon-button sidebar-nav-active" data-target="post-toc-wrap" title="Table of Contents"><span class="icon iconify" data-icon="ri:list-ordered"></span></li><li class="sidebar-nav-item sidebar-nav-overview hty-icon-button" data-target="site-overview-wrap" title="Overview"><span class="icon iconify" data-icon="ri:passport-line"></span></li></ul><div class="sidebar-panel" id="site-overview-wrap"><div class="site-info fix-top"><a class="site-author-avatar" href="/about/" title="Anduin9527"><img width="96" loading="lazy" src="/images/avatar.jpg" alt="Anduin9527"><span class="site-author-status" title="建模建模呜呜呜！">😭</span></a><div class="site-author-name"><a href="/about/">Anduin9527</a></div><span class="site-name">Anduin9527的乖离器</span><sub class="site-subtitle">正在进修摸鱼学导论</sub><div class="site-description">南邮摸鱼ing</div></div><nav class="site-state"><a class="site-state-item hty-icon-button icon-home" href="/" title="Home"><span class="site-state-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-home-4-line"></use></svg></span></a><div class="site-state-item"><a href="/archives/" title="Archives"><span class="site-state-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-archive-line"></use></svg></span><span class="site-state-item-count">24</span></a></div><div class="site-state-item"><a href="/categories/" title="Categories"><span class="site-state-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-folder-2-line"></use></svg></span><span class="site-state-item-count">5</span></a></div><div class="site-state-item"><a href="/tags/" title="Tags"><span class="site-state-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-price-tag-3-line"></use></svg></span><span class="site-state-item-count">24</span></a></div><a class="site-state-item hty-icon-button" target="_blank" rel="noopener" href="https://yun.yunyoujun.cn" title="文档"><span class="site-state-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-settings-line"></use></svg></span></a></nav><hr style="margin-bottom:0.5rem"><div class="links-of-author"><a class="links-of-author-item hty-icon-button" rel="noopener" href="tencent://message/?uin=2676057183&amp;Site=&amp;Menu=yes" title="QQ" target="_blank" style="color:#12B7F5"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-qq-line"></use></svg></a><a class="links-of-author-item hty-icon-button" rel="noopener" href="https://github.com/Anduin9527" title="GitHub" target="_blank" style="color:#181717"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-github-line"></use></svg></a><a class="links-of-author-item hty-icon-button" rel="noopener" href="mailto:2676057183@qq.com" title="E-Mail" target="_blank" style="color:#8E71C1"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-mail-line"></use></svg></a><a class="links-of-author-item hty-icon-button" rel="noopener" href="https://music.163.com/#/user/home?id=579015212" title="网易云音乐" target="_blank" style="color:#C10D0C"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-netease-cloud-music-line"></use></svg></a><a class="links-of-author-item hty-icon-button" rel="noopener" href="https://www.zhihu.com/people/chu-liu-16-64" title="知乎" target="_blank" style="color:#0084FF"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-zhihu-line"></use></svg></a><a class="links-of-author-item hty-icon-button" rel="noopener" href="https://space.bilibili.com/21994551" title="哔哩哔哩动画" target="_blank" style="color:#FF8EB3"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-bilibili-line"></use></svg></a><a class="links-of-author-item hty-icon-button" rel="noopener" href="/atom.xml" title="RSS" target="_blank" style="color:orange"><span class="icon iconify" data-icon="ri:rss-line"></span></a></div><hr style="margin:0.5rem 1rem"><div class="links"><a class="links-item hty-icon-button" href="/links/" title="我的小伙伴们" style="color:dodgerblue"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-genderless-line"></use></svg></a><a class="links-item hty-icon-button" href="/girls/" title="我永远喜欢oo" style="color:hotpink"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-women-line"></use></svg></a></div><br><a class="links-item hty-icon-button" id="toggle-mode-btn" href="javascript:;" title="Mode" style="color: #f1cb64"><span class="icon iconify" data-icon="ri:contrast-2-line"></span></a></div><div class="sidebar-panel sidebar-panel-active" id="post-toc-wrap"><div class="post-toc"><div class="post-toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%89%8D%E8%A8%80"><span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8D%95%E6%BA%90%E6%9C%80%E7%9F%AD%E8%B7%AF"><span class="toc-text">单源最短路</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BD%A2%E5%BC%8F"><span class="toc-text">形式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%80%A7%E8%B4%A8"><span class="toc-text">性质</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%80%E4%BA%9B%E7%BA%A6%E5%AE%9A"><span class="toc-text">一些约定</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9D%BE%E5%BC%9B%E6%93%8D%E4%BD%9C"><span class="toc-text">松弛操作</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Floyd-Warshall"><span class="toc-text">Floyd-Warshall</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%80%9D%E6%83%B3"><span class="toc-text">思想</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9E%E7%8E%B0"><span class="toc-text">实现</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BB%86%E8%8A%82"><span class="toc-text">细节</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Bellman-Ford"><span class="toc-text">Bellman-Ford</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%80%9D%E6%83%B3-1"><span class="toc-text">思想</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9E%E7%8E%B0-1"><span class="toc-text">实现</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BB%86%E8%8A%82-1"><span class="toc-text">细节</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BC%98%E5%8C%96"><span class="toc-text">优化</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Dijkstra"><span class="toc-text">Dijkstra</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%80%9D%E6%83%B3-2"><span class="toc-text">思想</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9E%E7%8E%B0-2"><span class="toc-text">实现</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BC%98%E5%8C%96-1"><span class="toc-text">优化</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%89%93%E5%8D%B0%E8%B7%AF%E5%BE%84%E9%97%AE%E9%A2%98"><span class="toc-text">打印路径问题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E8%80%83"><span class="toc-text">参考</span></a></li></ol></div></div></div></aside><main class="sidebar-translate" id="content"><div id="post"><article class="hty-card post-block" itemscope itemtype="https://schema.org/Article" style="--smc-primary:#66d6ff;"><link itemprop="mainEntityOfPage" href="http://lapras.xyz/2021/12/07/adfa5e63.html"><span hidden itemprop="author" itemscope itemtype="https://schema.org/Person"><meta itemprop="name" content="Anduin9527"><meta itemprop="description"></span><span hidden itemprop="publisher" itemscope itemtype="https://schema.org/Organization"><meta itemprop="name" content="Anduin9527的乖离器"></span><header class="post-header"><h1 class="post-title" itemprop="name headline">从零开始的算法-最短路问题</h1><div class="post-meta"><div class="post-time"><span class="post-meta-item-icon"><span class="icon iconify" data-icon="ri:calendar-line"></span></span> <time title="Created: 2021-12-07 17:51:02" itemprop="dateCreated datePublished" datetime="2021-12-07T17:51:02+08:00">2021-12-07</time><span class="post-meta-divider">-</span><span class="post-meta-item-icon"><span class="icon iconify" data-icon="ri:calendar-2-line"></span></span> <time title="Modified: 2022-06-14 14:10:07" itemprop="dateModified" datetime="2022-06-14T14:10:07+08:00">2022-06-14</time></div><div class="post-classify"><span class="post-category"> <span class="post-meta-item-icon" style="margin-right:3px;"><span class="icon iconify" data-icon="ri:folder-line"></span></span><span itemprop="about" itemscope itemtype="https://schema.org/Thing"><a class="category-item" href="/categories/%E7%AE%97%E6%B3%95%E5%AD%A6%E4%B9%A0/" style="--text-color:#317ec7" itemprop="url" rel="index"><span itemprop="text">算法学习</span></a></span></span><span class="post-tag"><span class="post-meta-divider">-</span><a class="tag-item" href="/tags/%E7%AE%97%E6%B3%95/" style="--text-color:#d04d2d"><span class="post-meta-item-icon"><span class="icon iconify" data-icon="ri:price-tag-3-line"></span></span><span class="tag-name">算法</span></a><a class="tag-item" href="/tags/%E4%BC%98%E5%85%88%E9%98%9F%E5%88%97/" style="--text-color:var(--hty-text-color)"><span class="post-meta-item-icon"><span class="icon iconify" data-icon="ri:price-tag-3-line"></span></span><span class="tag-name">优先队列</span></a><a class="tag-item" href="/tags/%E5%9B%BE/" style="--text-color:var(--hty-text-color)"><span class="post-meta-item-icon"><span class="icon iconify" data-icon="ri:price-tag-3-line"></span></span><span class="tag-name">图</span></a></span></div></div></header><section class="post-body" itemprop="articleBody"><div class="post-content markdown-body"><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>呜呜呜，考试月要来li</p>
+<img src="https://imgbed-1304793179.cos.ap-nanjing.myqcloud.com/typora/20211207175750.png" style="zoom:50%;" / loading="lazy">
+
+<span id="more"></span>
+
+
+
+<h2 id="单源最短路"><a href="#单源最短路" class="headerlink" title="单源最短路"></a>单源最短路</h2><p><strong>最短路径</strong>问题是图论研究中的一个经典算法问题，旨在寻找图（由结点和路径组成的）中两结点之间的最短路径。</p>
+<h3 id="形式"><a href="#形式" class="headerlink" title="形式"></a>形式</h3><ul>
+<li><strong>确定起点的最短路径问题</strong> - 也叫单源最短路问题，即已知起始结点，求最短路径的问题。在边权非负时适合使用<a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/Dijkstra%E7%AE%97%E6%B3%95">Dijkstra算法</a>，若边权为负时则适合使用<a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/Bellman-ford">Bellman-ford算法</a>或者<a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/SPFA%E7%AE%97%E6%B3%95">SPFA算法</a>。</li>
+<li><strong>确定终点的最短路径问题</strong> - 与确定起点的问题相反，该问题是已知终结结点，求最短路径的问题。在<a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/%E7%84%A1%E5%90%91%E5%9C%96">无向图</a>中该问题与确定起点的问题完全等同，在<a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/%E6%9C%89%E5%90%91%E5%9B%BE">有向图</a>中该问题等同于把所有路径方向反转的确定起点的问题。</li>
+<li><strong>确定起点终点的最短路径问题</strong> - 即已知起点和终点，求两结点之间的最短路径。</li>
+<li><strong>全局最短路径问题</strong> - 也叫多源最短路问题，求图中所有的最短路径。适合使用<a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/Floyd-Warshall%E7%AE%97%E6%B3%95">Floyd-Warshall算法</a>。</li>
+</ul>
+<h3 id="性质"><a href="#性质" class="headerlink" title="性质"></a>性质</h3><ul>
+<li>对于边权为正的图，最短路不会经过重复的结点与边</li>
+<li>对于边权为正的图，最短路的结点数不会超过$n$，边数不会超过$n-1$</li>
+<li><strong>负圈</strong>：总边权值小于零的环，存在负圈时会导致某些算法死循环。</li>
+</ul>
+<h3 id="一些约定"><a href="#一些约定" class="headerlink" title="一些约定"></a>一些约定</h3><ul>
+<li>$n$为结点数，$m$为边数</li>
+<li>$s$为最短路的起始点</li>
+<li>$dis(u)$为$s$点到$u$点的<strong>动态最短路长度</strong></li>
+<li>$w(u,v)$为$(u,v)$的边权</li>
+</ul>
+<h3 id="松弛操作"><a href="#松弛操作" class="headerlink" title="松弛操作"></a>松弛操作</h3><p>由于最短路的算法，大部分的都有用到松弛（relax）操作，所以这里先理清楚。</p>
+<p>最短路径的估计值（$dis$）起初是被高估的（初始化为$INF$），就好像一个被拉长的弹簧。但事实上，我们可以找到更短的路径来替代这个弹簧，导致弹簧不再紧绷，而是放松下来，不断更新，最终找到最短路径。其实就是一种动态规划的思想。</p>
+<p>公式：对于边$(u,v)$，有$dis(v)&#x3D;min(dis(v),dis(u)+w(u,v))$</p>
+<h2 id="Floyd-Warshall"><a href="#Floyd-Warshall" class="headerlink" title="Floyd-Warshall"></a>Floyd-Warshall</h2><h3 id="思想"><a href="#思想" class="headerlink" title="思想"></a>思想</h3><p>求两点$i，j$之间的的距离，可以分成两种情况考虑。即经过某个点$k$，或者不经过某个点$k$，然后就取两者中的较短路径，最终得到最短路径。<del>就是动态规划</del>。那么，记$f(x,y)$为x到y的最短路径长度，可以得到</p>
+<p>​							$f(x,y)&#x3D;min(f(x,y),f(x,k)+f(k,y))$</p>
+<h3 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h3><p>使用邻接矩阵$G$储存图，初始化为$INF$。</p>
+<pre class="language-none"><code class="language-none">初始化：
+    for (int i &#x3D; 1; i &lt;&#x3D; n; i ++ )
+        for (int j &#x3D; 1; j &lt;&#x3D; n; j ++ )
+            if (i &#x3D;&#x3D; j) d[i][j] &#x3D; 0;
+            else d[i][j] &#x3D; INF;
+
+&#x2F;&#x2F; 算法结束后，d[a][b]表示a到b的最短距离
+void floyd()
+&#123;
+    for (int k &#x3D; 1; k &lt;&#x3D; n; k ++ )
+        for (int i &#x3D; 1; i &lt;&#x3D; n; i ++ )
+            for (int j &#x3D; 1; j &lt;&#x3D; n; j ++ )
+                d[i][j] &#x3D; min(d[i][j], d[i][k] + d[k][j]);
+&#125;</code></pre>
+
+
+
+<h3 id="细节"><a href="#细节" class="headerlink" title="细节"></a>细节</h3><ul>
+<li>显然是$O(n^3)$</li>
+<li>可以得到图上所有点到所有点的最短路$d[i][j]$</li>
+<li>不难发现，$d[i][i]$最后的值为，从$i$出发到$i$的最短路径，也就是出去绕一圈回来的路径</li>
+<li>利用上述条件，Floyd算法可以快速判断图中是否存在<strong>负圈</strong>，也就是判断$diag(d)$是否存在小于0的值</li>
+</ul>
+<h2 id="Bellman-Ford"><a href="#Bellman-Ford" class="headerlink" title="Bellman-Ford"></a>Bellman-Ford</h2><h3 id="思想-1"><a href="#思想-1" class="headerlink" title="思想"></a>思想</h3><p>不断尝试对图上的每一条边进行<strong>松弛操作</strong>，直到一次循环结束，没有边进行松弛操作为止。</p>
+<h3 id="实现-1"><a href="#实现-1" class="headerlink" title="实现"></a>实现</h3><pre class="language-cpp" data-language="cpp"><code class="language-cpp"><span class="token keyword">struct</span> <span class="token class-name">edges</span>
+<span class="token punctuation">&#123;</span>
+  <span class="token keyword">int</span> v<span class="token punctuation">;</span>
+  <span class="token keyword">int</span> w<span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span><span class="token punctuation">;</span>
+vector<span class="token operator">&lt;</span>edges<span class="token operator">></span> e<span class="token punctuation">[</span>maxn<span class="token punctuation">]</span><span class="token punctuation">;</span>
+<span class="token keyword">int</span> dis<span class="token punctuation">[</span>maxn<span class="token punctuation">]</span><span class="token punctuation">;</span>
+<span class="token keyword">void</span> <span class="token function">bellmanford</span><span class="token punctuation">(</span><span class="token keyword">int</span> n<span class="token punctuation">,</span> <span class="token keyword">int</span> s<span class="token punctuation">)</span>
+<span class="token punctuation">&#123;</span>
+  <span class="token function">fill_n</span><span class="token punctuation">(</span>dis<span class="token punctuation">,</span>n<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">,</span>INF<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  dis<span class="token punctuation">[</span>s<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+  <span class="token keyword">bool</span> flag <span class="token operator">=</span> <span class="token boolean">true</span><span class="token punctuation">;</span>
+  <span class="token keyword">int</span> k <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+  <span class="token keyword">while</span> <span class="token punctuation">(</span>flag<span class="token punctuation">)</span>
+  <span class="token punctuation">&#123;</span>
+    flag <span class="token operator">=</span> <span class="token boolean">false</span><span class="token punctuation">;</span>
+    k<span class="token operator">++</span><span class="token punctuation">;</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>k <span class="token operator">></span> n<span class="token punctuation">)</span>
+    <span class="token punctuation">&#123;</span>
+      <span class="token function">puts</span><span class="token punctuation">(</span><span class="token string">"存在负圈!"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token keyword">return</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> u <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span> u <span class="token operator">&lt;=</span> n<span class="token punctuation">;</span> u<span class="token operator">++</span><span class="token punctuation">)</span>
+      <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">auto</span> i <span class="token operator">:</span> e<span class="token punctuation">[</span>u<span class="token punctuation">]</span><span class="token punctuation">)</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>dis<span class="token punctuation">[</span>i<span class="token punctuation">.</span>v<span class="token punctuation">]</span> <span class="token operator">></span> dis<span class="token punctuation">[</span>u<span class="token punctuation">]</span> <span class="token operator">+</span> i<span class="token punctuation">.</span>w<span class="token punctuation">)</span>
+        <span class="token punctuation">&#123;</span>
+          dis<span class="token punctuation">[</span>i<span class="token punctuation">.</span>v<span class="token punctuation">]</span> <span class="token operator">=</span> dis<span class="token punctuation">[</span>u<span class="token punctuation">]</span> <span class="token operator">+</span> i<span class="token punctuation">.</span>w<span class="token punctuation">;</span>
+          flag <span class="token operator">=</span> <span class="token boolean">true</span><span class="token punctuation">;</span>
+        <span class="token punctuation">&#125;</span>
+  <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span></code></pre>
+
+<h3 id="细节-1"><a href="#细节-1" class="headerlink" title="细节"></a>细节</h3><ul>
+<li>每次循环遍历边的复杂度显然是$O(m)$。每进行一次松弛，则会让最短路的边数+1，而最短边的上限为$n-1$，所以为$O(nm)$</li>
+<li>Bellman算法从$s$出发，如果抵达一个负环，松弛操作会无限进行下去，但是由于最短路边数存在上限$n-1$，所以也可以快速判断<strong>负圈</strong></li>
+<li>上述结论其实不大严谨</li>
+</ul>
+<blockquote>
+<p>负环判断中存在的常见误区</p>
+<p>需要注意的是，以S点为源点跑 Bellman-Ford 算法时，如果没有给出存在负环的结果，只能说明从S点出发不能抵达一个负环，而不能说明图上不存在负环。</p>
+<p>因此如果需要判断整个图上是否存在负环，最严谨的做法是建立一个超级源点，向图上每个节点连一条权值为 0 的边，然后以超级源点为起点执行 Bellman-Ford 算法。</p>
+</blockquote>
+<h3 id="优化"><a href="#优化" class="headerlink" title="优化"></a>优化</h3><p>根据前面的思想可以知道，计算和调整结点$u$到结点$s$的最短距离后，如果紧接着调整$u$的邻居结点，势必会触发新的<strong>松弛操作</strong>，而Bellman算法，则在尝试大量不相关结点的边松弛操作，这显然是低效的。</p>
+<p>因此，在计算结点$u$之后，下一部只计算和调整它的邻居节点，这样就能大幅度加快收敛的过程。而这显然类似于$BFS$，所以不难想到用队列进行操作，而这就是<del>被广为诟病的</del>SPFA。</p>
+<pre class="language-cpp" data-language="cpp"><code class="language-cpp"><span class="token keyword">struct</span> <span class="token class-name">edge</span>
+<span class="token punctuation">&#123;</span>
+  <span class="token keyword">int</span> v<span class="token punctuation">,</span> w<span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span><span class="token punctuation">;</span>
+vector<span class="token operator">&lt;</span>edge<span class="token operator">></span> e<span class="token punctuation">[</span>maxn<span class="token punctuation">]</span><span class="token punctuation">;</span>
+<span class="token keyword">int</span> dis<span class="token punctuation">[</span>maxn<span class="token punctuation">]</span><span class="token punctuation">,</span> cnt<span class="token punctuation">[</span>maxn<span class="token punctuation">]</span><span class="token punctuation">,</span> vis<span class="token punctuation">[</span>maxn<span class="token punctuation">]</span><span class="token punctuation">;</span>
+queue<span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token operator">></span> q<span class="token punctuation">;</span>
+<span class="token keyword">void</span> <span class="token function">SPFA</span><span class="token punctuation">(</span><span class="token keyword">int</span> n<span class="token punctuation">,</span> <span class="token keyword">int</span> s<span class="token punctuation">)</span>
+<span class="token punctuation">&#123;</span>
+  <span class="token function">fill_n</span><span class="token punctuation">(</span>dis<span class="token punctuation">,</span>n<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">,</span>INF<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  dis<span class="token punctuation">[</span>s<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">,</span> vis<span class="token punctuation">[</span>s<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span>
+  q<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span>s<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword">while</span> <span class="token punctuation">(</span><span class="token operator">!</span>q<span class="token punctuation">.</span><span class="token function">empty</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+  <span class="token punctuation">&#123;</span>
+    <span class="token keyword">int</span> u <span class="token operator">=</span> q<span class="token punctuation">.</span><span class="token function">front</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    q<span class="token punctuation">.</span><span class="token function">pop</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> vis<span class="token punctuation">[</span>u<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">auto</span> i <span class="token operator">:</span> e<span class="token punctuation">[</span>u<span class="token punctuation">]</span><span class="token punctuation">)</span>
+    <span class="token punctuation">&#123;</span>
+      <span class="token keyword">int</span> v <span class="token operator">=</span> i<span class="token punctuation">.</span>v<span class="token punctuation">,</span> w <span class="token operator">=</span> i<span class="token punctuation">.</span>w<span class="token punctuation">;</span>
+      <span class="token keyword">if</span> <span class="token punctuation">(</span>dis<span class="token punctuation">[</span>v<span class="token punctuation">]</span> <span class="token operator">></span> dis<span class="token punctuation">[</span>u<span class="token punctuation">]</span> <span class="token operator">+</span> w<span class="token punctuation">)</span>
+      <span class="token punctuation">&#123;</span>
+        dis<span class="token punctuation">[</span>v<span class="token punctuation">]</span> <span class="token operator">=</span> dis<span class="token punctuation">[</span>u<span class="token punctuation">]</span> <span class="token operator">+</span> w<span class="token punctuation">;</span>
+        cnt<span class="token punctuation">[</span>v<span class="token punctuation">]</span> <span class="token operator">=</span> cnt<span class="token punctuation">[</span>u<span class="token punctuation">]</span> <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">;</span> <span class="token comment">// 记录最短路经过的边数</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>cnt<span class="token punctuation">[</span>v<span class="token punctuation">]</span> <span class="token operator">>=</span> n<span class="token punctuation">)</span>
+        <span class="token punctuation">&#123;</span>
+          <span class="token function">puts</span><span class="token punctuation">(</span><span class="token string">"存在负圈"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+          <span class="token keyword">return</span><span class="token punctuation">;</span>
+        <span class="token punctuation">&#125;</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>vis<span class="token punctuation">[</span>v<span class="token punctuation">]</span><span class="token punctuation">)</span>
+          q<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span>v<span class="token punctuation">)</span><span class="token punctuation">,</span> vis<span class="token punctuation">[</span>v<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span>
+      <span class="token punctuation">&#125;</span>
+    <span class="token punctuation">&#125;</span>
+  <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span></code></pre>
+
+<ul>
+<li>SPFA并不稳定，其最坏情况同样也是O(nm)</li>
+</ul>
+<h2 id="Dijkstra"><a href="#Dijkstra" class="headerlink" title="Dijkstra"></a>Dijkstra</h2><h3 id="思想-2"><a href="#思想-2" class="headerlink" title="思想"></a>思想</h3><p>将结点分成两个集合，$S$（已确定最短路长度的点集）， $T$（未确定最短路长度的点集），初始化$dis(s)&#x3D;0,dis(else)&#x3D;INF$</p>
+<p>然后重复以下操作，直到$T$为空</p>
+<ol>
+<li>从$T$中，选取最短路长度最小的结点，移动到$S$中</li>
+<li>对刚加入$S$的结点的所有出边进行松弛操作</li>
+</ol>
+<h3 id="实现-2"><a href="#实现-2" class="headerlink" title="实现"></a>实现</h3><pre class="language-cpp" data-language="cpp"><code class="language-cpp"><span class="token keyword">struct</span> <span class="token class-name">edge</span>
+<span class="token punctuation">&#123;</span>
+  <span class="token keyword">int</span> v<span class="token punctuation">,</span> w<span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span><span class="token punctuation">;</span>
+vector<span class="token operator">&lt;</span>edge<span class="token operator">></span> e<span class="token punctuation">[</span>maxn<span class="token punctuation">]</span><span class="token punctuation">;</span>
+<span class="token keyword">int</span> dis<span class="token punctuation">[</span>maxn<span class="token punctuation">]</span><span class="token punctuation">,</span> vis<span class="token punctuation">[</span>maxn<span class="token punctuation">]</span><span class="token punctuation">;</span>
+<span class="token keyword">void</span> <span class="token function">dijkstra</span><span class="token punctuation">(</span><span class="token keyword">int</span> n<span class="token punctuation">,</span> <span class="token keyword">int</span> s<span class="token punctuation">)</span>
+<span class="token punctuation">&#123;</span>
+  <span class="token function">fill_n</span><span class="token punctuation">(</span>dis<span class="token punctuation">,</span>n<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">,</span>INF<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  dis<span class="token punctuation">[</span>s<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+  <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span> i <span class="token operator">&lt;=</span> n<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span>
+  <span class="token punctuation">&#123;</span>
+    <span class="token keyword">int</span> u <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">,</span> mind <span class="token operator">=</span> INF<span class="token punctuation">;</span>		<span class="token comment">//mind为u的最短路长度</span>
+    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> j <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span> j <span class="token operator">&lt;=</span> n<span class="token punctuation">;</span> j<span class="token operator">++</span><span class="token punctuation">)</span>
+      <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>vis<span class="token punctuation">[</span>j<span class="token punctuation">]</span> <span class="token operator">&amp;&amp;</span> dis<span class="token punctuation">[</span>j<span class="token punctuation">]</span> <span class="token operator">&lt;</span> mind<span class="token punctuation">)</span>
+        u <span class="token operator">=</span> j<span class="token punctuation">,</span> mind <span class="token operator">=</span> dis<span class="token punctuation">[</span>j<span class="token punctuation">]</span><span class="token punctuation">;</span>
+    vis<span class="token punctuation">[</span>u<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token boolean">true</span><span class="token punctuation">;</span>
+    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">auto</span> i <span class="token operator">:</span> e<span class="token punctuation">[</span>u<span class="token punctuation">]</span><span class="token punctuation">)</span>
+    <span class="token punctuation">&#123;</span>
+      <span class="token keyword">int</span> v <span class="token operator">=</span> i<span class="token punctuation">.</span>v<span class="token punctuation">,</span> w <span class="token operator">=</span> i<span class="token punctuation">.</span>w<span class="token punctuation">;</span>
+      <span class="token keyword">if</span> <span class="token punctuation">(</span>dis<span class="token punctuation">[</span>v<span class="token punctuation">]</span> <span class="token operator">></span> dis<span class="token punctuation">[</span>u<span class="token punctuation">]</span> <span class="token operator">+</span> w<span class="token punctuation">)</span>
+        dis<span class="token punctuation">[</span>v<span class="token punctuation">]</span> <span class="token operator">=</span> dis<span class="token punctuation">[</span>u<span class="token punctuation">]</span> <span class="token operator">+</span> w<span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+  <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span></code></pre>
+
+<h3 id="优化-1"><a href="#优化-1" class="headerlink" title="优化"></a>优化</h3><p>如果不适用任何数据结构维护，显然复杂度为$O(n^2+m)$，考虑使用二叉堆或者优先队列进行优化</p>
+<pre class="language-cpp" data-language="cpp"><code class="language-cpp">vector<span class="token operator">&lt;</span>edge<span class="token operator">></span> e<span class="token punctuation">[</span>maxn<span class="token punctuation">]</span><span class="token punctuation">;</span>
+<span class="token keyword">struct</span> <span class="token class-name">node</span> <span class="token punctuation">&#123;</span>
+  <span class="token keyword">int</span> dis<span class="token punctuation">,</span> u<span class="token punctuation">;</span>
+  <span class="token keyword">bool</span> <span class="token keyword">operator</span><span class="token operator">></span><span class="token punctuation">(</span><span class="token keyword">const</span> node<span class="token operator">&amp;</span> a<span class="token punctuation">)</span> <span class="token keyword">const</span> <span class="token punctuation">&#123;</span> <span class="token keyword">return</span> dis <span class="token operator">></span> a<span class="token punctuation">.</span>dis<span class="token punctuation">;</span> <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span><span class="token punctuation">;</span>
+<span class="token keyword">int</span> dis<span class="token punctuation">[</span>maxn<span class="token punctuation">]</span><span class="token punctuation">,</span> vis<span class="token punctuation">[</span>maxn<span class="token punctuation">]</span><span class="token punctuation">;</span>
+<span class="token keyword">void</span> <span class="token function">dijkstra</span><span class="token punctuation">(</span><span class="token keyword">int</span> n<span class="token punctuation">,</span> <span class="token keyword">int</span> s<span class="token punctuation">)</span>
+<span class="token punctuation">&#123;</span>
+  <span class="token function">fill_n</span><span class="token punctuation">(</span>dis<span class="token punctuation">,</span>n<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">,</span>INF<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  dis<span class="token punctuation">[</span>s<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+  priority_queue<span class="token operator">&lt;</span>node<span class="token punctuation">,</span> vector<span class="token operator">&lt;</span>node<span class="token operator">></span><span class="token punctuation">,</span> greater<span class="token operator">&lt;</span>node<span class="token operator">>></span> q<span class="token punctuation">;</span> <span class="token comment">//创建优先级队列</span>
+  q<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span><span class="token punctuation">(</span>node<span class="token punctuation">)</span><span class="token punctuation">&#123;</span><span class="token number">0</span><span class="token punctuation">,</span> s<span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword">while</span> <span class="token punctuation">(</span><span class="token operator">!</span>q<span class="token punctuation">.</span><span class="token function">empty</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+  <span class="token punctuation">&#123;</span>
+    <span class="token keyword">int</span> u <span class="token operator">=</span> q<span class="token punctuation">.</span><span class="token function">top</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span>u<span class="token punctuation">;</span>
+    q<span class="token punctuation">.</span><span class="token function">pop</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>vis<span class="token punctuation">[</span>u<span class="token punctuation">]</span><span class="token punctuation">)</span>
+      <span class="token keyword">continue</span><span class="token punctuation">;</span>
+    vis<span class="token punctuation">[</span>u<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span>
+    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">auto</span> i<span class="token operator">:</span> e<span class="token punctuation">[</span>u<span class="token punctuation">]</span><span class="token punctuation">)</span>
+    <span class="token punctuation">&#123;</span>
+      <span class="token keyword">int</span> v <span class="token operator">=</span> i<span class="token punctuation">.</span>v<span class="token punctuation">,</span> w <span class="token operator">=</span> i<span class="token punctuation">.</span>w<span class="token punctuation">;</span>
+      <span class="token keyword">if</span> <span class="token punctuation">(</span>dis<span class="token punctuation">[</span>v<span class="token punctuation">]</span> <span class="token operator">></span> dis<span class="token punctuation">[</span>u<span class="token punctuation">]</span> <span class="token operator">+</span> w<span class="token punctuation">)</span>
+      <span class="token punctuation">&#123;</span>
+        dis<span class="token punctuation">[</span>v<span class="token punctuation">]</span> <span class="token operator">=</span> dis<span class="token punctuation">[</span>u<span class="token punctuation">]</span> <span class="token operator">+</span> w<span class="token punctuation">;</span>
+        q<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span><span class="token punctuation">&#123;</span>dis<span class="token punctuation">[</span>v<span class="token punctuation">]</span><span class="token punctuation">,</span> v<span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token punctuation">&#125;</span>
+    <span class="token punctuation">&#125;</span>
+  <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span></code></pre>
+
+<ul>
+<li>由于二叉堆和优先队列的插入删除元素只需要$O(logn)$，所以复杂度可以达到$O((m+n)logn)$和$O(mlogn)$</li>
+</ul>
+<h2 id="打印路径问题"><a href="#打印路径问题" class="headerlink" title="打印路径问题"></a>打印路径问题</h2><p>比较简单，用一个整形数组path，在更新距离的时候，记录点是如何转移的即可</p>
+<p>比如 Floyd 就要记录 <code>path[i][j] = k;</code>，Bellman-Ford 和 Dijkstra 一般记录 <code>path[v] = u</code>。</p>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><a target="_blank" rel="noopener" href="https://oi-wiki.org/graph/shortest-path/">OI-WIKI</a></p>
+<p>《算法导论》</p>
+</div></section><ul class="post-copyright"><li class="post-copyright-author"><strong>Post author: </strong>Anduin9527</li><li class="post-copyright-link"><strong>Post link: </strong><a href="http://lapras.xyz/2021/12/07/adfa5e63.html" title="从零开始的算法-最短路问题">http://lapras.xyz/2021/12/07/adfa5e63.html</a></li><li class="post-copyright-license"><strong>Copyright Notice: </strong>All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank" rel="noopener" title="CC BY-NC-SA 4.0 "><span class="icon iconify" data-icon="ri:creative-commons-line"></span><span class="icon iconify" data-icon="ri:creative-commons-by-line"></span><span class="icon iconify" data-icon="ri:creative-commons-nc-line"></span><span class="icon iconify" data-icon="ri:creative-commons-sa-line"></span></a> unless otherwise stated.</li></ul></article><div class="post-nav"><div class="post-nav-item"><a class="post-nav-prev" href="/2021/12/15/3db8db5b.html" rel="prev" title="信息茧房脱出-自建RSS"><span class="icon iconify" data-icon="ri:arrow-left-s-line"></span><span class="post-nav-text">信息茧房脱出-自建RSS</span></a></div><div class="post-nav-item"><a class="post-nav-next" href="/2021/12/03/e5ccadb4.html" rel="next" title="小米/红米 AC2100急速刷Breed"><span class="post-nav-text">小米/红米 AC2100急速刷Breed</span><span class="icon iconify" data-icon="ri:arrow-right-s-line"></span></a></div></div></div><div class="hty-card" id="comment"><div class="comment-tooltip text-center"><span>如果您有任何关于博客内容的相关讨论，欢迎与我交流。</span><br></div></div></main><footer class="sidebar-translate" id="footer"><div class="beian"><a rel="noopener" href="https://beian.miit.gov.cn/" target="_blank">闽ICP备2021012704号</a></div><div class="copyright"><span>&copy; 2020 – 2022 </span><span class="with-love" id="animate"><span class="icon iconify" data-icon="ri:cloud-line"></span></span><span class="author"> Anduin9527</span></div><div class="powered"><span>Powered by <a href="https://hexo.io" target="_blank" rel="noopener">Hexo</a> v6.2.0</span><span class="footer-separator">|</span><span>Theme - <a rel="noopener" href="https://github.com/YunYouJun/hexo-theme-yun" target="_blank"><span>Yun</span></a> v1.10.4</span></div></footer></div><a class="hty-icon-button" id="back-to-top" aria-label="back-to-top" href="#"><span class="icon iconify" data-icon="ri:arrow-up-s-line"></span><svg class="progress-circle-container" viewBox="0 0 100 100"><circle class="progress-circle" id="progressCircle" cx="50" cy="50" r="48" fill="none" stroke="#66d6ff" stroke-width="2" stroke-linecap="round"></circle></svg></a><a class="popup-trigger hty-icon-button icon-search" id="search" target="_blank" rel="noopener" href="https://www.google.com/search?q=site:lapras.xyz" title="Search"><span class="site-state-item-icon"><span class="icon iconify" data-icon="ri:search-line"></span></span></a><script>function initMourn() {
+  const date = new Date();
+  const today = (date.getMonth() + 1) + "-" + date.getDate()
+  const mourn_days = ["4-4","9-18","5-12","12-13"]
+  if (mourn_days.includes(today)) {
+    document.documentElement.style.filter = "grayscale(1)";
+  }
+}
+initMourn();</script></body></html>
