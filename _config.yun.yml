@@ -5,7 +5,7 @@ head:
     async: https://cdn.jsdelivr.net/npm/ionicons/dist/ionicons.js
 
 
-mode: auto
+mode: time
 # 可选 light | dark | auto | time
 
 favicon: /images/favicon.svg
@@ -24,10 +24,13 @@ avatar:
 bg_image:
   enable: true
   url: https://cdn.jsdelivr.net/gh/YunYouJun/cdn/img/bg/stars-timing-0-blur-30px.jpg
-  # dark:
-  # blur: 30px # 设置背景模糊程度
+  dark: /images/asuka.png
+  blur: 10px # 设置背景模糊程度
   opacity: 0.8
 
+sidebar:
+  bg_image: /images/button.jpg
+  bg_position: bottom 3rem center
 fireworks:
   enable: true
   colors:
