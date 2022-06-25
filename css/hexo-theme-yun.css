@@ -134,7 +134,7 @@ html.dark {
   --hty-secondary-text-color: #eee;
   --post-block-bg-color: #1b1f2e;
   --smc-link-color: #94e2ff;
-  --yun-bg-image: url("https://cdn.yunyoujun.cn/img/bg/galaxy.jpg");
+  --yun-bg-image: url("/images/asuka.png");
   --banner-line-color: #fff;
   --banner-char-color: #fff;
   --banner-char-bg-color: rgba(0,0,0,0.5);
@@ -294,6 +294,7 @@ body::before {
   animation-name: bgFadeIn;
   animation-duration: 2s;
   opacity: 0.8;
+  filter: blur(10px);
 }
 @-moz-keyframes bgFadeIn {
   from {
@@ -1811,7 +1812,7 @@ input {
   max-height: 10000px;
 }
 :root {
-  --sidebar-bg-image: url("https://cdn.yunyoujun.cn/img/bg/alpha-stars-timing-1.webp");
+  --sidebar-bg-image: url("/images/button.jpg");
 }
 #menu-btn {
   display: none;
@@ -1864,7 +1865,7 @@ input {
   background-color: var(--sidebar-bg-color, #fff);
   background-size: contain;
   background-repeat: no-repeat;
-  background-position: bottom 1rem center;
+  background-position: bottom 3rem center;
   text-align: center;
   z-index: 10;
   transition-property: all;
