@@ -24,12 +24,12 @@ document.addEventListener("pjax:success", initScrollReveal);
   }
   var s = document.getElementsByTagName("script")[0];
   s.parentNode.insertBefore(bp, s);
-})();</script><meta name="description" content="前言啊，服务器配置太低，只能把服务配置在本地，但是校园网哪来的公网IP，无奈只能穿透了捏~">
+})();</script><meta name="description" content="前言 啊，服务器配置太低，只能把服务配置在本地，但是校园网哪来的公网IP，无奈只能穿透了捏~">
 <meta property="og:type" content="article">
 <meta property="og:title" content="记frp实现内网穿透">
 <meta property="og:url" content="http://lapras.xyz/2021/09/12/dae1adad.html">
 <meta property="og:site_name" content="Anduin9527的乖离器">
-<meta property="og:description" content="前言啊，服务器配置太低，只能把服务配置在本地，但是校园网哪来的公网IP，无奈只能穿透了捏~">
+<meta property="og:description" content="前言 啊，服务器配置太低，只能把服务配置在本地，但是校园网哪来的公网IP，无奈只能穿透了捏~">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://imgbed-1304793179.cos.ap-nanjing.myqcloud.com/typora/20210912153717.webp">
 <meta property="og:image" content="https://imgbed-1304793179.cos.ap-nanjing.myqcloud.com/typora/20210912160616.png">
@@ -61,26 +61,30 @@ IconifyProviders = {
     // Wait for 1 second before switching API hosts
     rotate: 1000,
   },
-};</script><script defer src="https://fastly.jsdelivr.net/npm/animejs@latest"></script><script defer src="/js/ui/fireworks.js" type="module"></script><canvas class="fireworks"></canvas><div class="container"><a class="sidebar-toggle hty-icon-button" id="menu-btn"><div class="hamburger hamburger--spin" type="button"><span class="hamburger-box"><span class="hamburger-inner"></span></span></div></a><div class="sidebar-toggle sidebar-overlay"></div><aside class="sidebar"><script src="/js/sidebar.js" type="module"></script><ul class="sidebar-nav"><li class="sidebar-nav-item sidebar-nav-toc hty-icon-button sidebar-nav-active" data-target="post-toc-wrap" title="Table of Contents"><span class="icon iconify" data-icon="ri:list-ordered"></span></li><li class="sidebar-nav-item sidebar-nav-overview hty-icon-button" data-target="site-overview-wrap" title="Overview"><span class="icon iconify" data-icon="ri:passport-line"></span></li></ul><div class="sidebar-panel" id="site-overview-wrap"><div class="site-info fix-top"><a class="site-author-avatar" href="/about/" title="Anduin9527"><img width="96" loading="lazy" src="/images/avatar.jpg" alt="Anduin9527"><span class="site-author-status" title="建模建模呜呜呜！">😭</span></a><div class="site-author-name"><a href="/about/">Anduin9527</a></div><span class="site-name">Anduin9527的乖离器</span><sub class="site-subtitle">正在进修摸鱼学导论</sub><div class="site-description">南邮摸鱼ing</div></div><nav class="site-state"><a class="site-state-item hty-icon-button icon-home" href="/" title="Home"><span class="site-state-item-icon"><span class="icon iconify" data-icon="ri:home-4-line"></span></span></a><div class="site-state-item"><a href="/archives/" title="Archives"><span class="site-state-item-icon"><span class="icon iconify" data-icon="ri:archive-line"></span></span><span class="site-state-item-count">26</span></a></div><div class="site-state-item"><a href="/categories/" title="Categories"><span class="site-state-item-icon"><span class="icon iconify" data-icon="ri:folder-2-line"></span></span><span class="site-state-item-count">6</span></a></div><div class="site-state-item"><a href="/tags/" title="Tags"><span class="site-state-item-icon"><span class="icon iconify" data-icon="ri:price-tag-3-line"></span></span><span class="site-state-item-count">27</span></a></div><a class="site-state-item hty-icon-button" target="_blank" rel="noopener" href="https://yun.yunyoujun.cn" title="文档"><span class="site-state-item-icon"><span class="icon iconify" data-icon="ri:settings-line"></span></span></a></nav><hr style="margin-bottom:0.5rem"><div class="links-of-author"><a class="links-of-author-item hty-icon-button" rel="noopener" href="tencent://message/?uin=2676057183&amp;Site=&amp;Menu=yes" title="QQ" target="_blank" style="color:#12B7F5"><span class="icon iconify" data-icon="ri:qq-line"></span></a><a class="links-of-author-item hty-icon-button" rel="noopener" href="https://github.com/Anduin9527" title="GitHub" target="_blank" style="color:#181717"><span class="icon iconify" data-icon="ri:github-line"></span></a><a class="links-of-author-item hty-icon-button" rel="noopener" href="mailto:2676057183@qq.com" title="E-Mail" target="_blank" style="color:#8E71C1"><span class="icon iconify" data-icon="ri:mail-line"></span></a><a class="links-of-author-item hty-icon-button" rel="noopener" href="https://music.163.com/#/user/home?id=579015212" title="网易云音乐" target="_blank" style="color:#C10D0C"><span class="icon iconify" data-icon="ri:netease-cloud-music-line"></span></a><a class="links-of-author-item hty-icon-button" rel="noopener" href="https://www.zhihu.com/people/chu-liu-16-64" title="知乎" target="_blank" style="color:#0084FF"><span class="icon iconify" data-icon="ri:zhihu-line"></span></a><a class="links-of-author-item hty-icon-button" rel="noopener" href="https://space.bilibili.com/21994551" title="哔哩哔哩动画" target="_blank" style="color:#FF8EB3"><span class="icon iconify" data-icon="ri:bilibili-line"></span></a><a class="links-of-author-item hty-icon-button" rel="noopener" href="/atom.xml" title="RSS" target="_blank" style="color:orange"><span class="icon iconify" data-icon="ri:rss-line"></span></a></div><hr style="margin:0.5rem 1rem"><div class="links"><a class="links-item hty-icon-button" href="/links/" title="我的小伙伴们" style="color:dodgerblue"><span class="icon iconify" data-icon="ri:genderless-line"></span></a><a class="links-item hty-icon-button" href="/girls/" title="我永远喜欢oo" style="color:hotpink"><span class="icon iconify" data-icon="ri:women-line"></span></a></div><br><a class="links-item hty-icon-button" id="toggle-mode-btn" href="javascript:;" title="Mode" style="color: #f1cb64"><span class="icon iconify" data-icon="ri:contrast-2-line"></span></a></div><div class="sidebar-panel sidebar-panel-active" id="post-toc-wrap"><div class="post-toc"><div class="post-toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%89%8D%E8%A8%80"><span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AE%80%E4%BB%8B"><span class="toc-text">简介</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B7%A5%E5%85%B7"><span class="toc-text">工具</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9C%8D%E5%8A%A1%E7%AB%AF%E7%AF%87"><span class="toc-text">服务端篇</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%8B%E8%BD%BD"><span class="toc-text">下载</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%85%8D%E7%BD%AE"><span class="toc-text">配置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BF%90%E8%A1%8C"><span class="toc-text">运行</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AE%BE%E7%BD%AE%E6%9C%8D%E5%8A%A1"><span class="toc-text">设置服务</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%A2%E6%88%B7%E7%AB%AF%E7%AF%87"><span class="toc-text">客户端篇</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%8B%E8%BD%BD-1"><span class="toc-text">下载</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%85%8D%E7%BD%AE-1"><span class="toc-text">配置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BF%90%E8%A1%8C-1"><span class="toc-text">运行</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AE%BE%E7%BD%AE%E6%9C%8D%E5%8A%A1-1"><span class="toc-text">设置服务</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Window%E6%9C%8D%E5%8A%A1"><span class="toc-text">Window服务</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%8B%E8%BD%BD-2"><span class="toc-text">下载</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%85%8D%E7%BD%AE-2"><span class="toc-text">配置</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E8%80%83"><span class="toc-text">参考</span></a></li></ol></div></div></div></aside><main class="sidebar-translate" id="content"><div id="post"><article class="hty-card post-block" itemscope itemtype="https://schema.org/Article" style="--smc-primary:#66d6ff;"><link itemprop="mainEntityOfPage" href="http://lapras.xyz/2021/09/12/dae1adad.html"><span hidden itemprop="author" itemscope itemtype="https://schema.org/Person"><meta itemprop="name" content="Anduin9527"><meta itemprop="description"></span><span hidden itemprop="publisher" itemscope itemtype="https://schema.org/Organization"><meta itemprop="name" content="Anduin9527的乖离器"></span><header class="post-header"><h1 class="post-title" itemprop="name headline">记frp实现内网穿透</h1><div class="post-meta"><div class="post-time" style="display:block"><span class="post-meta-item-icon"><span class="icon iconify" data-icon="ri:calendar-line"></span></span> <time title="Created: 2021-09-12 15:30:53" itemprop="dateCreated datePublished" datetime="2021-09-12T15:30:53+08:00">2021-09-12</time><span class="post-meta-divider">-</span><span class="post-meta-item-icon"><span class="icon iconify" data-icon="ri:calendar-2-line"></span></span> <time title="Modified: 2021-10-24 14:21:09" itemprop="dateModified" datetime="2021-10-24T14:21:09+08:00">2021-10-24</time></div><span class="post-count"><span class="post-symbolcount"><span class="post-meta-item-icon" title="Word count in article"><span class="icon iconify" data-icon="ri:file-word-line"></span></span> <span title="Word count in article">1.1k</span><span class="post-meta-divider">-</span><span class="post-meta-item-icon" title="Reading time"><span class="icon iconify" data-icon="ri:timer-line"></span></span> <span title="Reading time">4m</span></span></span><div class="post-classify"><span class="post-category"> <span class="post-meta-item-icon" style="margin-right:3px;"><span class="icon iconify" data-icon="ri:folder-line"></span></span><span itemprop="about" itemscope itemtype="https://schema.org/Thing"><a class="category-item" href="/categories/%E9%A1%B9%E7%9B%AE%E7%BB%8F%E5%8E%86/" style="--text-color:#4ba700" itemprop="url" rel="index"><span itemprop="text">项目经历</span></a></span></span><span class="post-tag"><span class="post-meta-divider">-</span><a class="tag-item" href="/tags/%E5%88%86%E4%BA%AB/" style="--text-color:#0078e7"><span class="post-meta-item-icon"><span class="icon iconify" data-icon="ri:price-tag-3-line"></span></span><span class="tag-name">分享</span></a><a class="tag-item" href="/tags/%E7%BD%91%E7%BB%9C/" style="--text-color:#1cafdb"><span class="post-meta-item-icon"><span class="icon iconify" data-icon="ri:price-tag-3-line"></span></span><span class="tag-name">网络</span></a></span></div></div></header><section class="post-body" itemprop="articleBody"><div class="post-content markdown-body"><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>啊，服务器配置太低，只能把服务配置在本地，但是校园网哪来的公网IP，无奈只能穿透了捏~</p>
-<img src="https://imgbed-1304793179.cos.ap-nanjing.myqcloud.com/typora/20210912153717.webp" alt="img" style="zoom:50%;" / loading="lazy">
-
+};</script><script defer src="https://fastly.jsdelivr.net/npm/animejs@latest"></script><script defer src="/js/ui/fireworks.js" type="module"></script><canvas class="fireworks"></canvas><div class="container"><a class="sidebar-toggle hty-icon-button" id="menu-btn"><div class="hamburger hamburger--spin" type="button"><span class="hamburger-box"><span class="hamburger-inner"></span></span></div></a><div class="sidebar-toggle sidebar-overlay"></div><aside class="sidebar"><script src="/js/sidebar.js" type="module"></script><ul class="sidebar-nav"><li class="sidebar-nav-item sidebar-nav-toc hty-icon-button sidebar-nav-active" data-target="post-toc-wrap" title="Table of Contents"><span class="icon iconify" data-icon="ri:list-ordered"></span></li><li class="sidebar-nav-item sidebar-nav-overview hty-icon-button" data-target="site-overview-wrap" title="Overview"><span class="icon iconify" data-icon="ri:passport-line"></span></li></ul><div class="sidebar-panel" id="site-overview-wrap"><div class="site-info fix-top"><a class="site-author-avatar" href="/about/" title="Anduin9527"><img width="96" loading="lazy" src="/images/avatar.jpg" alt="Anduin9527"><span class="site-author-status" title="建模建模呜呜呜！">😭</span></a><div class="site-author-name"><a href="/about/">Anduin9527</a></div><span class="site-name">Anduin9527的乖离器</span><sub class="site-subtitle">正在进修摸鱼学导论</sub><div class="site-description">南邮摸鱼ing</div></div><nav class="site-state"><a class="site-state-item hty-icon-button icon-home" href="/" title="Home"><span class="site-state-item-icon"><span class="icon iconify" data-icon="ri:home-4-line"></span></span></a><div class="site-state-item"><a href="/archives/" title="Archives"><span class="site-state-item-icon"><span class="icon iconify" data-icon="ri:archive-line"></span></span><span class="site-state-item-count">26</span></a></div><div class="site-state-item"><a href="/categories/" title="Categories"><span class="site-state-item-icon"><span class="icon iconify" data-icon="ri:folder-2-line"></span></span><span class="site-state-item-count">6</span></a></div><div class="site-state-item"><a href="/tags/" title="Tags"><span class="site-state-item-icon"><span class="icon iconify" data-icon="ri:price-tag-3-line"></span></span><span class="site-state-item-count">27</span></a></div><a class="site-state-item hty-icon-button" target="_blank" rel="noopener" href="https://yun.yunyoujun.cn" title="文档"><span class="site-state-item-icon"><span class="icon iconify" data-icon="ri:settings-line"></span></span></a></nav><hr style="margin-bottom:0.5rem"><div class="links-of-author"><a class="links-of-author-item hty-icon-button" rel="noopener" href="tencent://message/?uin=2676057183&amp;Site=&amp;Menu=yes" title="QQ" target="_blank" style="color:#12B7F5"><span class="icon iconify" data-icon="ri:qq-line"></span></a><a class="links-of-author-item hty-icon-button" rel="noopener" href="https://github.com/Anduin9527" title="GitHub" target="_blank" style="color:#181717"><span class="icon iconify" data-icon="ri:github-line"></span></a><a class="links-of-author-item hty-icon-button" rel="noopener" href="mailto:2676057183@qq.com" title="E-Mail" target="_blank" style="color:#8E71C1"><span class="icon iconify" data-icon="ri:mail-line"></span></a><a class="links-of-author-item hty-icon-button" rel="noopener" href="https://music.163.com/#/user/home?id=579015212" title="网易云音乐" target="_blank" style="color:#C10D0C"><span class="icon iconify" data-icon="ri:netease-cloud-music-line"></span></a><a class="links-of-author-item hty-icon-button" rel="noopener" href="https://www.zhihu.com/people/chu-liu-16-64" title="知乎" target="_blank" style="color:#0084FF"><span class="icon iconify" data-icon="ri:zhihu-line"></span></a><a class="links-of-author-item hty-icon-button" rel="noopener" href="https://space.bilibili.com/21994551" title="哔哩哔哩动画" target="_blank" style="color:#FF8EB3"><span class="icon iconify" data-icon="ri:bilibili-line"></span></a><a class="links-of-author-item hty-icon-button" rel="noopener" href="/atom.xml" title="RSS" target="_blank" style="color:orange"><span class="icon iconify" data-icon="ri:rss-line"></span></a></div><hr style="margin:0.5rem 1rem"><div class="links"><a class="links-item hty-icon-button" href="/links/" title="我的小伙伴们" style="color:dodgerblue"><span class="icon iconify" data-icon="ri:genderless-line"></span></a><a class="links-item hty-icon-button" href="/girls/" title="我永远喜欢oo" style="color:hotpink"><span class="icon iconify" data-icon="ri:women-line"></span></a></div><br><a class="links-item hty-icon-button" id="toggle-mode-btn" href="javascript:;" title="Mode" style="color: #f1cb64"><span class="icon iconify" data-icon="ri:contrast-2-line"></span></a></div><div class="sidebar-panel sidebar-panel-active" id="post-toc-wrap"><div class="post-toc"><div class="post-toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%89%8D%E8%A8%80"><span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AE%80%E4%BB%8B"><span class="toc-text">简介</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B7%A5%E5%85%B7"><span class="toc-text">工具</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9C%8D%E5%8A%A1%E7%AB%AF%E7%AF%87"><span class="toc-text">服务端篇</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%8B%E8%BD%BD"><span class="toc-text">下载</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%85%8D%E7%BD%AE"><span class="toc-text">配置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BF%90%E8%A1%8C"><span class="toc-text">运行</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AE%BE%E7%BD%AE%E6%9C%8D%E5%8A%A1"><span class="toc-text">设置服务</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%A2%E6%88%B7%E7%AB%AF%E7%AF%87"><span class="toc-text">客户端篇</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%8B%E8%BD%BD-1"><span class="toc-text">下载</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%85%8D%E7%BD%AE-1"><span class="toc-text">配置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BF%90%E8%A1%8C-1"><span class="toc-text">运行</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AE%BE%E7%BD%AE%E6%9C%8D%E5%8A%A1-1"><span class="toc-text">设置服务</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#window%E6%9C%8D%E5%8A%A1"><span class="toc-text">Window服务</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%8B%E8%BD%BD-2"><span class="toc-text">下载</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%85%8D%E7%BD%AE-2"><span class="toc-text">配置</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E8%80%83"><span class="toc-text">参考</span></a></li></ol></div></div></div></aside><main class="sidebar-translate" id="content"><div id="post"><article class="hty-card post-block" itemscope itemtype="https://schema.org/Article" style="--smc-primary:#66d6ff;"><link itemprop="mainEntityOfPage" href="http://lapras.xyz/2021/09/12/dae1adad.html"><span hidden itemprop="author" itemscope itemtype="https://schema.org/Person"><meta itemprop="name" content="Anduin9527"><meta itemprop="description"></span><span hidden itemprop="publisher" itemscope itemtype="https://schema.org/Organization"><meta itemprop="name" content="Anduin9527的乖离器"></span><header class="post-header"><h1 class="post-title" itemprop="name headline">记frp实现内网穿透</h1><div class="post-meta"><div class="post-time" style="display:block"><span class="post-meta-item-icon"><span class="icon iconify" data-icon="ri:calendar-line"></span></span> <time title="Created: 2021-09-12 15:30:53" itemprop="dateCreated datePublished" datetime="2021-09-12T15:30:53+08:00">2021-09-12</time><span class="post-meta-divider">-</span><span class="post-meta-item-icon"><span class="icon iconify" data-icon="ri:calendar-2-line"></span></span> <time title="Modified: 2021-10-24 14:21:09" itemprop="dateModified" datetime="2021-10-24T14:21:09+08:00">2021-10-24</time></div><span class="post-count"><span class="post-symbolcount"><span class="post-meta-item-icon" title="Word count in article"><span class="icon iconify" data-icon="ri:file-word-line"></span></span> <span title="Word count in article">1.1k</span><span class="post-meta-divider">-</span><span class="post-meta-item-icon" title="Reading time"><span class="icon iconify" data-icon="ri:timer-line"></span></span> <span title="Reading time">4m</span></span></span><div class="post-classify"><span class="post-category"> <span class="post-meta-item-icon" style="margin-right:3px;"><span class="icon iconify" data-icon="ri:folder-line"></span></span><span itemprop="about" itemscope itemtype="https://schema.org/Thing"><a class="category-item" href="/categories/%E9%A1%B9%E7%9B%AE%E7%BB%8F%E5%8E%86/" style="--text-color:#4ba700" itemprop="url" rel="index"><span itemprop="text">项目经历</span></a></span></span><span class="post-tag"><span class="post-meta-divider">-</span><a class="tag-item" href="/tags/%E5%88%86%E4%BA%AB/" style="--text-color:#0078e7"><span class="post-meta-item-icon"><span class="icon iconify" data-icon="ri:price-tag-3-line"></span></span><span class="tag-name">分享</span></a><a class="tag-item" href="/tags/%E7%BD%91%E7%BB%9C/" style="--text-color:#1cafdb"><span class="post-meta-item-icon"><span class="icon iconify" data-icon="ri:price-tag-3-line"></span></span><span class="tag-name">网络</span></a></span></div></div></header><section class="post-body" itemprop="articleBody"><div class="post-content markdown-body"><h2 id="前言">前言</h2>
+<p>啊，服务器配置太低，只能把服务配置在本地，但是校园网哪来的公网IP，无奈只能穿透了捏~</p>
+<p><img src="https://imgbed-1304793179.cos.ap-nanjing.myqcloud.com/typora/20210912153717.webp" alt="img" style="zoom:50%;" / loading="lazy"></p>
 <span id="more"></span>
-
-<h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p><code>frp</code> 是一个可用于内网穿透的高性能的反向代理应用，支持 <code>tcp</code>, <code>udp</code> 协议，为<code>http</code>和 <code>https</code>应用协议提供了额外的能力，且尝试性支持了点对点穿透。可以将内网服务以安全、便捷的方式通过具有公网 IP 节点的中转暴露到公网。</p>
-<h2 id="工具"><a href="#工具" class="headerlink" title="工具"></a>工具</h2><blockquote>
+<h2 id="简介">简介</h2>
+<p><code>frp</code> 是一个可用于内网穿透的高性能的反向代理应用，支持 <code>tcp</code>, <code>udp</code> 协议，为<code>http</code>和 <code>https</code>应用协议提供了额外的能力，且尝试性支持了点对点穿透。可以将内网服务以安全、便捷的方式通过具有公网 IP 节点的中转暴露到公网。</p>
+<h2 id="工具">工具</h2>
+<blockquote>
 <p>提供服务的客户端（我这里是Win10）</p>
 <p>拥有公网ip的服务端（我这里是CentOS8）</p>
 <p>一个@解析到服务端ip的域名</p>
 <p>frp</p>
 </blockquote>
-<h2 id="服务端篇"><a href="#服务端篇" class="headerlink" title="服务端篇"></a>服务端篇</h2><h3 id="下载"><a href="#下载" class="headerlink" title="下载"></a>下载</h3><p><a target="_blank" rel="noopener" href="https://github.com/fatedier/frp/releases">FRP 下载地址</a></p>
+<h2 id="服务端篇">服务端篇</h2>
+<h3 id="下载">下载</h3>
+<p><a target="_blank" rel="noopener" href="https://github.com/fatedier/frp/releases">FRP 下载地址</a></p>
 <p>选择你服务器内核对应的压缩包即可，下载完成后解压</p>
-<h3 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h3><p>可以看到软件目录一共有两个程序、四个配置文件</p>
+<h3 id="配置">配置</h3>
+<p>可以看到软件目录一共有两个程序、四个配置文件</p>
 <blockquote>
 <p>frps 表示frp server</p>
 <p>frpc 表示frp client</p>
 <p>frps.ini是服务端配置文件</p>
-<p>frpc.ini是客户端配置文件 </p>
+<p>frpc.ini是客户端配置文件</p>
 <p>frps_full.ini是服务端的配置文件模板</p>
 <p>frpc_full.ini是客户端的配置文件模板</p>
 </blockquote>
@@ -102,15 +106,14 @@ dashboard_pwd <span class="token operator">=</span> <span class="token function"
 dashboard_port <span class="token operator">=</span> <span class="token number">23333</span> 		
 <span class="token comment">#设置服务端token，对应客户端也需要配置相同</span>
 token <span class="token operator">=</span> <span class="token number">1145141818</span>     						</code></pre>
-
-<h3 id="运行"><a href="#运行" class="headerlink" title="运行"></a>运行</h3><pre class="language-bash" data-language="bash"><code class="language-bash">./frps -c ./frps.ini</code></pre>
-
-<p><img src="https://imgbed-1304793179.cos.ap-nanjing.myqcloud.com/typora/20210912160616.png" loading="lazy"></p>
+<h3 id="运行">运行</h3>
+<pre class="language-bash" data-language="bash"><code class="language-bash">./frps -c ./frps.ini</code></pre>
+<p><img src="https://imgbed-1304793179.cos.ap-nanjing.myqcloud.com/typora/20210912160616.png" / loading="lazy"></p>
 <ul>
 <li>记得打开相应的防火墙以及安全组</li>
 </ul>
-<h3 id="设置服务"><a href="#设置服务" class="headerlink" title="设置服务"></a>设置服务</h3><pre class="language-bash" data-language="bash"><code class="language-bash"><span class="token function">vim</span> /etc/systemd/system/frps.service</code></pre>
-
+<h3 id="设置服务">设置服务</h3>
+<pre class="language-bash" data-language="bash"><code class="language-bash"><span class="token function">vim</span> /etc/systemd/system/frps.service</code></pre>
 <p>添加以下内容：</p>
 <pre class="language-none"><code class="language-none">[Unit]
 Description&#x3D;frps daemon
@@ -125,14 +128,16 @@ RestartSec&#x3D;1min
  
 [Install]
 WantedBy&#x3D;multi-user.target</code></pre>
-
 <ul>
 <li><code>ExecStart</code>根据frp安装目录自行更改</li>
 </ul>
 <p>现在就可以<code>systemctl</code>来控制frp啦</p>
-<h2 id="客户端篇"><a href="#客户端篇" class="headerlink" title="客户端篇"></a>客户端篇</h2><h3 id="下载-1"><a href="#下载-1" class="headerlink" title="下载"></a>下载</h3><p><a target="_blank" rel="noopener" href="https://github.com/fatedier/frp/releases">FRP 下载地址</a></p>
+<h2 id="客户端篇">客户端篇</h2>
+<h3 id="下载-1">下载</h3>
+<p><a target="_blank" rel="noopener" href="https://github.com/fatedier/frp/releases">FRP 下载地址</a></p>
 <p>选择你服务器内核对应的压缩包即可，下载完成后解压</p>
-<h3 id="配置-1"><a href="#配置-1" class="headerlink" title="配置"></a>配置</h3><p>配置客户端文件<code>frpc.ini</code>：</p>
+<h3 id="配置-1">配置</h3>
+<p>配置客户端文件<code>frpc.ini</code>：</p>
 <pre class="language-bash" data-language="bash"><code class="language-bash"><span class="token punctuation">[</span>common<span class="token punctuation">]</span>
 <span class="token comment"># 服务器IP或者地址</span>
 server_addr <span class="token operator">=</span> address or domain
@@ -148,25 +153,27 @@ local_ip <span class="token operator">=</span> <span class="token number">127.0<
 local_port <span class="token operator">=</span> <span class="token number">8080</span>
 <span class="token comment">#二级域名设置</span>
 subdomain <span class="token operator">=</span> <span class="token builtin class-name">test</span></code></pre>
-
 <ul>
-<li><p>这里我只配置了一个web应用的穿透，更多的比如ssh登录，远程桌面等等见参考</p>
-</li>
-<li><p>访问服务的方式是：<code>subdomain.domain.com:vhost_http_port</code></p>
-</li>
+<li><p>这里我只配置了一个web应用的穿透，更多的比如ssh登录，远程桌面等等见参考</p></li>
+<li><p>访问服务的方式是：<code>subdomain.domain.com:vhost_http_port</code></p></li>
 </ul>
-<h3 id="运行-1"><a href="#运行-1" class="headerlink" title="运行"></a>运行</h3><pre class="language-bash" data-language="bash"><code class="language-bash"><span class="token punctuation">\</span>frpc.exe -c .<span class="token punctuation">\</span>frpc.ini</code></pre>
-
-<p><img src="https://imgbed-1304793179.cos.ap-nanjing.myqcloud.com/typora/20210912162600.png" alt="image-20210912162600590" loading="lazy"></p>
-<h3 id="设置服务-1"><a href="#设置服务-1" class="headerlink" title="设置服务"></a>设置服务</h3><p>新建一个<code>vbs</code>：</p>
+<h3 id="运行-1">运行</h3>
+<pre class="language-bash" data-language="bash"><code class="language-bash"><span class="token punctuation">\</span>frpc.exe -c .<span class="token punctuation">\</span>frpc.ini</code></pre>
+<figure>
+<img src="https://imgbed-1304793179.cos.ap-nanjing.myqcloud.com/typora/20210912162600.png" alt="image-20210912162600590" / loading="lazy"><figcaption aria-hidden="true">image-20210912162600590</figcaption>
+</figure>
+<h3 id="设置服务-1">设置服务</h3>
+<p>新建一个<code>vbs</code>：</p>
 <pre class="language-vbscript" data-language="vbscript"><code class="language-vbscript">Copyset ws&#x3D;WScript.CreateObject(&quot;WScript.Shell&quot;)
 ws.Run &quot;&#123;yourpath&#125;\frpc.exe -c &#123;yourpath&#125;\frpc.ini&quot;,0</code></pre>
-
 <p><code>win</code>+<code>R</code>运行打开<code>shell:startup</code>把该文件放进去即可嘞。</p>
-<h2 id="Window服务"><a href="#Window服务" class="headerlink" title="Window服务"></a>Window服务</h2><p>介绍个好用的玩意儿<a target="_blank" rel="noopener" href="https://github.com/kohsuke/winsw">winsw</a>，它可以将Windows上的任何一个程序注册为服务，这比<code>shell:startup</code>方便多嘞，它的使用类似于Linux平台上的<code>systemctl</code>，只不过其的配置文件是用xml格式写的</p>
-<h3 id="下载-2"><a href="#下载-2" class="headerlink" title="下载"></a>下载</h3><p><a target="_blank" rel="noopener" href="https://github.com/winsw/winsw/releases/">https://github.com/winsw/winsw/releases/</a></p>
+<h2 id="window服务">Window服务</h2>
+<p>介绍个好用的玩意儿<a target="_blank" rel="noopener" href="https://github.com/kohsuke/winsw">winsw</a>，它可以将Windows上的任何一个程序注册为服务，这比<code>shell:startup</code>方便多嘞，它的使用类似于Linux平台上的<code>systemctl</code>，只不过其的配置文件是用xml格式写的</p>
+<h3 id="下载-2">下载</h3>
+<p>https://github.com/winsw/winsw/releases/</p>
 <p>如果电脑有安装<code>.NET Framework 4.6.1</code>以上版本就可以选择<code>WinSW-net461.exe</code>，反之选择x64或者x86版本</p>
-<h3 id="配置-2"><a href="#配置-2" class="headerlink" title="配置"></a>配置</h3><ol>
+<h3 id="配置-2">配置</h3>
+<ol type="1">
 <li>将下载好的exe文件改个名字<code>winsw.exe</code></li>
 <li>新建一个<code>winsw</code>目录，移动<code>winsw.exe</code>并将其添加进系统环境变量中</li>
 <li>在该目录下新建一个<code>frp.xml</code>文件</li>
@@ -189,17 +196,14 @@ ws.Run &quot;&#123;yourpath&#125;\frpc.exe -c &#123;yourpath&#125;\frpc.ini&quot
   <span class="token comment">&lt;!-- 指定日志文件目录(相对于executable配置的路径) --></span>
   <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>logpath</span><span class="token punctuation">></span></span>frplogs<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>logpath</span><span class="token punctuation">></span></span>
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>service</span><span class="token punctuation">></span></span></code></pre>
-
-<ol start="4">
+<ol start="4" type="1">
 <li>安装服务</li>
 </ol>
 <pre class="language-powershell" data-language="powershell"><code class="language-powershell">winsw install <span class="token punctuation">&#123;</span>yourpath<span class="token punctuation">&#125;</span>\winsw\frp<span class="token punctuation">.</span>xml</code></pre>
-
-<ol start="5">
+<ol start="5" type="1">
 <li>启动服务</li>
 </ol>
 <pre class="language-powershell" data-language="powershell"><code class="language-powershell">winsw <span class="token function">start</span> <span class="token punctuation">&#123;</span>yourpath<span class="token punctuation">&#125;</span>\winsw\frp<span class="token punctuation">.</span>xml</code></pre>
-
 <pre class="language-none"><code class="language-none">&#x2F;&#x2F;全部命令：
 &#x2F;&#x2F;注册服务
 winsw.exe install xxx
@@ -213,11 +217,9 @@ winsw.exe stop xxx
 winsw.exe restart xxx
 &#x2F;&#x2F;查看状态
 winsw.exe status xxx</code></pre>
-
-
-
-<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><a target="_blank" rel="noopener" href="http://kan.lol/posts/c067e7e3/">http://kan.lol/posts/c067e7e3/</a></p>
-<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/nextyu/article/details/78284663">https://blog.csdn.net/nextyu/article/details/78284663</a></p>
+<h2 id="参考">参考</h2>
+<p>http://kan.lol/posts/c067e7e3/</p>
+<p>https://blog.csdn.net/nextyu/article/details/78284663</p>
 </div></section><ul class="post-copyright"><li class="post-copyright-author"><strong>Post author: </strong>Anduin9527</li><li class="post-copyright-link"><strong>Post link: </strong><a href="http://lapras.xyz/2021/09/12/dae1adad.html" title="记frp实现内网穿透">http://lapras.xyz/2021/09/12/dae1adad.html</a></li><li class="post-copyright-license"><strong>Copyright Notice: </strong>All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank" rel="noopener" title="CC BY-NC-SA 4.0 "><span class="icon iconify" data-icon="ri:creative-commons-line"></span><span class="icon iconify" data-icon="ri:creative-commons-by-line"></span><span class="icon iconify" data-icon="ri:creative-commons-nc-line"></span><span class="icon iconify" data-icon="ri:creative-commons-sa-line"></span></a> unless otherwise stated.</li></ul></article><div class="post-nav"><div class="post-nav-item"><a class="post-nav-prev" href="/2021/10/24/db7ea760.html" rel="prev" title="搜索算法小整理（上）"><span class="icon iconify" data-icon="ri:arrow-left-s-line"></span><span class="post-nav-text">搜索算法小整理（上）</span></a></div><div class="post-nav-item"><a class="post-nav-next" href="/2021/08/24/a04e8961.html" rel="next" title="记录在linux上的武当梯云纵"><span class="post-nav-text">记录在linux上的武当梯云纵</span><span class="icon iconify" data-icon="ri:arrow-right-s-line"></span></a></div></div></div><div class="hty-card" id="comment"><div class="comment-tooltip text-center"><span>如果您有任何关于博客内容的相关讨论，欢迎与我交流。</span><br></div></div></main><footer class="sidebar-translate" id="footer"><div class="beian"><a rel="noopener" href="https://beian.miit.gov.cn/" target="_blank">闽ICP备2021012704号</a></div><div class="copyright"><span>&copy; 2020 – 2022 </span><span class="with-love" id="animate"><span class="icon iconify" data-icon="ri:cloud-line"></span></span><span class="author"> Anduin9527</span></div><div class="powered"><span>Powered by <a href="https://hexo.io" target="_blank" rel="noopener">Hexo</a> v6.2.0</span><span class="footer-separator">|</span><span>Theme - <a rel="noopener" href="https://github.com/YunYouJun/hexo-theme-yun" target="_blank"><span>Yun</span></a> v1.10.4</span></div></footer></div><a class="hty-icon-button" id="back-to-top" aria-label="back-to-top" href="#"><span class="icon iconify" data-icon="ri:arrow-up-s-line"></span><svg class="progress-circle-container" viewBox="0 0 100 100"><circle class="progress-circle" id="progressCircle" cx="50" cy="50" r="48" fill="none" stroke="#66d6ff" stroke-width="2" stroke-linecap="round"></circle></svg></a><a class="popup-trigger hty-icon-button icon-search" id="search" target="_blank" rel="noopener" href="https://www.google.com/search?q=site:lapras.xyz" title="Search"><span class="site-state-item-icon"><span class="icon iconify" data-icon="ri:search-line"></span></span></a><script>function initMourn() {
   const date = new Date();
   const today = (date.getMonth() + 1) + "-" + date.getDate()
