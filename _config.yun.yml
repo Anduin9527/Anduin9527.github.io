@@ -212,8 +212,8 @@ codeblock:
     dark: tomorrow
 
 katex:
-  copy_tex: true
-  global: true
+  copy_tex: false
+  global: false
 
 albums:
   enable: false

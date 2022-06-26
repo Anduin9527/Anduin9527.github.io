@@ -20,6 +20,13 @@ links:
     desc: zmr师傅
     color: "#0009ff" # 代表色
     email: # 非必须
+  - url: https://bubumua.github.io/
+    avatar: https://bubumua.github.io/img/avatar.jpg
+    name: Bubu
+    blog: Bubu的豌豆田
+    desc: 我的带佬舍友
+    color: "#283247" # 代表色
+    email: # 非必须
 placeholder: 还没想好说些什么 # 默认对友链的描述
 tip: 友链加载中～如失败请刷新重试～
 ---
