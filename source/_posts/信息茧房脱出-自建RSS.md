@@ -39,29 +39,36 @@ mkdir ~/miniflux && cd ~/miniflux
 2. 创建并修改 `docker-compose.yml`
 
 ```yaml
-version: '3'
+version: '3.4'
 services:
   miniflux:
     image: miniflux/miniflux:latest
     ports:
-      - "<端口>:8080"
+      - "<181>:8080"  # 端口181
     depends_on:
       - db
     environment:
-      - DATABASE_URL=postgres://miniflux:<数据库密码>@db/miniflux?sslmode=disable
+      - DATABASE_URL=postgres://miniflux:<passWord>,.@db/miniflux?sslmode=disable # 数据库密码
       - RUN_MIGRATIONS=1
       - CREATE_ADMIN=1
-      - ADMIN_USERNAME=<Miniflux管理员用户名>
-      - ADMIN_PASSWORD=<Miniflux管理员密码>
+      - ADMIN_USERNAME=<admin>  # 登录Miniflux的用户名，可自定义
+      - ADMIN_PASSWORD=<password>  # 登录Miniflux的密码，可自定义，至少6位
+    healthcheck:
+      test: ["CMD", "/usr/bin/miniflux", "-healthcheck", "auto"]
   db:
     image: postgres:latest
     environment:
       - POSTGRES_USER=miniflux
-      - POSTGRES_PASSWORD=<数据库密码>
+      - POSTGRES_PASSWORD=secret
     volumes:
       - miniflux-db:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD", "pg_isready", "-U", "miniflux"]
+      interval: 10s
+      start_period: 30s
 volumes:
-  miniflux-db: 
+  miniflux-db:
+
 ```
 
 + 自行修改上述带有`<>`的选项
@@ -207,3 +214,4 @@ docker run -d \
 
 
 
+​	
