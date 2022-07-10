@@ -174,7 +174,8 @@ from pyquery import PyQuery as pq
 2. 得到解析对象`doc = pq(resp.text)`
 3. 使用`doc(CSS选择器表达式)`的方式获取`HTML`内容
 4. 使用`.text()`获取文本，使用`.attr('属性')`获取属性值
-5. 如果选择的内容超过一条后想要获取他们的文本属性值，则需使用`.items()`，返回一个迭代器后使用`for`迭代或者使用`list comprehension`
+5. 使用`.attr('属性', '值')`来修改属性或者添加属性
+6. 如果选择的内容超过一条后想要获取他们的文本属性值，则需使用`.items()`，返回一个迭代器后使用`for`迭代或者使用`list comprehension`
 
 ### 小例子
 
