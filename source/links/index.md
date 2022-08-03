@@ -6,13 +6,6 @@ keywords: 链接
 description: 个个都是带佬
 comments: true
 links:
-  - url: https://yunyoujun.cn
-    avatar: https://cdn.jsdelivr.net/gh/YunYouJun/yunyoujun.github.io/images/avatar.jpg
-    name: 云游君
-    blog: 云游君的小站
-    desc: 本主题作者
-    color: "#0078e7" # 代表色
-    email: # 非必须
   - url: http://wh1sper.com/
     avatar: https://i.loli.net/2021/05/11/WNZstXrdLg43xTD.png
     name: wh1sper
@@ -26,6 +19,13 @@ links:
     blog: Bubu的豌豆田
     desc: 我的带佬舍友
     color: "#283247" # 代表色
+    email: # 非必须
+  - url: https://xichengchangjinglu.github.io/
+    avatar: https://pic4.zhimg.com/v2-02a3ed4cbe7ddc41b144752c25388a7b_b.jpg
+    name: 锡城长颈鹿
+    blog: 锡城长颈鹿的博客
+    desc: 我的带佬学弟组员
+    color: "#eecca8" # 代表色
     email: # 非必须
 placeholder: 还没想好说些什么 # 默认对友链的描述
 tip: 友链加载中～如失败请刷新重试～

@@ -1,5 +1,5 @@
 ---
-title: Xpath&Pyquery进行网页解析
+title: Python网页解析库小介绍
 tags:
   - 爬虫
   - Python
@@ -15,6 +15,10 @@ date: 2022-07-09 10:57:00
 <img src="https://imgbed-1304793179.cos.ap-nanjing.myqcloud.com/typora/20220709111111.jpg" alt="92274729_p0_master1200" style="zoom:80%;" />
 
 <!--more-->
+
+先放个速度对比图，数据来源[知乎-拒绝撕逼，用数据来告诉你选择器到底哪家强](https://zhuanlan.zhihu.com/p/25887452)
+
+<img src="https://imgbed-1304793179.cos.ap-nanjing.myqcloud.com/typora/20220726005550.png" alt="img" style="zoom:80%;" />
 
 ## XPath
 
@@ -93,6 +97,7 @@ etree = html.etree
    + `position()`：选取位置符合布尔表达式的元素。比如`position()>4`。
    + `@lang`：选取拥有名为 lang 的属性的该节点元素。比如`//title[@lang]`表示选取所有拥有名为 lang 的属性的 title 元素
    + `@lang='xx'`：选取拥有名为 lang 的属性且值为 xx 的该节点元素
+   + `contains(@属性,"值")`：选取属性包含有某个值的节点元素
    + 可以搭配`and or |`使用
 
 4. 通配符
@@ -157,6 +162,7 @@ print(titles)
 8. 相邻兄弟选择器`Label1+Label2`：选择`Label2`元素，它是`Label1`的下一个直接兄弟元素
 9. 通用兄弟选择器`Label1~Label2`：选择`Label2`元素，它是`Label1`的兄弟元素
 10. 属性选择器`Label[attr]`表示选择包含 attr 属性的所有元素，`Label[attr]=val`表示仅选择 attr 属性被赋值为 val 的所有元素，`[attr~=val]`：该选择器仅选择 attr 属性的值（以空格间隔出多个值）中有包含 val 值的所有元素
+11. 伪类选择器：内容繁多，功能丰富。详见[w3c](https://www.w3school.com.cn/css/css_pseudo_classes.asp)
 
 ### 安装导入
 
@@ -175,7 +181,10 @@ from pyquery import PyQuery as pq
 3. 使用`doc(CSS选择器表达式)`的方式获取`HTML`内容
 4. 使用`.text()`获取文本，使用`.attr('属性')`获取属性值
 5. 使用`.attr('属性', '值')`来修改属性或者添加属性
-6. 如果选择的内容超过一条后想要获取他们的文本属性值，则需使用`.items()`，返回一个迭代器后使用`for`迭代或者使用`list comprehension`
+6. 使用`.children(css)`查找子节点，`.find(css)`查找子孙节点
+7. 使用`.parent(css)`查找父节点，`.parents(css)`查找祖先节点
+8. 使用`.siblings(css)`查找兄弟节点
+9. 如果选择的内容超过一条后想要获取他们的文本属性值，则需使用`.items()`，返回一个迭代器后使用`for`迭代或者使用`list comprehension`
 
 ### 小例子
 
@@ -199,4 +208,33 @@ items = p('.rank-list .info>a').items()
 title = [item.text() for item in items]
 print(title)
 ```
+
+## Parsel
+
+Parsel 这个库可以解析 HTML 和 XML，同时支持 CSS 和 XPath 两种解析方式并融合了正则表达式的提取功能。[scrapy](https://scrapy.org/)选择器部分也是基于此二次封装的产物。
+
+### 安装导入
+
+```bash
+pip install parsel -i https://pypi.tuna.tsinghua.edu.cn/simple
+```
+
+```python
+from parsel import Selector
+```
+
+### 解析过程
+
+1. 首先创建一个`Selector`对象，传入 HTML 字符串。
+
+   ```python
+   selector = Selector(text = HTML)
+   ```
+
+2. 使用`.css()`或者`.xpath()`进行解析，并通过CSS中的`::text`或者`::attr(属性)`，通过`XPath`的`/text()`和`/@属性`获取内容，返回一个`SelectorList`迭代对象
+
+3. `SelectorList`进行遍历用`.get()`获取内容文本，或者`.getall()`返回内容文本列表
+4. `SelectorList`使用`.re()`可以使用正则表达式进一步提取内容并返回列表
+
+
 
