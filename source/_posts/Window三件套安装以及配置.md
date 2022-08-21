@@ -13,9 +13,9 @@ date: 2021-10-26 17:27:59
 
 ## Windows Terminal
 
->Windows 终端是一个面向命令行工具和 shell（如命令提示符（cmd）、PowerShell 和适用于 Linux 的 Windows 子系统 (WSL)）用户的新式终端应用程序。 它的主要功能包括多个选项卡、窗格、Unicode 和 UTF-8 字符支持、GPU 加速文本呈现引擎，你还可用它来创建你自己的主题并自定义文本、颜色、背景和快捷方式。
+> Windows 终端是一个面向命令行工具和 shell（如命令提示符（cmd）、PowerShell 和适用于 Linux 的 Windows 子系统 (WSL)）用户的新式终端应用程序。 它的主要功能包括多个选项卡、窗格、Unicode 和 UTF-8 字符支持、GPU 加速文本呈现引擎，你还可用它来创建你自己的主题并自定义文本、颜色、背景和快捷方式。
 
-<del>好看才是第一生产力，所以别在用cmd的黑框还有powershell的蓝框了</del>
+<del> 好看才是第一生产力，所以别在用 cmd 的黑框还有 powershell 的蓝框了 </del>
 
 ### 安装
 
@@ -23,11 +23,11 @@ date: 2021-10-26 17:27:59
 
 方法二 Windows Terminal 的 [Github Releases](https://github.com/microsoft/terminal/releases) <img src="https://imgbed-1304793179.cos.ap-nanjing.myqcloud.com/typora/20211026175219.png" alt="image-20211026175219873" style="zoom:67%;" />
 
-+ 选择完版本（preview是预览版），选择后缀为`.msixbundle`的文件下载安装即可
++ 选择完版本（preview 是预览版），选择后缀为 `.msixbundle` 的文件下载安装即可
 
 方法三 winget
 
-首先你得微软商店（搜索应用安装程序）通过[Github Releases](https://github.com/microsoft/winget-cli/releases) 安装winget，然后打开你的powershell 输入
+首先你得微软商店（搜索应用安装程序）通过 [Github Releases](https://github.com/microsoft/winget-cli/releases) 安装 winget，然后打开你的 powershell 输入
 
 ```powershell
 winget install --id=Microsoft.WindowsTerminal -e
@@ -49,28 +49,28 @@ winget -v
 
 ### 配置
 
-选择**设置**可以进行一些基础功能的设置，比较明了，不作介绍。所有的配置项都在`setting.json`（点击设置后，选择打开JSON文件）中保存。
+选择 **设置** 可以进行一些基础功能的设置，比较明了，不作介绍。所有的配置项都在 `setting.json`（点击设置后，选择打开 JSON 文件）中保存。
 
 ![image-20211026184621095](https://imgbed-1304793179.cos.ap-nanjing.myqcloud.com/typora/20211026184621.png)
 
-+ 最外层都是一些全局设置，具体的配置选项可以去[微软文档](https://docs.microsoft.com/zh-cn/windows/terminal/json-fragment-extensions)中看
-+ `defaultProfile`：值是一个UUID，也就是`profiles`的`guid`
++ 最外层都是一些全局设置，具体的配置选项可以去 [微软文档](https://docs.microsoft.com/zh-cn/windows/terminal/json-fragment-extensions) 中看
++ `defaultProfile`：值是一个 UUID，也就是 `profiles` 的 `guid`
 + `keybindings`：自定义一些快捷键
-+ `profiles`的默认选项是对所有配置文件生效的
++ `profiles` 的默认选项是对所有配置文件生效的
   + `acrylicOpacity`：亚克力面板效果
-  + `fontFace`：选择安装含有PL（powerline）且等宽（Mono）的字体（推荐https://www.nerdfonts.com/font-downloads）
-  + `list`：含有众多配置的单独设置，如果你自己新建的话，注意`guid`别自己写。然后如果配置要连接你的服务器`commandline`就可以写成ssh之类的
+  + `fontFace`：选择安装含有 PL（powerline）且等宽（Mono）的字体（推荐 https://www.nerdfonts.com/font-downloads）
+  + `list`：含有众多配置的单独设置，如果你自己新建的话，注意 `guid` 别自己写。然后如果配置要连接你的服务器 `commandline` 就可以写成 ssh 之类的
 + `schemes`：配色方案
 
 ## PowerShell 7
 
->Windows PowerShell 5.1 是在 .NET Framework v4.5 基础上构建的。 随着 PowerShell 6.0 的发布，PowerShell 成为基于 .NET Core 2.0 构建的开源项目。 PowerShell 7.0 是在 .NET Core 3.1 基础上构建的。 随着 PowerShell 7.2 的发布，将在 .NET 6.0 基础上构建 PowerShell。 从 .NET Framework 转换到 .Net Core 使 PowerShell 成为可跨平台的解决方案。 PowerShell 在 Windows、macOS 和 Linux 上运行。
+> Windows PowerShell 5.1 是在 .NET Framework v4.5 基础上构建的。 随着 PowerShell 6.0 的发布，PowerShell 成为基于 .NET Core 2.0 构建的开源项目。 PowerShell 7.0 是在 .NET Core 3.1 基础上构建的。 随着 PowerShell 7.2 的发布，将在 .NET 6.0 基础上构建 PowerShell。 从 .NET Framework 转换到 .Net Core 使 PowerShell 成为可跨平台的解决方案。 PowerShell 在 Windows、macOS 和 Linux 上运行。
 
 ### 安装
 
-方法一 微软商店<del>连Powershell都上了VSCode呢？</del>
+方法一 微软商店 <del> 连 Powershell 都上了 VSCode 呢？</del>
 
-方法二 PowerShell的[Github Releases](https://github.com/PowerShell/PowerShell/releases/) windows选择`.msi`后缀即可
+方法二 PowerShell 的 [Github Releases](https://github.com/PowerShell/PowerShell/releases/) windows 选择 `.msi` 后缀即可
 
 方法三 winget
 
@@ -82,7 +82,7 @@ winget install --name PowerShell --exact --source winget
 
 首先是要让之前安装的 windows terminal 默认开启 powershell 7 而不是原装的 windows powershell
 
-打开之前的`Profile`在如下位置添加`commandline`
+打开之前的 `Profile` 在如下位置添加 `commandline`
 
 ```json
 "profiles": {
@@ -92,9 +92,9 @@ winget install --name PowerShell --exact --source winget
 }
 ```
 
-#### 安装gsudo
+#### 安装 gsudo
 
-在命令行中提供管理员权限，而无需另起管理员powershell
+在命令行中提供管理员权限，而无需另起管理员 powershell
 
 ```powershell
  winget install --name gsudo --source winget
@@ -106,15 +106,15 @@ winget install --name PowerShell --exact --source winget
 
 + 后续的命令中有一些需要管理员权限
 
-#### 安装Oh-My-Posh 3
+#### 安装 Oh-My-Posh 3
 
-有的人应该知道oh-my-zsh，都是懒癌福音，一键解锁终端主题。
+有的人应该知道 oh-my-zsh，都是懒癌福音，一键解锁终端主题。
 
 ```powershell
 Install-Module oh-my-posh -Scope AllUsers
 ```
 
-安装中基本一直y即可
+安装中基本一直 y 即可
 
 安装完成之后，可以查看现有的主题，然后选择一个更换。
 
@@ -127,7 +127,7 @@ Set-PoshPrompt -Theme ThemeName
 
 + 如果你发现主题中有大量方框乱码，请回到上文考虑修改默认字体
 
-当然如果你想要自定义主题的话可以导出主题配置文件，然后修改其json文件再重新设置
+当然如果你想要自定义主题的话可以导出主题配置文件，然后修改其 json 文件再重新设置
 
 ```powershell
 #导出主题
@@ -136,11 +136,11 @@ Export-PoshTheme -FilePath ~/.mytheme.omp.json
 Set-PoshPrompt -Theme ~/.mytheme.omp.json
 ```
 
-但是你会发现重启终端之后就失效了，这是为什么嘞？，其实是要修改 PowerShell 自身的配置文件（类似于.zshrc或者.bashrc）。
+但是你会发现重启终端之后就失效了，这是为什么嘞？，其实是要修改 PowerShell 自身的配置文件（类似于.zshrc 或者.bashrc）。
 
-#### 安装PSReadLine
+#### 安装 PSReadLine
 
-PSReadLine会根据你的历史记录来进行预测和补全命令
+PSReadLine 会根据你的历史记录来进行预测和补全命令
 
 ```powershell
 Install-Module PSReadLine -Scope AllUsers
@@ -153,7 +153,7 @@ Get-PSReadLineOption
 Get-PSReadLineKeyHandler  
 ```
 
-#### 配置Profile
+#### 配置 Profile
 
 ```powershell
 if (!(Test-Path -Path $PROFILE.AllUsersCurrentHost)) {
@@ -170,7 +170,7 @@ code $Profile
 notepad $Profile
 ```
 
-在`$Profile`中添加：
+在 `$Profile` 中添加：
 
 ```powershell
 # 设置 oh-my-posh
@@ -195,9 +195,9 @@ Set-PSReadLineKeyHandler -Key DownArrow -Function HistorySearchForward
 
 ## WSL
 
->适用于 Linux 的 Windows 子系统可让开发人员按原样运行 GNU/Linux 环境 - 包括大多数命令行工具、实用工具和应用程序 - 且不会产生传统虚拟机或双启动设置开销。
+> 适用于 Linux 的 Windows 子系统可让开发人员按原样运行 GNU/Linux 环境 - 包括大多数命令行工具、实用工具和应用程序 - 且不会产生传统虚拟机或双启动设置开销。
 >
->您可以：
+> 您可以：
 >
 >- [在 Microsoft Store](https://aka.ms/wslstore) 中选择你偏好的 GNU/Linux 分发版。
 >- 运行常用的命令行软件工具（例如 `grep`、`sed`、`awk`）或其他 ELF-64 二进制文件。
@@ -208,7 +208,7 @@ Set-PSReadLineKeyHandler -Key DownArrow -Function HistorySearchForward
 >- 使用自己的 GNU/Linux 分发包管理器安装其他软件。
 >- 使用类似于 Unix 的命令行 shell 调用 Windows 应用程序。
 >- 在 Windows 上调用 GNU/Linux 应用程序。
->- 现已支持CUDA！一起来炼丹吧！
+>- 现已支持 CUDA！一起来炼丹吧！
 
 ### 安装
 
@@ -221,7 +221,7 @@ wsl --install
 
 然后重启电脑。在终端就看见一个新的选项卡
 
-而后的Linux配置可以参考组内另一名讲师（莫非）的[虚拟机安装Ubuntu教程](https://closed-linen-ea9.notion.site/Ubuntu-cb4d33bdbcc2400b9b04cc56ba21d080)
+而后的 Linux 配置可以参考组内另一名讲师（莫非）的 [虚拟机安装 Ubuntu 教程](https://closed-linen-ea9.notion.site/Ubuntu-cb4d33bdbcc2400b9b04cc56ba21d080)
 
 
 
