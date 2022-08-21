@@ -30,12 +30,12 @@ document.addEventListener("DOMContentLoaded", () => {
   }
   var s = document.getElementsByTagName("script")[0];
   s.parentNode.insertBefore(bp, s);
-})();</script><meta name="description" content="清明时节雨纷纷，路上行人欲断魂。  强烈推荐配合VISUALOGO食用">
+})();</script><meta name="description" content="清明时节雨纷纷，路上行人欲断魂。  强烈推荐配合 VISUALOGO 食用">
 <meta property="og:type" content="article">
 <meta property="og:title" content="从零开始的数据结构-树（下）">
 <meta property="og:url" content="http://lapras.xyz/2021/04/01/8022ea89.html">
 <meta property="og:site_name" content="Anduin9527的乖离器">
-<meta property="og:description" content="清明时节雨纷纷，路上行人欲断魂。  强烈推荐配合VISUALOGO食用">
+<meta property="og:description" content="清明时节雨纷纷，路上行人欲断魂。  强烈推荐配合 VISUALOGO 食用">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://imgbed-1304793179.cos.ap-nanjing.myqcloud.com/typora/20211008092838.jpeg">
 <meta property="og:image" content="https://imgbed-1304793179.cos.ap-nanjing.myqcloud.com/typora/20211008092840.gif">
@@ -52,7 +52,7 @@ document.addEventListener("DOMContentLoaded", () => {
 <meta property="og:image" content="https://imgbed-1304793179.cos.ap-nanjing.myqcloud.com/typora/20211008092910.jpeg">
 <meta property="og:image" content="https://imgbed-1304793179.cos.ap-nanjing.myqcloud.com/typora/20211008092913.jpeg">
 <meta property="article:published_time" content="2021-04-01T11:21:25.000Z">
-<meta property="article:modified_time" content="2022-08-20T13:14:15.562Z">
+<meta property="article:modified_time" content="2022-08-21T07:21:56.343Z">
 <meta property="article:author" content="Anduin9527">
 <meta property="article:tag" content="数据结构">
 <meta property="article:tag" content="算法">
@@ -79,9 +79,9 @@ IconifyProviders = {
     // Wait for 1 second before switching API hosts
     rotate: 1000,
   },
-};</script><script defer src="https://fastly.jsdelivr.net/npm/animejs@latest"></script><script defer src="/js/ui/fireworks.js" type="module"></script><canvas class="fireworks"></canvas><div class="container"><a class="sidebar-toggle hty-icon-button" id="menu-btn"><div class="hamburger hamburger--spin" type="button"><span class="hamburger-box"><span class="hamburger-inner"></span></span></div></a><div class="sidebar-toggle sidebar-overlay"></div><aside class="sidebar"><script src="/js/sidebar.js" type="module"></script><ul class="sidebar-nav"><li class="sidebar-nav-item sidebar-nav-toc hty-icon-button sidebar-nav-active" data-target="post-toc-wrap" title="Table of Contents"><span class="icon iconify" data-icon="ri:list-ordered"></span></li><li class="sidebar-nav-item sidebar-nav-overview hty-icon-button" data-target="site-overview-wrap" title="Overview"><span class="icon iconify" data-icon="ri:passport-line"></span></li></ul><div class="sidebar-panel" id="site-overview-wrap"><div class="site-info fix-top"><a class="site-author-avatar" href="/about/" title="Anduin9527"><img width="96" loading="lazy" src="/images/avatar.jpg" alt="Anduin9527"><span class="site-author-status" title="建模建模呜呜呜！">😭</span></a><div class="site-author-name"><a href="/about/">Anduin9527</a></div><span class="site-name">Anduin9527的乖离器</span><sub class="site-subtitle">正在进修摸鱼学导论</sub><div class="site-description">南邮摸鱼ing</div></div><nav class="site-state"><a class="site-state-item hty-icon-button icon-home" href="/" title="Home"><span class="site-state-item-icon"><span class="icon iconify" data-icon="ri:home-4-line"></span></span></a><div class="site-state-item"><a href="/archives/" title="Archives"><span class="site-state-item-icon"><span class="icon iconify" data-icon="ri:archive-line"></span></span><span class="site-state-item-count">35</span></a></div><div class="site-state-item"><a href="/categories/" title="Categories"><span class="site-state-item-icon"><span class="icon iconify" data-icon="ri:folder-2-line"></span></span><span class="site-state-item-count">7</span></a></div><div class="site-state-item"><a href="/tags/" title="Tags"><span class="site-state-item-icon"><span class="icon iconify" data-icon="ri:price-tag-3-line"></span></span><span class="site-state-item-count">28</span></a></div><a class="site-state-item hty-icon-button" target="_blank" rel="noopener" href="https://yun.yunyoujun.cn" title="文档"><span class="site-state-item-icon"><span class="icon iconify" data-icon="ri:settings-line"></span></span></a></nav><hr style="margin-bottom:0.5rem"><div class="links-of-author"><a class="links-of-author-item hty-icon-button" rel="noopener" href="tencent://message/?uin=2676057183&amp;Site=&amp;Menu=yes" title="QQ" target="_blank" style="color:#12B7F5"><span class="icon iconify" data-icon="ri:qq-line"></span></a><a class="links-of-author-item hty-icon-button" rel="noopener" href="https://github.com/Anduin9527" title="GitHub" target="_blank" style="color:#181717"><span class="icon iconify" data-icon="ri:github-line"></span></a><a class="links-of-author-item hty-icon-button" rel="noopener" href="mailto:2676057183@qq.com" title="E-Mail" target="_blank" style="color:#8E71C1"><span class="icon iconify" data-icon="ri:mail-line"></span></a><a class="links-of-author-item hty-icon-button" rel="noopener" href="https://music.163.com/#/user/home?id=579015212" title="网易云音乐" target="_blank" style="color:#C10D0C"><span class="icon iconify" data-icon="ri:netease-cloud-music-line"></span></a><a class="links-of-author-item hty-icon-button" rel="noopener" href="https://www.zhihu.com/people/chu-liu-16-64" title="知乎" target="_blank" style="color:#0084FF"><span class="icon iconify" data-icon="ri:zhihu-line"></span></a><a class="links-of-author-item hty-icon-button" rel="noopener" href="https://space.bilibili.com/21994551" title="哔哩哔哩动画" target="_blank" style="color:#FF8EB3"><span class="icon iconify" data-icon="ri:bilibili-line"></span></a><a class="links-of-author-item hty-icon-button" rel="noopener" href="/atom.xml" title="RSS" target="_blank" style="color:orange"><span class="icon iconify" data-icon="ri:rss-line"></span></a></div><hr style="margin:0.5rem 1rem"><div class="links"><a class="links-item hty-icon-button" href="/links/" title="我的小伙伴们" style="color:dodgerblue"><span class="icon iconify" data-icon="ri:genderless-line"></span></a><a class="links-item hty-icon-button" href="/girls/" title="我永远喜欢oo" style="color:hotpink"><span class="icon iconify" data-icon="ri:women-line"></span></a></div><br><a class="links-item hty-icon-button" id="toggle-mode-btn" href="javascript:;" title="Mode" style="color: #f1cb64"><span class="icon iconify" data-icon="ri:contrast-2-line"></span></a></div><div class="sidebar-panel sidebar-panel-active" id="post-toc-wrap"><div class="post-toc"><div class="post-toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B8%85%E6%98%8E%E6%97%B6%E8%8A%82%E9%9B%A8%E7%BA%B7%E7%BA%B7%E8%B7%AF%E4%B8%8A%E8%A1%8C%E4%BA%BA%E6%AC%B2%E6%96%AD%E9%AD%82"><span class="toc-text">清明时节雨纷纷，路上行人欲断魂。</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91binarysearchtrees"><span class="toc-text">二叉搜索树（BinarySearchTrees）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9F%BA%E6%9C%AC%E6%80%A7%E8%B4%A8"><span class="toc-text">基本性质</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%93%8D%E4%BD%9C%E9%9B%86"><span class="toc-text">操作集</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%9F%A5%E6%89%BE"><span class="toc-text">查找</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%8F%92%E5%85%A5"><span class="toc-text">插入</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%88%A0%E9%99%A4"><span class="toc-text">删除</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B9%B3%E8%A1%A1%E4%BA%8C%E5%8F%89%E6%A0%91balancedbinarytreeavl"><span class="toc-text">平衡二叉树（BalancedBinaryTree&#x2F;AVL）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9F%BA%E6%9C%AC%E6%80%A7%E8%B4%A8-1"><span class="toc-text">基本性质</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#avl%E7%9A%84%E5%B9%B3%E8%A1%A1"><span class="toc-text">AVL的平衡</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C"><span class="toc-text">基本操作</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%B7%A6%E6%97%8B"><span class="toc-text">左旋</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%8F%B3%E6%97%8B"><span class="toc-text">右旋</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%BA%94%E7%94%A8"><span class="toc-text">应用</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%B7%A6%E5%B7%A6%E6%83%85%E5%86%B5ll"><span class="toc-text">左左情况（LL）</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%8F%B3%E5%8F%B3%E6%83%85%E5%86%B5rr"><span class="toc-text">右右情况（RR）</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%B7%A6%E5%8F%B3%E5%B1%80%E9%9D%A2lr"><span class="toc-text">左右局面（LR）</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%8F%B3%E5%B7%A6%E5%B1%80%E9%9D%A2rl"><span class="toc-text">右左局面（RL）</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%93%8D%E4%BD%9C%E9%9B%86-1"><span class="toc-text">操作集</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%93%88%E5%A4%AB%E6%9B%BC%E6%A0%91haffmantree%E6%9C%80%E4%BC%98%E4%BA%8C%E5%8F%89%E6%A0%91"><span class="toc-text">哈夫曼树(HaffManTree)&#x2F;最优二叉树</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%93%88%E5%A4%AB%E6%9B%BC%E6%A0%91%E7%9A%84%E6%9E%84%E5%BB%BA"><span class="toc-text">哈夫曼树的构建</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%93%88%E5%A4%AB%E6%9B%BC%E7%BC%96%E7%A0%81"><span class="toc-text">哈夫曼编码</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%8F%82%E8%80%83"><span class="toc-text">参考</span></a></div></div></div></aside><main class="sidebar-translate" id="content"><div id="post"><article class="hty-card post-block" itemscope itemtype="https://schema.org/Article" style="--smc-primary:#66d6ff;"><link itemprop="mainEntityOfPage" href="http://lapras.xyz/2021/04/01/8022ea89.html"><span hidden itemprop="author" itemscope itemtype="https://schema.org/Person"><meta itemprop="name" content="Anduin9527"><meta itemprop="description"></span><span hidden itemprop="publisher" itemscope itemtype="https://schema.org/Organization"><meta itemprop="name" content="Anduin9527的乖离器"></span><header class="post-header"><h1 class="post-title" itemprop="name headline">从零开始的数据结构-树（下）</h1><div class="post-meta"><div class="post-time" style="display:block"><span class="post-meta-item-icon"><span class="icon iconify" data-icon="ri:calendar-line"></span></span> <time title="Created: 2021-04-01 19:21:25" itemprop="dateCreated datePublished" datetime="2021-04-01T19:21:25+08:00">2021-04-01</time><span class="post-meta-divider">-</span><span class="post-meta-item-icon"><span class="icon iconify" data-icon="ri:calendar-2-line"></span></span> <time title="Modified: 2022-08-20 21:14:15" itemprop="dateModified" datetime="2022-08-20T21:14:15+08:00">2022-08-20</time></div><span class="post-count"><span class="post-symbolcount"><span class="post-meta-item-icon" title="Word count in article"><span class="icon iconify" data-icon="ri:file-word-line"></span></span> <span title="Word count in article">2.7k</span><span class="post-meta-divider">-</span><span class="post-meta-item-icon" title="Reading time"><span class="icon iconify" data-icon="ri:timer-line"></span></span> <span title="Reading time">10m</span></span></span><div class="post-classify"><span class="post-category"> <span class="post-meta-item-icon" style="margin-right:3px;"><span class="icon iconify" data-icon="ri:folder-line"></span></span><span itemprop="about" itemscope itemtype="https://schema.org/Thing"><a class="category-item" href="/categories/%E7%AE%97%E6%B3%95%E5%AD%A6%E4%B9%A0/" style="--text-color:#317ec7" itemprop="url" rel="index"><span itemprop="text">算法学习</span></a></span></span><span class="post-tag"><span class="post-meta-divider">-</span><a class="tag-item" href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" style="--text-color:#ccb44b"><span class="post-meta-item-icon"><span class="icon iconify" data-icon="ri:price-tag-3-line"></span></span><span class="tag-name">数据结构</span></a><a class="tag-item" href="/tags/%E7%AE%97%E6%B3%95/" style="--text-color:#d04d2d"><span class="post-meta-item-icon"><span class="icon iconify" data-icon="ri:price-tag-3-line"></span></span><span class="tag-name">算法</span></a><a class="tag-item" href="/tags/%E6%A0%91/" style="--text-color:#31b95e"><span class="post-meta-item-icon"><span class="icon iconify" data-icon="ri:price-tag-3-line"></span></span><span class="tag-name">树</span></a></span></div></div></header><section class="post-body" itemprop="articleBody"><div class="post-content markdown-body"><h2 id="清明时节雨纷纷路上行人欲断魂">清明时节雨纷纷，路上行人欲断魂。</h2>
+};</script><script defer src="https://fastly.jsdelivr.net/npm/animejs@latest"></script><script defer src="/js/ui/fireworks.js" type="module"></script><canvas class="fireworks"></canvas><div class="container"><a class="sidebar-toggle hty-icon-button" id="menu-btn"><div class="hamburger hamburger--spin" type="button"><span class="hamburger-box"><span class="hamburger-inner"></span></span></div></a><div class="sidebar-toggle sidebar-overlay"></div><aside class="sidebar"><script src="/js/sidebar.js" type="module"></script><ul class="sidebar-nav"><li class="sidebar-nav-item sidebar-nav-toc hty-icon-button sidebar-nav-active" data-target="post-toc-wrap" title="Table of Contents"><span class="icon iconify" data-icon="ri:list-ordered"></span></li><li class="sidebar-nav-item sidebar-nav-overview hty-icon-button" data-target="site-overview-wrap" title="Overview"><span class="icon iconify" data-icon="ri:passport-line"></span></li></ul><div class="sidebar-panel" id="site-overview-wrap"><div class="site-info fix-top"><a class="site-author-avatar" href="/about/" title="Anduin9527"><img width="96" loading="lazy" src="/images/avatar.jpg" alt="Anduin9527"><span class="site-author-status" title="建模建模呜呜呜！">😭</span></a><div class="site-author-name"><a href="/about/">Anduin9527</a></div><span class="site-name">Anduin9527的乖离器</span><sub class="site-subtitle">正在进修摸鱼学导论</sub><div class="site-description">南邮摸鱼ing</div></div><nav class="site-state"><a class="site-state-item hty-icon-button icon-home" href="/" title="Home"><span class="site-state-item-icon"><span class="icon iconify" data-icon="ri:home-4-line"></span></span></a><div class="site-state-item"><a href="/archives/" title="Archives"><span class="site-state-item-icon"><span class="icon iconify" data-icon="ri:archive-line"></span></span><span class="site-state-item-count">34</span></a></div><div class="site-state-item"><a href="/categories/" title="Categories"><span class="site-state-item-icon"><span class="icon iconify" data-icon="ri:folder-2-line"></span></span><span class="site-state-item-count">7</span></a></div><div class="site-state-item"><a href="/tags/" title="Tags"><span class="site-state-item-icon"><span class="icon iconify" data-icon="ri:price-tag-3-line"></span></span><span class="site-state-item-count">27</span></a></div><a class="site-state-item hty-icon-button" target="_blank" rel="noopener" href="https://yun.yunyoujun.cn" title="文档"><span class="site-state-item-icon"><span class="icon iconify" data-icon="ri:settings-line"></span></span></a></nav><hr style="margin-bottom:0.5rem"><div class="links-of-author"><a class="links-of-author-item hty-icon-button" rel="noopener" href="tencent://message/?uin=2676057183&amp;Site=&amp;Menu=yes" title="QQ" target="_blank" style="color:#12B7F5"><span class="icon iconify" data-icon="ri:qq-line"></span></a><a class="links-of-author-item hty-icon-button" rel="noopener" href="https://github.com/Anduin9527" title="GitHub" target="_blank" style="color:#181717"><span class="icon iconify" data-icon="ri:github-line"></span></a><a class="links-of-author-item hty-icon-button" rel="noopener" href="mailto:2676057183@qq.com" title="E-Mail" target="_blank" style="color:#8E71C1"><span class="icon iconify" data-icon="ri:mail-line"></span></a><a class="links-of-author-item hty-icon-button" rel="noopener" href="https://music.163.com/#/user/home?id=579015212" title="网易云音乐" target="_blank" style="color:#C10D0C"><span class="icon iconify" data-icon="ri:netease-cloud-music-line"></span></a><a class="links-of-author-item hty-icon-button" rel="noopener" href="https://www.zhihu.com/people/chu-liu-16-64" title="知乎" target="_blank" style="color:#0084FF"><span class="icon iconify" data-icon="ri:zhihu-line"></span></a><a class="links-of-author-item hty-icon-button" rel="noopener" href="https://space.bilibili.com/21994551" title="哔哩哔哩动画" target="_blank" style="color:#FF8EB3"><span class="icon iconify" data-icon="ri:bilibili-line"></span></a><a class="links-of-author-item hty-icon-button" rel="noopener" href="/atom.xml" title="RSS" target="_blank" style="color:orange"><span class="icon iconify" data-icon="ri:rss-line"></span></a></div><hr style="margin:0.5rem 1rem"><div class="links"><a class="links-item hty-icon-button" href="/links/" title="我的小伙伴们" style="color:dodgerblue"><span class="icon iconify" data-icon="ri:genderless-line"></span></a><a class="links-item hty-icon-button" href="/girls/" title="我永远喜欢oo" style="color:hotpink"><span class="icon iconify" data-icon="ri:women-line"></span></a></div><br><a class="links-item hty-icon-button" id="toggle-mode-btn" href="javascript:;" title="Mode" style="color: #f1cb64"><span class="icon iconify" data-icon="ri:contrast-2-line"></span></a></div><div class="sidebar-panel sidebar-panel-active" id="post-toc-wrap"><div class="post-toc"><div class="post-toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B8%85%E6%98%8E%E6%97%B6%E8%8A%82%E9%9B%A8%E7%BA%B7%E7%BA%B7%E8%B7%AF%E4%B8%8A%E8%A1%8C%E4%BA%BA%E6%AC%B2%E6%96%AD%E9%AD%82"><span class="toc-text">清明时节雨纷纷，路上行人欲断魂。</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91binarysearchtrees"><span class="toc-text">二叉搜索树（BinarySearchTrees）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9F%BA%E6%9C%AC%E6%80%A7%E8%B4%A8"><span class="toc-text">基本性质</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%93%8D%E4%BD%9C%E9%9B%86"><span class="toc-text">操作集</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%9F%A5%E6%89%BE"><span class="toc-text">查找</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%8F%92%E5%85%A5"><span class="toc-text">插入</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%88%A0%E9%99%A4"><span class="toc-text">删除</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B9%B3%E8%A1%A1%E4%BA%8C%E5%8F%89%E6%A0%91balancedbinarytreeavl"><span class="toc-text">平衡二叉树（BalancedBinaryTree&#x2F;AVL）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9F%BA%E6%9C%AC%E6%80%A7%E8%B4%A8-1"><span class="toc-text">基本性质</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#avl-%E7%9A%84%E5%B9%B3%E8%A1%A1"><span class="toc-text">AVL 的平衡</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C"><span class="toc-text">基本操作</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%B7%A6%E6%97%8B"><span class="toc-text">左旋</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%8F%B3%E6%97%8B"><span class="toc-text">右旋</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%BA%94%E7%94%A8"><span class="toc-text">应用</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%B7%A6%E5%B7%A6%E6%83%85%E5%86%B5ll"><span class="toc-text">左左情况（LL）</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%8F%B3%E5%8F%B3%E6%83%85%E5%86%B5rr"><span class="toc-text">右右情况（RR）</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%B7%A6%E5%8F%B3%E5%B1%80%E9%9D%A2lr"><span class="toc-text">左右局面（LR）</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%8F%B3%E5%B7%A6%E5%B1%80%E9%9D%A2rl"><span class="toc-text">右左局面（RL）</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%93%8D%E4%BD%9C%E9%9B%86-1"><span class="toc-text">操作集</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%93%88%E5%A4%AB%E6%9B%BC%E6%A0%91haffmantree%E6%9C%80%E4%BC%98%E4%BA%8C%E5%8F%89%E6%A0%91"><span class="toc-text">哈夫曼树(HaffManTree)&#x2F;最优二叉树</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%93%88%E5%A4%AB%E6%9B%BC%E6%A0%91%E7%9A%84%E6%9E%84%E5%BB%BA"><span class="toc-text">哈夫曼树的构建</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%93%88%E5%A4%AB%E6%9B%BC%E7%BC%96%E7%A0%81"><span class="toc-text">哈夫曼编码</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%8F%82%E8%80%83"><span class="toc-text">参考</span></a></div></div></div></aside><main class="sidebar-translate" id="content"><div id="post"><article class="hty-card post-block" itemscope itemtype="https://schema.org/Article" style="--smc-primary:#66d6ff;"><link itemprop="mainEntityOfPage" href="http://lapras.xyz/2021/04/01/8022ea89.html"><span hidden itemprop="author" itemscope itemtype="https://schema.org/Person"><meta itemprop="name" content="Anduin9527"><meta itemprop="description"></span><span hidden itemprop="publisher" itemscope itemtype="https://schema.org/Organization"><meta itemprop="name" content="Anduin9527的乖离器"></span><header class="post-header"><h1 class="post-title" itemprop="name headline">从零开始的数据结构-树（下）</h1><div class="post-meta"><div class="post-time" style="display:block"><span class="post-meta-item-icon"><span class="icon iconify" data-icon="ri:calendar-line"></span></span> <time title="Created: 2021-04-01 19:21:25" itemprop="dateCreated datePublished" datetime="2021-04-01T19:21:25+08:00">2021-04-01</time><span class="post-meta-divider">-</span><span class="post-meta-item-icon"><span class="icon iconify" data-icon="ri:calendar-2-line"></span></span> <time title="Modified: 2022-08-21 15:21:56" itemprop="dateModified" datetime="2022-08-21T15:21:56+08:00">2022-08-21</time></div><span class="post-count"><span class="post-symbolcount"><span class="post-meta-item-icon" title="Word count in article"><span class="icon iconify" data-icon="ri:file-word-line"></span></span> <span title="Word count in article">2.7k</span><span class="post-meta-divider">-</span><span class="post-meta-item-icon" title="Reading time"><span class="icon iconify" data-icon="ri:timer-line"></span></span> <span title="Reading time">10m</span></span></span><div class="post-classify"><span class="post-category"> <span class="post-meta-item-icon" style="margin-right:3px;"><span class="icon iconify" data-icon="ri:folder-line"></span></span><span itemprop="about" itemscope itemtype="https://schema.org/Thing"><a class="category-item" href="/categories/%E7%AE%97%E6%B3%95%E5%AD%A6%E4%B9%A0/" style="--text-color:#317ec7" itemprop="url" rel="index"><span itemprop="text">算法学习</span></a></span></span><span class="post-tag"><span class="post-meta-divider">-</span><a class="tag-item" href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" style="--text-color:#ccb44b"><span class="post-meta-item-icon"><span class="icon iconify" data-icon="ri:price-tag-3-line"></span></span><span class="tag-name">数据结构</span></a><a class="tag-item" href="/tags/%E7%AE%97%E6%B3%95/" style="--text-color:#d04d2d"><span class="post-meta-item-icon"><span class="icon iconify" data-icon="ri:price-tag-3-line"></span></span><span class="tag-name">算法</span></a><a class="tag-item" href="/tags/%E6%A0%91/" style="--text-color:#31b95e"><span class="post-meta-item-icon"><span class="icon iconify" data-icon="ri:price-tag-3-line"></span></span><span class="tag-name">树</span></a></span></div></div></header><section class="post-body" itemprop="articleBody"><div class="post-content markdown-body"><h2 id="清明时节雨纷纷路上行人欲断魂">清明时节雨纷纷，路上行人欲断魂。</h2>
 <p><img src="https://imgbed-1304793179.cos.ap-nanjing.myqcloud.com/typora/20211008092838.jpeg" / loading="lazy"></p>
-<p>强烈推荐配合<a target="_blank" rel="noopener" href="https://visualgo.net/zh/bst">VISUALOGO</a>食用</p>
+<p>强烈推荐配合 <a target="_blank" rel="noopener" href="https://visualgo.net/zh/bst">VISUALOGO</a> 食用</p>
 <span id="more"></span>
 <h2 id="二叉搜索树binarysearchtrees">二叉搜索树（BinarySearchTrees）</h2>
 <h3 id="基本性质">基本性质</h3>
@@ -90,7 +90,7 @@ IconifyProviders = {
 <li>非空右子树的所有键值大于其根结点的键值。</li>
 <li>二叉查找树的中序遍历可以得到有序的数据流。</li>
 <li>左、右子树都是二叉搜索树。</li>
-<li>最小元素一定在最左边，最大元素一定在最右边,换言之，最小值的结点一定无左子树，最大值的结点一定无右子树。</li>
+<li>最小元素一定在最左边，最大元素一定在最右边, 换言之，最小值的结点一定无左子树，最大值的结点一定无右子树。</li>
 </ul>
 <h3 id="操作集">操作集</h3>
 <pre class="language-c" data-language="c"><code class="language-c">BinTree <span class="token function">Find</span><span class="token punctuation">(</span>ElementType X<span class="token punctuation">,</span> BinTree BST<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment">//返回指定Data结点的指针</span>
@@ -146,14 +146,14 @@ BinTree <span class="token function">Findmax</span><span class="token punctuatio
 <h4 id="删除">删除</h4>
 <p>前面的查找和插入都比较容易，但是对于删除我们得分析一波：</p>
 <ul>
-<li>删除的结点是叶结点：EZ,直接删除，并且将其父结点的指针指向为nullptr。</li>
+<li>删除的结点是叶结点：EZ, 直接删除，并且将其父结点的指针指向为 nullptr。</li>
 <li>删除的结点有一个子结点：EZ，将其父结点的指针指向其子结点后删除。</li>
 <li>发现以上两种情况可以合并：即将父节点指向该节点的子结点（）</li>
 <li>删除的结点有两个子结点：
 <ul>
-<li>法1：取左子树中最大值替换该结点</li>
-<li>法2：取右子树中最小值替换该节点</li>
-<li>这样我们就将二子结点变为了有0/1个子结点的情况,而后就可以递归来实现我们的操作</li>
+<li>法 1：取左子树中最大值替换该结点</li>
+<li>法 2：取右子树中最小值替换该节点</li>
+<li>这样我们就将二子结点变为了有 0/1 个子结点的情况, 而后就可以递归来实现我们的操作</li>
 </ul></li>
 </ul>
 <pre class="language-c" data-language="c"><code class="language-c">BinTree <span class="token function">Delete</span><span class="token punctuation">(</span>ElementType X<span class="token punctuation">,</span> BinTree BST<span class="token punctuation">)</span>
@@ -191,35 +191,35 @@ BinTree <span class="token function">Findmax</span><span class="token punctuatio
 <span class="token punctuation">&#125;</span></code></pre>
 <p><img src="https://imgbed-1304793179.cos.ap-nanjing.myqcloud.com/typora/20211008092844.gif" alt="GIF 2021-4-1 20-30-15" style="zoom:50%;" / loading="lazy"></p>
 <h2 id="平衡二叉树balancedbinarytreeavl">平衡二叉树（BalancedBinaryTree/AVL）</h2>
-<p>二叉查找树的查找效率在理想状态下是<strong>O(lgn)</strong>，使用该树进行查找总是比链表快得多。但是，该论点并不总是正确，因为查找效率和二叉树的形状息息相关。就像这样：</p>
+<p>二叉查找树的查找效率在理想状态下是 <strong>O(lgn)</strong>，使用该树进行查找总是比链表快得多。但是，该论点并不总是正确，因为查找效率和二叉树的形状息息相关。就像这样：</p>
 <p><img src="https://imgbed-1304793179.cos.ap-nanjing.myqcloud.com/typora/20211008092846.jpeg" alt="img" style="zoom:50%;" / loading="lazy"></p>
 <h3 id="基本性质-1">基本性质</h3>
 <ul>
 <li><p>平衡二叉树是二叉搜索树的子集</p></li>
 <li><p>平衡因子：<strong>左子树高度和右子树高度的差</strong></p></li>
-<li><p>非空树的条件下，任意结点的左右子树高度差&lt;=1，即平衡因子只有-1，0，1三种值。</p></li>
-<li><p>平衡二叉树的搜索期望次数是最低的，换言之他的高度能达到满二叉树的的<span class="math inline">\(log_2n\)</span>：</p>
+<li><p>非空树的条件下，任意结点的左右子树高度差 &lt;= 1，即平衡因子只有-1，0，1 三种值。</p></li>
+<li><p>平衡二叉树的搜索期望次数是最低的，换言之他的高度能达到满二叉树的的 <span class="math inline">\(log_2n\)</span> ：</p>
 <ul>
-<li>显然<span class="math inline">\(N_1=1,N_2=2,N_3=4\)</span></li>
-<li>根据平衡二叉树的定义不难发现高度为h的结点数目最少的平衡二叉树符合: <span class="math inline">\(N_h=N_{h-1}+N_{h-2}+1\)</span></li>
-<li>上述公式是不是有种斐波那契数列的既视感？通过简单的列表归纳，最终得到：<span class="math inline">\(N_h=F_{h+2}-1\)</span></li>
+<li>显然 <span class="math inline">\(N_1 = 1, N_2 = 2, N_3 = 4\)</span></li>
+<li>根据平衡二叉树的定义不难发现高度为 h 的结点数目最少的平衡二叉树符合: <span class="math inline">\(N_h = N_{h-1}+N_{h-2}+1\)</span></li>
+<li>上述公式是不是有种斐波那契数列的既视感？通过简单的列表归纳，最终得到： <span class="math inline">\(N_h = F_{h+2}-1\)</span></li>
 <li><span class="math inline">\(F_i \approx\frac{1}{\sqrt5}(\frac{1+\sqrt5}{2}^i)\)</span></li>
 <li><span class="math inline">\(N_h\approx\frac{1}{\sqrt5}(\frac{1+\sqrt5}{2}^{h+2})-1\)</span></li>
 </ul></li>
-<li><p>由上式很明显可以看出<span class="math inline">\(h\approx log_2n\)</span></p></li>
+<li><p>由上式很明显可以看出 <span class="math inline">\(h\approx log_2n\)</span></p></li>
 </ul>
-<h3 id="avl的平衡">AVL的平衡</h3>
-<p>显然，当AVL树插入或者删除结点的时候，树的平衡会被打破，换言之会出现+2（插入）或者是-2（删除）的平衡因子。</p>
+<h3 id="avl-的平衡">AVL 的平衡</h3>
+<p>显然，当 AVL 树插入或者删除结点的时候，树的平衡会被打破，换言之会出现+2（插入）或者是-2（删除）的平衡因子。</p>
 <p><img src="https://imgbed-1304793179.cos.ap-nanjing.myqcloud.com/typora/20211008092848.jpeg" alt="v2-cb3751bc5726d2664787391476e39b25_720w" style="zoom:50%;" / loading="lazy"></p>
 <h4 id="基本操作">基本操作</h4>
 <h5 id="左旋">左旋</h5>
-<p><strong>逆时针</strong>旋转AVL树的两个结点X和Y，使得父结点被自己的右子结点取代，而自己成为自己的左子结点。</p>
+<p><strong>逆时针</strong> 旋转 AVL 树的两个结点 X 和 Y，使得父结点被自己的右子结点取代，而自己成为自己的左子结点。</p>
 <p><img src="https://imgbed-1304793179.cos.ap-nanjing.myqcloud.com/typora/20211008092854.jpeg" alt="v2-47d498a63c57af9f8bd1e469c9f7ceef_r" style="zoom: 67%;" / loading="lazy"></p>
 <ul>
 <li>左旋可以提高左子树的高度，降低右子树的高度</li>
 </ul>
 <h5 id="右旋">右旋</h5>
-<p><strong>顺时针</strong>旋转AVL树的两个结点X和Y，使得父结点被自己的左子结点取代，而自己成为自己的右子结点。</p>
+<p><strong>顺时针</strong> 旋转 AVL 树的两个结点 X 和 Y，使得父结点被自己的左子结点取代，而自己成为自己的右子结点。</p>
 <p><img src="https://imgbed-1304793179.cos.ap-nanjing.myqcloud.com/typora/20211008092852.jpeg" alt="v2-86b10ae6e319bbaadef69e8401dee163_720w" style="zoom:67%;" / loading="lazy"></p>
 <ul>
 <li>右旋可以提高左子树的高度，降低左子树的高度</li>
@@ -228,34 +228,34 @@ BinTree <span class="token function">Findmax</span><span class="token punctuatio
 <h4 id="应用">应用</h4>
 <h5 id="左左情况ll">左左情况（LL）</h5>
 <blockquote>
-<p>不平衡结点A有一个<strong>左</strong>子结点B，而结点B又有一个<strong>左</strong>子结点C。标号1,2,3,4的三角形是各个结点的子树。</p>
-<p>在这种局面下，我们以结点A为轴，进行<strong>右旋</strong>操作：</p>
+<p>不平衡结点 A 有一个 <strong>左</strong> 子结点 B，而结点 B 又有一个 <strong>左</strong> 子结点 C。标号 1,2,3,4 的三角形是各个结点的子树。</p>
+<p>在这种局面下，我们以结点 A 为轴，进行 <strong>右旋</strong> 操作：</p>
 </blockquote>
 <p><img src="https://imgbed-1304793179.cos.ap-nanjing.myqcloud.com/typora/20211008092858.jpeg" alt="img" style="zoom:67%;" / loading="lazy"></p>
 <h5 id="右右情况rr">右右情况（RR）</h5>
 <blockquote>
-<p>不平衡结点A有一个<strong>右</strong>子结点B，而结点B又有一个<strong>右</strong>子结点C。</p>
-<p>在这种局面下，我们以结点A为轴，进行<strong>左旋</strong>操作：</p>
+<p>不平衡结点 A 有一个 <strong>右</strong> 子结点 B，而结点 B 又有一个 <strong>右</strong> 子结点 C。</p>
+<p>在这种局面下，我们以结点 A 为轴，进行 <strong>左旋</strong> 操作：</p>
 </blockquote>
 <p><img src="https://imgbed-1304793179.cos.ap-nanjing.myqcloud.com/typora/20211008092859.jpeg" alt="v2-8b05f1507e7d61a2ada9b7ff6a16dcb3_720w (2)" style="zoom:67%;" / loading="lazy"></p>
 <h5 id="左右局面lr">左右局面（LR）</h5>
 <blockquote>
-<p>不平衡结点A有一个<strong>左</strong>子结点B，而结点B又有一个<strong>右</strong>子结点C。</p>
-<p>在这种局面下，我们先以结点B为轴，进行<strong>左旋</strong>操作：</p>
+<p>不平衡结点 A 有一个 <strong>左</strong> 子结点 B，而结点 B 又有一个 <strong>右</strong> 子结点 C。</p>
+<p>在这种局面下，我们先以结点 B 为轴，进行 <strong>左旋</strong> 操作：</p>
 </blockquote>
 <p><img src="https://imgbed-1304793179.cos.ap-nanjing.myqcloud.com/typora/20211008092904.jpeg" alt="v2-4b5478dd38a9bd8970129da504f80c75_720w" style="zoom:67%;" / loading="lazy"></p>
 <blockquote>
-<p>这样就转化成了左左局面。我们继续以结点A为轴，进行右旋操作：</p>
+<p>这样就转化成了左左局面。我们继续以结点 A 为轴，进行右旋操作：</p>
 </blockquote>
 <p><img src="https://imgbed-1304793179.cos.ap-nanjing.myqcloud.com/typora/20211008092908.jpeg" alt="v2-0c207419c8861ffe5909b483aaf7bd1a_720w (1)" style="zoom:67%;" / loading="lazy"></p>
 <h5 id="右左局面rl">右左局面（RL）</h5>
 <blockquote>
-<p>不平衡结点A有一个右子结点B，而结点B又有一个左子结点C。</p>
-<p>在这种局面下，我们先以结点B为轴，进行<strong>右旋</strong>操作：</p>
+<p>不平衡结点 A 有一个右子结点 B，而结点 B 又有一个左子结点 C。</p>
+<p>在这种局面下，我们先以结点 B 为轴，进行 <strong>右旋</strong> 操作：</p>
 </blockquote>
 <p><img src="https://imgbed-1304793179.cos.ap-nanjing.myqcloud.com/typora/20211008092910.jpeg" alt="v2-46e9e5d75fd6d6fe29681456aa52cfd6_720w" style="zoom:67%;" / loading="lazy"></p>
 <blockquote>
-<p>这样就转化成了右局面。我们继续以结点A为轴，进行左旋操作：</p>
+<p>这样就转化成了右局面。我们继续以结点 A 为轴，进行左旋操作：</p>
 </blockquote>
 <p><img src="https://imgbed-1304793179.cos.ap-nanjing.myqcloud.com/typora/20211008092913.jpeg" alt="v2-bbeec7d9e0c0b30659e580fb6b324aa7_720w" style="zoom:67%;" / loading="lazy"></p>
 <p>品：左左右右右左旋，左右右左依次旋</p>
@@ -305,9 +305,9 @@ AVLTree <span class="token function">DoubleRightLeftRotation</span><span class="
 <blockquote>
 <p>哈夫曼树是一类带权路径最短的树。构造这种树的算法最早由哈夫曼提出，这种树在信息检索中很有用。如用于通讯及数据传送中构造传输效率最高的二进制编码（哈夫曼编码），用于编程中构造平均执行时间最短的最佳判断过程。</p>
 </blockquote>
-<p>哈弗曼树的特征就是<strong>带权路径长度(WPL)</strong>最小：</p>
-<p>设二叉树有n个叶子结点,每个叶子结点带有权值<span class="math inline">\(W_k\)</span>,从根结点到每个叶子结点的长度为<span class="math inline">\(L_k\)</span>,则每个叶子结点的带权路径长度之和就是: WPL=<span class="math inline">\(\sum_{k=1}^{n}W_kL_k\)</span></p>
-<p>那么最后我们就会得到一个头重脚轻的哈弗曼树。值得一提的是哈夫曼由于没有限定左右子树的顺序，所以<strong>不是唯一</strong>的。</p>
+<p>哈弗曼树的特征就是 <strong>带权路径长度(WPL)</strong> 最小：</p>
+<p>设二叉树有 n 个叶子结点, 每个叶子结点带有权值 <span class="math inline">\(W_k\)</span> , 从根结点到每个叶子结点的长度为 <span class="math inline">\(L_k\)</span> , 则每个叶子结点的带权路径长度之和就是: WPL = <span class="math inline">\(\sum_{k = 1}^{n}W_kL_k\)</span></p>
+<p>那么最后我们就会得到一个头重脚轻的哈弗曼树。值得一提的是哈夫曼由于没有限定左右子树的顺序，所以 <strong>不是唯一</strong> 的。</p>
 <h2 id="哈夫曼树的构建">哈夫曼树的构建</h2>
 <ul>
 <li>对结点按照权进行从小到大的排序</li>
@@ -342,17 +342,17 @@ HuffmanTree <span class="token function">Huffman</span><span class="token punctu
 <span class="token punctuation">&#125;</span></code></pre>
 <ul>
 <li>O(nlogn)</li>
-<li>不存在度为1的结点（构建过程为两个子树的合并）</li>
-<li>n个叶结点的哈夫曼树有2n+1个结点（<span class="math inline">\(n_0=n_2+1)\)</span></li>
+<li>不存在度为 1 的结点（构建过程为两个子树的合并）</li>
+<li>n 个叶结点的哈夫曼树有 2n+1 个结点（ <span class="math inline">\(n_0 = n_2+1)\)</span></li>
 </ul>
 <h2 id="哈夫曼编码">哈夫曼编码</h2>
 <p>上文提及过：哈夫曼编码用于通讯及数据传送中构造传输效率最高的二进制编码。</p>
-<p>对于编码我们可以分为 <strong>等长编码</strong>和 <strong>非等长编码</strong>。</p>
-<p>显然地，类似ASCII RGB 等等都是等长的。这样可以尽量表示更多的字符，且不会有<strong>二义性</strong>的困扰，但是会造成空间上的浪费，比如我使用000~111等长三位编码表示abcdefgh，但是我的字符大部分都是000代表的a，小部分为111代表h，这样就会造成编码上的冗余情况出现。</p>
-<p>考虑非等长编码，我使用0来表示a，111来表示h。还是上述的情况，显然节省了空间，但是会造成二义性。比如010表示的是aba还是ac？对此引入个概念：</p>
+<p>对于编码我们可以分为 <strong>等长编码</strong> 和 <strong>非等长编码</strong>。</p>
+<p>显然地，类似 ASCII RGB 等等都是等长的。这样可以尽量表示更多的字符，且不会有 <strong>二义性</strong> 的困扰，但是会造成空间上的浪费，比如我使用 000~111 等长三位编码表示 abcdefgh，但是我的字符大部分都是 000 代表的 a，小部分为 111 代表 h，这样就会造成编码上的冗余情况出现。</p>
+<p>考虑非等长编码，我使用 0 来表示 a，111 来表示 h。还是上述的情况，显然节省了空间，但是会造成二义性。比如 010 表示的是 aba 还是 ac？对此引入个概念：</p>
 <p><strong>前缀码（peifix code）：任何字符的编码都不是另一字符码的前缀。</strong></p>
-<p>如何实现呢？<del>当然是哈夫曼，不然为什么叫哈夫曼编码？？？</del></p>
-<p>由于哈弗曼树的特点，<strong>所有带有权值的结点只会出现在叶结点处</strong>。规定：<strong>左子结点编码为0，右子结点编码为1</strong>。</p>
+<p>如何实现呢？<del> 当然是哈夫曼，不然为什么叫哈夫曼编码？？？</del></p>
+<p>由于哈弗曼树的特点，<strong>所有带有权值的结点只会出现在叶结点处</strong>。规定：<strong>左子结点编码为 0，右子结点编码为 1</strong>。</p>
 <p>这样一来，上层叶结点的权值大（频率高），字节数小、下层叶结点的权值小（频次低），字节数大。</p>
 <h1 id="参考">参考</h1>
 <p>https://zhuanlan.zhihu.com/p/53851211</p>
