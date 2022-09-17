@@ -185,13 +185,14 @@ docker run -d \
 {
   "proxies": {
     "default": {
-      "httpProxy": "http://192.168.1.5:20172"	
+      "httpProxy": "http://172.17.0.1:20172",
+      "httpsProxy": "http://172.17.0.1:20172"
     }
   }
 }
 ```
 
-+ `192.168.1.5` 是我自定义的 docker0 inet，请使用 `ifconfig` 或者 `ip a`，自行查看 `docker0` 的 inet
++ `172.17.0.1` 是我自定义的 docker0 inet，请使用 `ifconfig` 或者 `ip a`，自行查看 `docker0` 的 inet
 + 20172 是我的 V2RayA 的 HTTP 分流端口
 
 3. 我的 V2rayA 的设置
