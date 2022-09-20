@@ -3,7 +3,8 @@ title: Linux中的文件权限
 tags:
   - Linux
   - 笔记
-date: 2022-9-17 12:07:57
+abbrlink: c66f2510
+date: 2022-09-17 12:07:57
 ---
 
 ## 前言

@@ -252,6 +252,7 @@ tags:
   Laravel: "#F4645F"
   C: crimson
   C++: saddlebrown
+  计算机图形学: "#006432"
 
 categories:
   项目经历: "#4ba700"
@@ -262,6 +263,7 @@ categories:
   计算机组成原理: "#736e30"
   汇编语言程序设计: "##beedff"
   爬虫学习: "#eeff54"
+  Games101笔记: "#f1e500"
 
 pages:
   - name: 我的小伙伴们
