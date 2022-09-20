@@ -50,7 +50,7 @@ document.addEventListener("DOMContentLoaded", () => {
 <meta property="og:image" content="https://imgbed-1304793179.cos.ap-nanjing.myqcloud.com/typora/20220920180456.png">
 <meta property="og:image" content="https://imgbed-1304793179.cos.ap-nanjing.myqcloud.com/typora/20220920181358.png">
 <meta property="article:published_time" content="2022-09-20T11:00:00.000Z">
-<meta property="article:modified_time" content="2022-09-20T11:10:24.743Z">
+<meta property="article:modified_time" content="2022-09-20T11:19:14.179Z">
 <meta property="article:author" content="Anduin9527">
 <meta property="article:tag" content="笔记">
 <meta property="article:tag" content="计算机图形学">
@@ -98,9 +98,7 @@ y
 x&#39; = ax+by \\
 y&#39; = cx+dy
 \]</span> 故称之为 <strong>线性变换</strong></p>
-约定，以下的 <span class="math inline">\(\hat x = \begin{pmatrix} 1 \\ 0 \end{pmatrix}\)</span>，$ y =
-<span class="math display">\[\begin{pmatrix} 0 \\ 1  \end{pmatrix}\]</span>
-<p>$</p>
+<p>约定，以下的 <span class="math inline">\(\hat x = \begin{pmatrix} 1 \\ 0 \end{pmatrix}\)</span>，<span class="math inline">\(\hat y = \begin{pmatrix} 0 \\ 1 \end{pmatrix}\)</span></p>
 <h4 id="缩放-scale">缩放 Scale</h4>
 <p><img src="https://imgbed-1304793179.cos.ap-nanjing.myqcloud.com/typora/20220919214655.png" alt="image-20220919214647983" style="zoom: 50%;" / loading="lazy"></p>
 <p>可以使用如下的公式 <span class="math display">\[
@@ -192,7 +190,7 @@ point + vector = point\\
 point + point = point
 \]</span> 注意这里的点之间的加法运算，实际表示的是两点的 <strong>中点</strong>。因为点的完整齐次坐标定义为 <span class="math inline">\((\frac{x}{w},\frac{y}{w},1)^T,\ w\neq 0\)</span></p>
 <h4 id="仿射变换-1">仿射变换</h4>
-通过引入了齐次坐标，我们可以将之前比较丑陋的形式改写为 <strong>旋转缩放平移</strong> 三位一体的仿射变换（Affine transformation）形式 <span class="math display">\[
+<p>通过引入了齐次坐标，我们可以将之前比较丑陋的形式改写为 <strong>旋转缩放平移</strong> 三位一体的仿射变换（Affine transformation）形式 <span class="math display">\[
 \left(\begin{array}{l}
 x^{\prime} \\
 y^{\prime} \\
@@ -206,27 +204,28 @@ x \\
 y \\
 1
 \end{array}\right)
-\]</span> 我们仍然可以用基向量的方式进行理解，<span class="math inline">\(\hat x&#39;, \hat y&#39;\)</span> 是向量所以其为 <span class="math inline">\((a,c,0)^T,\ (b,d,0)^T\)</span>，最后一个理解为 <strong>变换后的原点坐标</strong> <span class="math inline">\((t_x,t_y,1)^T\)</span>，那么我们就可以用仿射变换轻松地表示之前的旋转缩放平移 $$ (s_x, s_y)=(
-<span class="math display">\[\begin{array}{ccc}
+\]</span> 我们仍然可以用基向量的方式进行理解，<span class="math inline">\(\hat x&#39;, \hat y&#39;\)</span> 是向量所以其为 <span class="math inline">\((a,c,0)^T,\ (b,d,0)^T\)</span>，最后一个理解为 <strong>变换后的原点坐标</strong> <span class="math inline">\((t_x,t_y,1)^T\)</span>，那么我们就可以用仿射变换轻松地表示之前的旋转缩放平移</p>
+<p><span class="math display">\[
+\mathbf{S}\left(s_x, s_y\right)=\left(\begin{array}{ccc}
 s_x &amp; 0 &amp; 0 \\
 0 &amp; s_y &amp; 0 \\
 0 &amp; 0 &amp; 1
-\end{array}\]</span>
-<p>)\ \</p>
-()=(
-<span class="math display">\[\begin{array}{ccc}
+\end{array}\right)\\ \\
+\]</span></p>
+<p><span class="math display">\[
+\mathbf{R}(\alpha)=\left(\begin{array}{ccc}
 \cos \alpha &amp; -\sin \alpha &amp; 0 \\
 \sin \alpha &amp; \cos \alpha &amp; 0 \\
 0 &amp; 0 &amp; 1
-\end{array}\]</span>
-<p>)\ \</p>
-(t_x, t_y)=(
-<span class="math display">\[\begin{array}{ccc}
+\end{array}\right)\\ \\
+\]</span></p>
+<p><span class="math display">\[
+\mathbf{T}\left(t_x, t_y\right)=\left(\begin{array}{ccc}
 1 &amp; 0 &amp; t_x \\
 0 &amp; 1 &amp; t_y \\
 0 &amp; 0 &amp; 1
-\end{array}\]</span>
-<p>) $$</p>
+\end{array}\right)
+\]</span></p>
 <h3 id="d-变换">3D 变换</h3>
 <p>三维的情况基本与二维没有出入，除了旋转有个要注意的点。同样的，定义三维的齐次坐标</p>
 <ul>
@@ -296,7 +295,7 @@ s_x &amp; 0 &amp; 0 &amp; 0 \\
 <li>不难发现，绕着<span class="math inline">\(Y\)</span>轴旋转的结果有些奇怪，这是因为<span class="math inline">\(X\)</span>轴基向量和<span class="math inline">\(Z\)</span>轴基向量的叉乘为<span class="math inline">\(Y\)</span>轴负向的向量，那么所有的旋转角度都会相当于变为原来的 <strong>负值</strong>，从而才会产生这样的差异</li>
 </ul>
 <h4 id="旋转rodriguesrotation-formula">旋转（Rodrigues'Rotation Formula）</h4>
-<p>绕着转轴 <span class="math inline">\(n\)</span> 旋转 $$ 角度，<a target="_blank" rel="noopener" href="https://www.cnblogs.com/wtyuan/p/12324495.html">推导过程</a>:cry: <span class="math display">\[
+<p>绕着转轴 <span class="math inline">\(n\)</span> 旋转 <span class="math inline">\(\alpha\)</span> 角度，<a target="_blank" rel="noopener" href="https://www.cnblogs.com/wtyuan/p/12324495.html">推导过程</a>:cry: <span class="math display">\[
 R(n, \alpha)=\cos (\alpha) E+(1-\cos (\alpha)) n n^T+\sin (\alpha)\left(\begin{array}{ccc}
 0 &amp; -n_z &amp; n_y \\
 n_z &amp; 0 &amp; -n_x \\
@@ -396,34 +395,32 @@ x_{-g} &amp; y_{-g} &amp; z_{-g} &amp; 0 \\
 <p>首先来看一个纵切面</p>
 <p><img src="https://imgbed-1304793179.cos.ap-nanjing.myqcloud.com/typora/20220920181358.png" alt="image-20220920181358915" style="zoom: 80%;" / loading="lazy"></p>
 <p>通过小学二年级的相似知识，不难得出 <span class="math inline">\(\dfrac{x&#39;}{x} =\dfrac{y&#39;}{y} = \dfrac{n}{z}\)</span></p>
-即 <span class="math inline">\(y&#39; = \frac{n}{z} y,\ x&#39; = \frac{n}{z}x\)</span>，写成矩阵变换的形式 $$ M_{p o}^{(4)}(
-<span class="math display">\[\begin{array}{c}
+<p>即 <span class="math inline">\(y&#39; = \frac{n}{z} y,\ x&#39; = \frac{n}{z}x\)</span>，写成矩阵变换的形式</p>
+<p><span class="math display">\[
+M_{p \rightarrow o}^{(4 \times 4)}\left(\begin{array}{c}
 x \\
 y \\
 z \\
 1
-\end{array}\]</span>
-) ==(
-<span class="math display">\[\begin{array}{c}
+\end{array}\right)==\left(\begin{array}{c}
 n x / z \\
 n y / z \\
 \text { unknown } \\
 1
-\end{array}\]</span>
-)
-<span class="math display">\[\begin{gathered}
-
-\end{gathered}\]</span>
-==(
-<span class="math display">\[\begin{array}{c}
+\end{array}\right)==\left(\begin{array}{c}
 n x \\
 n y \\
 \text { still unknown } \\
 z
-\end{array}\]</span>
-<p>) <span class="math display">\[
-如果将矩阵乘法展开第一行，第二行以及最后一行：
-\]</span> Ax+By+Cz+D = nx \ Ex+Fy+Gz+H = ny \ Mx+Ny+Oz+P = z $$ 不难发现应得到：<span class="math inline">\(A=F=n,\ O = 1\)</span> 其余项为 0，那么至此 <span class="math inline">\(M_{p\to o}\)</span> 已经可以写出一大半了，只有第三行未知</p>
+\end{array}\right)
+\]</span></p>
+<p>如果将矩阵乘法展开第一行，第二行以及最后一行：</p>
+<p><span class="math display">\[
+Ax+By+Cz+D = nx \\
+Ex+Fy+Gz+H = ny \\
+Mx+Ny+Oz+P = z
+\]</span></p>
+<p>不难发现应得到：<span class="math inline">\(A=F=n,\ O = 1\)</span> 其余项为 0，那么至此 <span class="math inline">\(M_{p\to o}\)</span> 已经可以写出一大半了，只有第三行未知</p>
 <p>这时想到之前的 3 个约束条件：</p>
 <ol type="1">
 <li><p>近平面所有点不变</p>
