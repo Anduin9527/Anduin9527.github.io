@@ -369,21 +369,21 @@ $$
 那我们的目的就是将其缩放到变为一个标准立方体，不难想到也是先平移再缩放
 $$
 \begin{aligned}
-\mathbf{P}_o =\mathbf{S}(\mathbf{s}) \mathbf{T}(\mathbf{t}) &=\left(\begin{array}{cccc}
+{M}_{ortho} ={M}_s M_t &=\left(\begin{array}{cccc}
 \frac{2}{r-l} & 0 & 0 & 0 \\
 0 & \frac{2}{t-b} & 0 & 0 \\
-0 & 0 & \frac{2}{f-n} & 0 \\
+0 & 0 & \frac{2}{n-f} & 0 \\
 0 & 0 & 0 & 1
 \end{array}\right)\left(\begin{array}{cccc}
 1 & 0 & 0 & -\frac{l+r}{2} \\
 0 & 1 & 0 & -\frac{t+b}{2} \\
-0 & 0 & 1 & -\frac{f+n}{2} \\
+0 & 0 & 1 & -\frac{n+f}{2} \\
 0 & 0 & 0 & 1
 \end{array}\right) \\
 &=\left(\begin{array}{cccc}
 \frac{2}{r-l} & 0 & 0 & -\frac{r+l}{r-l} \\
 0 & \frac{2}{t-b} & 0 & -\frac{t+b}{t-b} \\
-0 & 0 & \frac{2}{f-n} & -\frac{f+n}{f-n} \\
+0 & 0 & \frac{2}{n-f} & -\frac{n+f}{n-f} \\
 0 & 0 & 0 & 1
 \end{array}\right) .
 \end{aligned}
@@ -522,14 +522,14 @@ n & 0 & 0 & 0 \\
 0 & 0 & 1 & 0
 \end{array}\right)
 $$
-那么，最终的投影矩阵即为
+那么，最终的透视投影矩阵即为
 $$
 \begin{aligned}
 M_{persp} &= M_{ortho}M_{p\to o} \\
 &=\left(\begin{array}{cccc}
 \frac{2}{r-l} & 0 & 0 & -\frac{r+l}{r-l} \\
 0 & \frac{2}{t-b} & 0 & -\frac{t+b}{t-b} \\
-0 & 0 & \frac{2}{f-n} & -\frac{f+n}{f-n} \\
+0 & 0 & \frac{2}{n-f} & -\frac{n+f}{n-f} \\
 0 & 0 & 0 & 1
 \end{array}\right) .
 
@@ -543,26 +543,199 @@ n & 0 & 0 & 0 \\
 &=\left(\begin{array}{cccc}
 \frac{2n}{r-l} & 0 & -\frac{r+l}{r-l} & 0 \\
 0 & \frac{2n}{t-b} & -\frac{t+b}{t-b} & 0 \\
-0 & 0 & \frac{f+n}{f-n} & -\frac{2fn}{f-n} \\
+0 & 0 & \frac{n+f}{n-f} & -\frac{2fn}{n-f} \\
 0 & 0 & 1 & 0
 \end{array}\right) \\
 
 &\iff\left(\begin{array}{cccc}
 \frac{2n}{r-l} & 0 & \frac{r+l}{r-l} & 0 \\
 0 & \frac{2n}{t-b} & \frac{t+b}{t-b} & 0 \\
-0 & 0 & \frac{n+f}{n-f} & \frac{2fn}{n-f} \\
+0 & 0 & \frac{n+f}{f-n} & \frac{2fn}{n-f} \\
 0 & 0 & -1 & 0
 \end{array}\right) 
 
 \end{aligned}
 $$
 
-## 参考
+### 透视投影补充
 
-https://blog.csdn.net/weixin_43803133/article/details/107449570
+<img src="https://imgbed-1304793179.cos.ap-nanjing.myqcloud.com/typora/20220922212930.png" alt="image-20220922212930307" style="zoom:80%;" />
+
+上文提到，关于Frustum的定义可以用六元组$(l,r,b,t,n,f)$定义，人们也通常选择使用$FOV$，即field of view视角来加以描述，其又分为水平$XFOV$和竖直$YFOV$，不难想象$FOV$越大，相机能观测到的范围就越大；另一个概念是宽高比Aspect ratio，正如其字面意思就是屏幕的比例。
+
+选取一个竖直截面，不难推导出竖直方向的视角公式
+
+<img src="https://imgbed-1304793179.cos.ap-nanjing.myqcloud.com/typora/20220922213850.png" alt="image-20220922213850774" style="zoom:80%;" />
+$$
+\begin{equation}
+\begin{split}   
+&\tan \frac{fovY}{2} = \frac{t}{ n}\\
+&\Rightarrow fovY = 2\arctan(\frac{t}{ n})
+\end{split}
+\end{equation}
+$$
+另一个参数宽高比则为：
+$$
+\begin{equation}
+\begin{split}   
+aspect &= \dfrac{width}{height} \\
+&= \dfrac{2r}{2t}\\
+&= \dfrac{r}{t}
+\end{split}
+\end{equation}
+$$
+接着我们选择使用视角系统下的参数（fov, aspect, far, near）来重写透视投影矩阵$M_{persp}$
+
+显然：$n = near$，$f = far$
+
+根据上面的解三角形：
+$$
+\begin{equation}
+\begin{split} 
+t &= near\cdot \tan  \frac{fovY}{2}
+\\b &= -t = -near\cdot \tan  \frac{fovY}{2}
+\\r &= aspect\cdot t = aspect\cdot near\cdot \tan  \frac{fovY}{2}
+\\l &= -r = -aspect\cdot near\cdot \tan  \frac{fovY}{2}
+\end{split}
+\end{equation}
+$$
+
+
+然后带入并正交投影矩阵$M_{ortho}$
+$$
+\begin{aligned}
+{M}_{ortho} ={M}_s M_t 
+&=\left(\begin{array}{cccc}
+\frac{\cot fovY}{2aspect\cdot near} & 0 & 0 & 0 \\
+0 & \frac{\cot fovY}{2near} & 0 & 0 \\
+0 & 0 & \frac{2}{near-far} & 0 \\
+0 & 0 & 0 & 1
+\end{array}\right)\left(\begin{array}{cccc}
+1 & 0 & 0 & 0 \\
+0 & 1 & 0 & 0 \\
+0 & 0 & 1 & -\frac{near+far}{2} \\
+0 & 0 & 0 & 1
+\end{array}\right) \\
+&=\left(\begin{array}{cccc} 
+\frac{\cot fovY}{2aspect\cdot near} & 0 & 0 & 0 \\
+0 & \frac{\cot fovY}{2near} & 0 & 0 \\
+0 & 0 & \frac{2}{near-far} &-\frac{near+far}{near-far} \\
+0 & 0 & 0 & 1
+\end{array}\right) 
+\end{aligned}
+$$
+然后$M_{perspec}$
+$$
+\begin{aligned}
+M_{persp} &= M_{ortho}M_{p\to o} \\
+&=\left(\begin{array}{cccc} 
+\frac{\cot fovY}{2aspect\cdot near} & 0 & 0 & 0 \\
+0 & \frac{\cot fovY}{2near} & 0 & 0 \\
+0 & 0 & \frac{2}{near-far} &-\frac{near+far}{near-far} \\
+0 & 0 & 0 & 1
+\end{array}\right) .
+
+\left(\begin{array}{cccc}
+near & 0 & 0 & 0 \\
+0 &near & 0 & 0 \\
+0 & 0 & near+far & -near\cdot far \\
+0 & 0 & 1 & 0
+\end{array}\right)\\
+
+&=\left(\begin{array}{cccc}
+\frac{\cot fovY}{2aspect} & 0 & 0 & 0 \\
+0 & {\cot fovY} & 0 & 0 \\
+0 & 0 & \frac{near+far}{near-far} &-\frac{2*near\cdot far}{near-far} \\
+0 & 0 & 1 & 0
+\end{array}\right) \\
+
+
+\end{aligned}
+$$
+
+## 作业1
+
+>到目前为止，我们已经学习了如何使用矩阵变换来排列二维或三维空间中的对象。所以现在是时候通过实现一些简单的变换矩阵来获得一些实际经验了。在接下来的三次作业中，我们将要求你去模拟一个基于CPU 的光栅化渲染器的简化版本。
+>
+>本次作业的任务是填写一个旋转矩阵和一个透视投影矩阵。
+>
+>给定三维下三个点$v0(2.0, 0.0,−2.0), v1(0.0, 2.0,−2.0), v2(−2.0, 0.0,−2.0)$，你需要将这三个点的坐标变换为屏幕坐标，并在屏幕上绘制出对应的线框三角形(在代码框架中，我们已经提供了draw_triangle 函数，所以你只需要去构建变换矩阵即可)。简而言之，我们需要进行模型、视图、投影、视口等变换来将三角形显示在屏幕上。在提供的代码框架中，我们留下了模型变换和投影变换的部分给你去完成。
+
+```cpp
+double cot(double X)
+{
+	return 1.0 / tan(X);
+}
+Eigen::Matrix4f get_model_matrix(float rotation_angle)
+{
+	Eigen::Matrix4f model = Eigen::Matrix4f::Identity();
+
+	// TODO: Implement this function
+	// Create the model matrix for rotating the triangle around the Z axis.
+	// Then return it.
+	//先将角度换成弧度
+	rotation_angle = rotation_angle / 180 * MY_PI;
+	//按照三维沿Z轴旋转写即可
+	model << cos(rotation_angle), -sin(rotation_angle), 0, 0,
+		sin(rotation_angle), cos(rotation_angle), 0, 0,
+		0, 0, 1, 0,
+		0, 0, 0, 1;
+	return model;
+}
+
+Eigen::Matrix4f get_projection_matrix(float eye_fov, float aspect_ratio,
+	float zNear, float zFar)
+{
+	// Students will implement this function
+
+	Eigen::Matrix4f projection = Eigen::Matrix4f::Identity();
+
+	// TODO: Implement this function
+	// Create the projection matrix for the given parameters.
+	// Then return it.
+	//方法一：定义六元组走第一个投影矩阵
+	//float n = zNear;
+	//float f = zFar;
+	//float t = zNear * tan(eye_fov / 2);
+	//float b = -t;
+	//float r = aspect_ratio * t;
+	//float l = -r;
+	//方法二：直接使用视角投影矩阵
+	Eigen::Matrix4f scale = Eigen::Matrix4f::Identity();
+	Eigen::Matrix4f translate = Eigen::Matrix4f::Identity();
+	Eigen::Matrix4f persp2ortho = Eigen::Matrix4f::Identity();
+	scale << cot(eye_fov) / (2 * aspect_ratio * zNear), 0, 0, 0,
+		0, cot(eye_fov) / (2 * zNear), 0, 0,
+		0, 0, 2.0 / (zNear - zFar), 0,
+		0, 0, 0, 1;
+	translate << 1, 0, 0, 0,
+		0, 1, 0, 0,
+		0, 0, 1, -(zNear + zFar) / 2,
+		0, 0, 0, 1;
+	persp2ortho << zNear, 0, 0, 0,
+		0, zNear, 0, 0,
+		0, 0, zNear + zFar, -zNear * zFar,
+		0, 0, 1, 0;
+	Eigen::Matrix4f ortho = scale * translate;
+	projection = ortho * persp2ortho;
+	return projection;
+}
+```
+
+效果如下：
+
+<img src="https://imgbed-1304793179.cos.ap-nanjing.myqcloud.com/typora/20220922231114.png" alt="image-20220922231114419" style="zoom:80%;" />
+
+可以使用`A`和`D`按键自由旋转
+
+
+
+## 参考
 
 [推导投影矩阵 - 知乎](https://zhuanlan.zhihu.com/p/122411512?utm_source=qq&utm_medium=social&utm_oi=605668290971045888)
 
 [什么是齐次坐标? - 知乎](https://zhuanlan.zhihu.com/p/258437902)
 
 [实时渲染第四版 4.6 投影变换 - 知乎](https://zhuanlan.zhihu.com/p/392216888)
+
+[透视投影(Perspective Projection)变换推导过程 - codingriver blog](https://www.wgqing.com/%E9%80%8F%E8%A7%86%E6%8A%95%E5%BD%B1%E5%8F%98%E6%8D%A2%E6%8E%A8%E5%AF%BC/)
