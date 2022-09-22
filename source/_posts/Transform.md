@@ -520,11 +520,41 @@ n & 0 & 0 & 0 \\
 0 &n & 0 & 0 \\
 0 & 0 & n+f & -nf \\
 0 & 0 & 1 & 0
-\end{array}\right) 
+\end{array}\right)
 $$
 那么，最终的投影矩阵即为
 $$
-M_{persp} = M_{ortho}M_{p\to o}
+\begin{aligned}
+M_{persp} &= M_{ortho}M_{p\to o} \\
+&=\left(\begin{array}{cccc}
+\frac{2}{r-l} & 0 & 0 & -\frac{r+l}{r-l} \\
+0 & \frac{2}{t-b} & 0 & -\frac{t+b}{t-b} \\
+0 & 0 & \frac{2}{f-n} & -\frac{f+n}{f-n} \\
+0 & 0 & 0 & 1
+\end{array}\right) .
+
+\left(\begin{array}{cccc}
+n & 0 & 0 & 0 \\
+0 &n & 0 & 0 \\
+0 & 0 & n+f & -nf \\
+0 & 0 & 1 & 0
+\end{array}\right)\\
+
+&=\left(\begin{array}{cccc}
+\frac{2n}{r-l} & 0 & -\frac{r+l}{r-l} & 0 \\
+0 & \frac{2n}{t-b} & -\frac{t+b}{t-b} & 0 \\
+0 & 0 & \frac{f+n}{f-n} & -\frac{2fn}{f-n} \\
+0 & 0 & 1 & 0
+\end{array}\right) \\
+
+&\iff\left(\begin{array}{cccc}
+\frac{2n}{r-l} & 0 & \frac{r+l}{r-l} & 0 \\
+0 & \frac{2n}{t-b} & \frac{t+b}{t-b} & 0 \\
+0 & 0 & \frac{n+f}{n-f} & \frac{2fn}{n-f} \\
+0 & 0 & -1 & 0
+\end{array}\right) 
+
+\end{aligned}
 $$
 
 ## 参考
