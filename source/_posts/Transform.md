@@ -601,7 +601,8 @@ t &= near\cdot \tan  \frac{fovY}{2}
 $$
 
 
-然后带入并正交投影矩阵$M_{ortho}$
+然后带入并正交投影矩阵$M_{ortho}$ 
+
 $$
 \begin{aligned}
 {M}_{ortho} ={M}_s M_t 
@@ -624,7 +625,9 @@ $$
 \end{array}\right) 
 \end{aligned}
 $$
+
 然后$M_{perspec}$
+
 $$
 \begin{aligned}
 M_{persp} &= M_{ortho}M_{p\to o} \\
@@ -644,7 +647,7 @@ near & 0 & 0 & 0 \\
 
 &=\left(\begin{array}{cccc}
 \frac{\cot fovY}{2aspect} & 0 & 0 & 0 \\
-0 & {\cot fovY} & 0 & 0 \\
+0 & \frac{\cot fovY}{2} & 0 & 0 \\
 0 & 0 & \frac{near+far}{near-far} &-\frac{2*near\cdot far}{near-far} \\
 0 & 0 & 1 & 0
 \end{array}\right) \\
@@ -662,10 +665,10 @@ $$
 >给定三维下三个点$v0(2.0, 0.0,−2.0), v1(0.0, 2.0,−2.0), v2(−2.0, 0.0,−2.0)$，你需要将这三个点的坐标变换为屏幕坐标，并在屏幕上绘制出对应的线框三角形(在代码框架中，我们已经提供了draw_triangle 函数，所以你只需要去构建变换矩阵即可)。简而言之，我们需要进行模型、视图、投影、视口等变换来将三角形显示在屏幕上。在提供的代码框架中，我们留下了模型变换和投影变换的部分给你去完成。
 
 ```cpp
-double cot(double X)
-{
-	return 1.0 / tan(X);
-}
+constexpr double MY_PI = 3.1415926;
+inline double deg2red(double deg) { return deg * MY_PI / 180; }
+inline double cot(double X) { return 1.0 / tan(X); }
+
 Eigen::Matrix4f get_model_matrix(float rotation_angle)
 {
 	Eigen::Matrix4f model = Eigen::Matrix4f::Identity();
@@ -674,7 +677,7 @@ Eigen::Matrix4f get_model_matrix(float rotation_angle)
 	// Create the model matrix for rotating the triangle around the Z axis.
 	// Then return it.
 	//先将角度换成弧度
-	rotation_angle = rotation_angle / 180 * MY_PI;
+	rotation_angle = deg2red(rotation_angle);
 	//按照三维沿Z轴旋转写即可
 	model << cos(rotation_angle), -sin(rotation_angle), 0, 0,
 		sin(rotation_angle), cos(rotation_angle), 0, 0,
@@ -683,16 +686,18 @@ Eigen::Matrix4f get_model_matrix(float rotation_angle)
 	return model;
 }
 
-Eigen::Matrix4f get_projection_matrix(float eye_fov, float aspect_ratio,
-	float zNear, float zFar)
+Eigen::Matrix4f get_projection_matrix(float eye_fov, float aspect_ratio, float zNear, float zFar)
 {
-	// Students will implement this function
+	// TODO: Copy-paste your implementation from the previous assignment.
+	Eigen::Matrix4f projection;
+	Eigen::Matrix4f scale = Eigen::Matrix4f::Identity();
+	Eigen::Matrix4f translate = Eigen::Matrix4f::Identity();
+	Eigen::Matrix4f persp2ortho = Eigen::Matrix4f::Identity();
+	eye_fov = deg2red(eye_fov / 2);//注意这里弧度转角度的时候为其一半
 
-	Eigen::Matrix4f projection = Eigen::Matrix4f::Identity();
-
-	// TODO: Implement this function
-	// Create the projection matrix for the given parameters.
-	// Then return it.
+	//Eigen::Matrix4f ortho = scale * translate;
+	//projection = ortho * persp2ortho;
+	// 
 	//方法一：定义六元组走第一个投影矩阵
 	//float n = zNear;
 	//float f = zFar;
@@ -701,30 +706,36 @@ Eigen::Matrix4f get_projection_matrix(float eye_fov, float aspect_ratio,
 	//float r = aspect_ratio * t;
 	//float l = -r;
 	//方法二：直接使用视角投影矩阵
-	Eigen::Matrix4f scale = Eigen::Matrix4f::Identity();
-	Eigen::Matrix4f translate = Eigen::Matrix4f::Identity();
-	Eigen::Matrix4f persp2ortho = Eigen::Matrix4f::Identity();
-	scale << cot(eye_fov) / (2 * aspect_ratio * zNear), 0, 0, 0,
+	scale <<
+		cot(eye_fov) / (2 * aspect_ratio * zNear), 0, 0, 0,
 		0, cot(eye_fov) / (2 * zNear), 0, 0,
 		0, 0, 2.0 / (zNear - zFar), 0,
 		0, 0, 0, 1;
-	translate << 1, 0, 0, 0,
+	translate <<
+		1, 0, 0, 0,
 		0, 1, 0, 0,
 		0, 0, 1, -(zNear + zFar) / 2,
 		0, 0, 0, 1;
-	persp2ortho << zNear, 0, 0, 0,
+	persp2ortho <<
+		zNear, 0, 0, 0,
 		0, zNear, 0, 0,
 		0, 0, zNear + zFar, -zNear * zFar,
 		0, 0, 1, 0;
 	Eigen::Matrix4f ortho = scale * translate;
 	projection = ortho * persp2ortho;
+	//方法3：一步到位
+	//projection <<
+	//	cot(eye_fov) / (2 * aspect_ratio ), 0, 0, 0,
+	//	0, cot(eye_fov)/2 , 0, 0,
+	//	0, 0, zNear + zFar / (zNear - zFar), -2.0 * zNear * zFar / (zNear - zFar),
+	//	0, 0, 1, 0;
 	return projection;
 }
 ```
 
 效果如下：
 
-<img src="https://imgbed-1304793179.cos.ap-nanjing.myqcloud.com/typora/20220922231114.png" alt="image-20220922231114419" style="zoom:80%;" />
+<img src="https://imgbed-1304793179.cos.ap-nanjing.myqcloud.com/typora/20220926150523.png" alt="image-20220926150515854" style="zoom:67%;" />
 
 可以使用`A`和`D`按键自由旋转
 
