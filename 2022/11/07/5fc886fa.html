@@ -1,0 +1,374 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="theme-color" content="#66d6ff"><meta name="author" content="Anduin9527"><meta name="copyright" content="Anduin9527"><meta name="generator" content="Hexo 6.2.0"><meta name="theme" content="hexo-theme-yun"><title>编译原理（二）--词法分析 | Anduin9527的乖离器</title><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@900&amp;display=swap" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://fastly.jsdelivr.net/npm/star-markdown-css@0.3.3/dist/yun/yun-markdown.min.css"><link rel="stylesheet" href="https://fastly.jsdelivr.net/npm/prism-theme-vars/base.css"><script src="https://fastly.jsdelivr.net/npm/scrollreveal/dist/scrollreveal.min.js" defer></script><script>function initScrollReveal() {
+  [".post-card",".markdown-body img"].forEach((target)=> {
+    ScrollReveal().reveal(target);
+  })
+}
+document.addEventListener("DOMContentLoaded", initScrollReveal);
+document.addEventListener("pjax:success", initScrollReveal);
+</script><link rel="stylesheet" type="text/css" href="https://fastly.jsdelivr.net/npm/katex@latest/dist/katex.min.css"><script defer src="https://fastly.jsdelivr.net/npm/katex@latest/dist/katex.min.js"></script><script defer src="https://fastly.jsdelivr.net/npm/katex@latest/dist/contrib/auto-render.min.js"></script><script type="module">import { renderKatex } from '/js/utils.js'
+document.addEventListener("DOMContentLoaded", () => {
+  renderKatex({
+    ...{},
+    ...true?.options,
+  });
+});</script><link rel="icon" type="image/svg+xml" href="/images/favicon.svg"><link rel="mask-icon" href="/images/favicon.svg" color="#66d6ff"><link rel="preload" href="/css/hexo-theme-yun.css" as="style"><link rel="prefetch" href="/js/sidebar.js" as="script"><link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin><link rel="preconnect" href="https://fastly.jsdelivr.net/npm/" crossorigin><script id="yun-config">
+    window.Yun = {}
+    window.CONFIG = {"hostname":"lapras.xyz","root":"/","title":["拉普","拉斯~","的","乖离器"],"version":"1.10.6","mode":"time","copycode":true,"page":{"isPost":true},"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}.","hits":"${hits} results found","hits_time":"${hits} results found in ${time} ms"},"anonymous_image":"https://cdn.yunyoujun.cn/img/avatar/none.jpg","fireworks":{"colors":["#00D1CE","#66D6FF","#919191"]},"vendors":{"host":"https://fastly.jsdelivr.net/npm/","darken":"https://fastly.jsdelivr.net/npm/darken@1.5.0"}};
+  </script><link rel="stylesheet" href="/css/hexo-theme-yun.css"><script src="/js/hexo-theme-yun.js" type="module"></script><link rel="alternate" href="/atom.xml" title="Anduin9527的乖离器" type="application/atom+xml"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@900&amp;display=swap"><script src="/h" async></script><script src="/t" async></script><script src="/t" async></script><script src="/p" async></script><script src="/s" async></script><script src="/:" async></script><script src="/" async></script><script src="/" async></script><script src="/c" async></script><script src="/d" async></script><script src="/n" async></script><script src="/." async></script><script src="/j" async></script><script src="/s" async></script><script src="/d" async></script><script src="/e" async></script><script src="/l" async></script><script src="/i" async></script><script src="/v" async></script><script src="/r" async></script><script src="/." async></script><script src="/n" async></script><script src="/e" async></script><script src="/t" async></script><script src="/" async></script><script src="/n" async></script><script src="/p" async></script><script src="/m" async></script><script src="/" async></script><script src="/i" async></script><script src="/o" async></script><script src="/n" async></script><script src="/i" async></script><script src="/c" async></script><script src="/o" async></script><script src="/n" async></script><script src="/s" async></script><script src="/" async></script><script src="/d" async></script><script src="/i" async></script><script src="/s" async></script><script src="/t" async></script><script src="/" async></script><script src="/i" async></script><script src="/o" async></script><script src="/n" async></script><script src="/i" async></script><script src="/c" async></script><script src="/o" async></script><script src="/n" async></script><script src="/s" async></script><script src="/." async></script><script src="/j" async></script><script src="/s" async></script><link rel="preconnect" href="https://www.google-analytics.com" crossorigin><script async src="https://www.googletagmanager.com/gtag/js?id=G-NSLVQ2H5JH"></script><script>if (CONFIG.hostname === location.hostname) {
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-NSLVQ2H5JH');
+}</script><script>(function(){
+  var bp = document.createElement('script');
+  var curProtocol = window.location.protocol.split(':')[0];
+  if (curProtocol === 'https') {
+    bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+  }
+  else {
+    bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+  }
+  var s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(bp, s);
+})();</script><meta name="description" content="前言 嘿嘿嘿，boki酱可爱捏">
+<meta property="og:type" content="article">
+<meta property="og:title" content="编译原理（二）--词法分析">
+<meta property="og:url" content="http://lapras.xyz/2022/11/07/5fc886fa.html">
+<meta property="og:site_name" content="Anduin9527的乖离器">
+<meta property="og:description" content="前言 嘿嘿嘿，boki酱可爱捏">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://imgbed-1304793179.cos.ap-nanjing.myqcloud.com/typora/20221107155740.jpg">
+<meta property="og:image" content="https://imgbed-1304793179.cos.ap-nanjing.myqcloud.com/typora/20220929164545.png">
+<meta property="og:image" content="https://imgbed-1304793179.cos.ap-nanjing.myqcloud.com/typora/20220929165443.png">
+<meta property="og:image" content="https://imgbed-1304793179.cos.ap-nanjing.myqcloud.com/typora/20220929170235.png">
+<meta property="og:image" content="https://imgbed-1304793179.cos.ap-nanjing.myqcloud.com/typora/20220929170323.png">
+<meta property="og:image" content="https://imgbed-1304793179.cos.ap-nanjing.myqcloud.com/typora/20220929173424.png">
+<meta property="og:image" content="https://imgbed-1304793179.cos.ap-nanjing.myqcloud.com/typora/20221107160511.png">
+<meta property="og:image" content="https://imgbed-1304793179.cos.ap-nanjing.myqcloud.com/typora/20221010132005.png">
+<meta property="og:image" content="https://imgbed-1304793179.cos.ap-nanjing.myqcloud.com/typora/20221107161833.png">
+<meta property="og:image" content="https://imgbed-1304793179.cos.ap-nanjing.myqcloud.com/typora/20221010210527.png">
+<meta property="article:published_time" content="2022-11-07T07:58:36.494Z">
+<meta property="article:modified_time" content="2022-11-07T08:23:07.567Z">
+<meta property="article:author" content="Anduin9527">
+<meta property="article:tag" content="笔记">
+<meta property="article:tag" content="形式语言">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://imgbed-1304793179.cos.ap-nanjing.myqcloud.com/typora/20221107155740.jpg"><script type="module">import { getScript } from '/js/utils.js'
+getScript("https://fastly.jsdelivr.net/npm/mermaid/dist/mermaid.min.js", () => {
+  const mermaidOptions = {"startOnload":true}
+  mermaid.initialize(mermaidOptions);
+}, window.mermaid);
+</script><style>.mermaid{background: transparent;}</style><script>(function() {
+  const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
+  const setting = localStorage.getItem('darken-mode') || 'auto'
+  if (setting === 'dark' || (prefersDark && setting !== 'light'))
+    document.documentElement.classList.toggle('dark', true)
+})()</script></head><body><script src="https://code.iconify.design/2/2.1.1/iconify.min.js"></script><script>// Define global variable
+IconifyProviders = {
+  // Empty prefix: overwrite default API provider configuration
+  '': {
+    // Use custom API first, use Iconify public API as backup
+    resources: [
+        'https://api.iconify.design',
+    ],
+    // Wait for 1 second before switching API hosts
+    rotate: 1000,
+  },
+};</script><script defer src="https://fastly.jsdelivr.net/npm/animejs@latest"></script><script defer src="/js/ui/fireworks.js" type="module"></script><canvas class="fireworks"></canvas><div class="container"><a class="sidebar-toggle hty-icon-button" id="menu-btn"><div class="hamburger hamburger--spin" type="button"><span class="hamburger-box"><span class="hamburger-inner"></span></span></div></a><div class="sidebar-toggle sidebar-overlay"></div><aside class="sidebar"><script src="/js/sidebar.js" type="module"></script><ul class="sidebar-nav"><li class="sidebar-nav-item sidebar-nav-toc hty-icon-button sidebar-nav-active" data-target="post-toc-wrap" title="Table of Contents"><span class="icon iconify" data-icon="ri:list-ordered"></span></li><li class="sidebar-nav-item sidebar-nav-overview hty-icon-button" data-target="site-overview-wrap" title="Overview"><span class="icon iconify" data-icon="ri:passport-line"></span></li></ul><div class="sidebar-panel" id="site-overview-wrap"><div class="site-info fix-top"><a class="site-author-avatar" href="/about/" title="Anduin9527"><img width="96" loading="lazy" src="/images/avatar.jpg" alt="Anduin9527"><span class="site-author-status" title="建模建模呜呜呜！">😭</span></a><div class="site-author-name"><a href="/about/">Anduin9527</a></div><span class="site-name">Anduin9527的乖离器</span><sub class="site-subtitle">正在进修摸鱼学导论</sub><div class="site-description">南邮摸鱼ing</div></div><nav class="site-state"><a class="site-state-item hty-icon-button icon-home" href="/" title="Home"><span class="site-state-item-icon"><span class="icon iconify" data-icon="ri:home-4-line"></span></span></a><div class="site-state-item"><a href="/archives/" title="Archives"><span class="site-state-item-icon"><span class="icon iconify" data-icon="ri:archive-line"></span></span><span class="site-state-item-count">45</span></a></div><div class="site-state-item"><a href="/categories/" title="Categories"><span class="site-state-item-icon"><span class="icon iconify" data-icon="ri:folder-2-line"></span></span><span class="site-state-item-count">10</span></a></div><div class="site-state-item"><a href="/tags/" title="Tags"><span class="site-state-item-icon"><span class="icon iconify" data-icon="ri:price-tag-3-line"></span></span><span class="site-state-item-count">30</span></a></div><a class="site-state-item hty-icon-button" target="_blank" rel="noopener" href="https://yun.yunyoujun.cn" title="文档"><span class="site-state-item-icon"><span class="icon iconify" data-icon="ri:settings-line"></span></span></a></nav><hr style="margin-bottom:0.5rem"><div class="links-of-author"><a class="links-of-author-item hty-icon-button" rel="noopener" href="tencent://message/?uin=2676057183&amp;Site=&amp;Menu=yes" title="QQ" target="_blank" style="color:#12B7F5"><span class="icon iconify" data-icon="ri:qq-line"></span></a><a class="links-of-author-item hty-icon-button" rel="noopener" href="https://github.com/Anduin9527" title="GitHub" target="_blank" style="color:#181717"><span class="icon iconify" data-icon="ri:github-line"></span></a><a class="links-of-author-item hty-icon-button" rel="noopener" href="mailto:2676057183@qq.com" title="E-Mail" target="_blank" style="color:#8E71C1"><span class="icon iconify" data-icon="ri:mail-line"></span></a><a class="links-of-author-item hty-icon-button" rel="noopener" href="https://music.163.com/#/user/home?id=579015212" title="网易云音乐" target="_blank" style="color:#C10D0C"><span class="icon iconify" data-icon="ri:netease-cloud-music-line"></span></a><a class="links-of-author-item hty-icon-button" rel="noopener" href="https://www.zhihu.com/people/chu-liu-16-64" title="知乎" target="_blank" style="color:#0084FF"><span class="icon iconify" data-icon="ri:zhihu-line"></span></a><a class="links-of-author-item hty-icon-button" rel="noopener" href="https://space.bilibili.com/21994551" title="哔哩哔哩动画" target="_blank" style="color:#FF8EB3"><span class="icon iconify" data-icon="ri:bilibili-line"></span></a><a class="links-of-author-item hty-icon-button" rel="noopener" href="/atom.xml" title="RSS" target="_blank" style="color:orange"><span class="icon iconify" data-icon="ri:rss-line"></span></a></div><hr style="margin:0.5rem 1rem"><div class="links"><a class="links-item hty-icon-button" href="/links/" title="我的小伙伴们" style="color:dodgerblue"><span class="icon iconify" data-icon="ri:genderless-line"></span></a><a class="links-item hty-icon-button" href="/girls/" title="我永远喜欢oo" style="color:hotpink"><span class="icon iconify" data-icon="ri:women-line"></span></a></div><br><a class="links-item hty-icon-button" id="toggle-mode-btn" href="javascript:;" title="Mode" style="color: #f1cb64"><span class="icon iconify" data-icon="ri:contrast-2-line"></span></a></div><div class="sidebar-panel sidebar-panel-active" id="post-toc-wrap"><div class="post-toc"><div class="post-toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%89%8D%E8%A8%80"><span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A6%82%E8%BF%B0"><span class="toc-text">概述</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AF%8D%E6%B3%95%E5%88%86%E6%9E%90%E7%9A%84%E4%BB%BB%E5%8A%A1"><span class="toc-text">词法分析的任务</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8D%95%E8%AF%8D%E7%9A%84%E5%88%86%E7%B1%BB%E4%B8%8E%E8%A1%A8%E7%A4%BA"><span class="toc-text">单词的分类与表示</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AF%8D%E6%B3%95%E5%88%86%E6%9E%90%E7%A8%8B%E5%BA%8F"><span class="toc-text">词法分析程序</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%8A%B6%E6%80%81%E8%BD%AC%E7%A7%BB%E5%9B%BE"><span class="toc-text">状态转移图</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B7%A6%E7%BA%BF%E6%80%A7%E6%96%87%E6%B3%95%E6%9E%84%E9%80%A0%E7%8A%B6%E6%80%81%E8%BD%AC%E7%A7%BB%E5%9B%BE"><span class="toc-text">左线性文法构造状态转移图</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%B3%E7%BA%BF%E6%80%A7%E6%96%87%E6%B3%95%E6%9E%84%E9%80%A0%E7%8A%B6%E6%80%81%E8%BD%AC%E7%A7%BB%E5%9B%BE"><span class="toc-text">右线性文法构造状态转移图</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%87%AA%E5%8A%A8%E8%AF%8D%E6%B3%95%E5%88%86%E6%9E%90%E7%A8%8B%E5%BA%8F"><span class="toc-text">自动词法分析程序</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%AD%A3%E8%A7%84%E8%A1%A8%E8%BE%BE%E5%BC%8F"><span class="toc-text">正规表达式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9C%89%E7%A9%B7%E8%87%AA%E5%8A%A8%E6%9C%BA"><span class="toc-text">有穷自动机</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%A1%AE%E5%AE%9A%E7%9A%84%E6%9C%89%E7%A9%B7%E8%87%AA%E5%8A%A8%E6%9C%BA"><span class="toc-text">确定的有穷自动机</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%9D%9E%E7%A1%AE%E5%AE%9A%E7%9A%84%E6%9C%89%E7%A9%B7%E8%87%AA%E5%8A%A8%E6%9C%BA"><span class="toc-text">非确定的有穷自动机</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%B0%86%E9%9D%9E%E7%A1%AE%E5%AE%9A%E7%9A%84%E6%9C%89%E7%A9%B7%E8%87%AA%E5%8A%A8%E6%9C%BA%E7%A1%AE%E5%AE%9A%E5%8C%96%E7%9A%84%E6%96%B9%E6%B3%95"><span class="toc-text">将非确定的有穷自动机确定化的方法</span></a></li></ol></li></ol></li></ol></div></div></div></aside><main class="sidebar-translate" id="content"><div id="post"><article class="hty-card post-block" itemscope itemtype="https://schema.org/Article" style="--smc-primary:#66d6ff;"><link itemprop="mainEntityOfPage" href="http://lapras.xyz/2022/11/07/5fc886fa.html"><span hidden itemprop="author" itemscope itemtype="https://schema.org/Person"><meta itemprop="name" content="Anduin9527"><meta itemprop="description"></span><span hidden itemprop="publisher" itemscope itemtype="https://schema.org/Organization"><meta itemprop="name" content="Anduin9527的乖离器"></span><header class="post-header"><h1 class="post-title" itemprop="name headline">编译原理（二）--词法分析</h1><div class="post-meta"><div class="post-time" style="display:block"><span class="post-meta-item-icon"><span class="icon iconify" data-icon="ri:calendar-line"></span></span> <time title="Created: 2022-11-07 15:58:36" itemprop="dateCreated datePublished" datetime="2022-11-07T15:58:36+08:00">2022-11-07</time></div><span class="post-count"><span class="post-symbolcount"><span class="post-meta-item-icon" title="Word count in article"><span class="icon iconify" data-icon="ri:file-word-line"></span></span> <span title="Word count in article">5k</span><span class="post-meta-divider">-</span><span class="post-meta-item-icon" title="Reading time"><span class="icon iconify" data-icon="ri:timer-line"></span></span> <span title="Reading time">19m</span></span></span><div class="post-classify"><span class="post-category"> <span class="post-meta-item-icon" style="margin-right:3px;"><span class="icon iconify" data-icon="ri:folder-line"></span></span><span itemprop="about" itemscope itemtype="https://schema.org/Thing"><a class="category-item" href="/categories/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86/" style="--text-color:#a000e4" itemprop="url" rel="index"><span itemprop="text">编译原理</span></a></span></span><span class="post-tag"><span class="post-meta-divider">-</span><a class="tag-item" href="/tags/%E7%AC%94%E8%AE%B0/" style="--text-color:dimgray"><span class="post-meta-item-icon"><span class="icon iconify" data-icon="ri:price-tag-3-line"></span></span><span class="tag-name">笔记</span></a><a class="tag-item" href="/tags/%E5%BD%A2%E5%BC%8F%E8%AF%AD%E8%A8%80/" style="--text-color:#d892e4"><span class="post-meta-item-icon"><span class="icon iconify" data-icon="ri:price-tag-3-line"></span></span><span class="tag-name">形式语言</span></a></span></div></div></header><section class="post-body" itemprop="articleBody"><div class="post-content markdown-body"><h2 id="前言">前言</h2>
+<p>嘿嘿嘿，boki酱可爱捏</p>
+<p><img src="https://imgbed-1304793179.cos.ap-nanjing.myqcloud.com/typora/20221107155740.jpg" alt="102545983_p0_master1200" style="zoom: 50%;" / loading="lazy"></p>
+<span id="more"></span>
+<h2 id="概述">概述</h2>
+<h3 id="词法分析的任务">词法分析的任务</h3>
+<p><strong>词法分析器</strong> 需要做的就是从左至右逐个字符地对源程序进行扫描，识别一个个单词符号，具体而言：</p>
+<ol type="1">
+<li><p><strong>消除无用字符</strong>，对源程序文本进行处理，消除源程序文本中的注释、空格、换行符及其他一切对语法分析和代码生成无用的信息</p></li>
+<li><p><strong>识别单词</strong>，扫描源程序的一个个字符，按照语言的词法规则，识别出各类有独立意义的单词</p></li>
+<li><p>对识别出来的单词进行 <strong>内部编码</strong>。将长度不一、种类不同的单词用长度统一、格式规整、分类清晰的内部编码表示</p></li>
+<li><p>建立各种 <strong>表格</strong>（如名字特征表、常数表等）</p></li>
+</ol>
+<p>编译程序实现词法分析时，可以进行单独一遍扫描，也可以和语法分析放在同一遍扫描中</p>
+<h3 id="单词的分类与表示">单词的分类与表示</h3>
+<p>通常在程序设计语言中，可以将单词分为以下几类</p>
+<ol type="1">
+<li>关键字：如 begin, repeat, if,...</li>
+<li>界限符：逗号、分号、括号和空白</li>
+<li>运算符：+,-,*,/,...</li>
+<li>常数：各种类型的常数</li>
+<li>标识符一表示各种名字：如变量名、数组名和过程名</li>
+</ol>
+<p>对于单词的表示，通常要先对其进行 <strong>分类</strong> 然后进行 <strong>编码</strong>。通常将单词编码分为两部分：<strong>类别编码</strong> 和 <strong>单词自身编码</strong>，并以一个二元组的形式给出。</p>
+<p>单词的类别编码有两种方案：</p>
+<ol type="1">
+<li>一类一种：根据单词的五大种类进行划分，为每一类分配一个类型码</li>
+<li>一字一种：即设计之初就定义下来，比如 <code>for</code> 就是 12 之类的</li>
+</ol>
+<p>关键字、运算符、界限符等专用符号在语言设计之初其属性就不会再发生变化，因此其 <strong>自身编码值</strong> 可以直接固定。而对于标识符和常量这种单词的自身值编码同样也有两种方案：</p>
+<ol type="1">
+<li>标识符单独为一种，自身的值表示成按照机器字节划分的内部码；常数按照类型分种，常数的值则表示为标准的 2 进制数形式</li>
+<li>引入符号表，将标识符和常量分别放入相应的表中，用表中的相对地址码作为单词的值</li>
+</ol>
+<h2 id="词法分析程序">词法分析程序</h2>
+<p>词法分析程序分为手工编码实现方案和利用自动生成器两种，前者相对比较复杂、易出错但效率较高，生成的词法分析程序的代码量较少（GCC)。后者可快速成型，代码量少，但较难控制细节，调优比较难（Lex等）</p>
+<h3 id="状态转移图">状态转移图</h3>
+<p>转换图实际上是一个 <strong>有限方向图</strong>，图中结点代表 <strong>状态</strong>，用 <strong>圆圈</strong> 表示。状态之间用 <strong>有向边</strong> 连接，有向边上标记某个符号，其含义是某一状态下，如果当前的输入符号是有向边上标记的符号，则转换到另一状态或留在原状态</p>
+<p><strong>转换图只能存在一个初态和至少一个终态（双圈表示）</strong></p>
+<pre class="language-mermaid" data-language="mermaid"><code class="language-mermaid"><span class="token keyword">graph</span> LR
+id1<span class="token text string">((1))</span><span class="token inter-arrow-label"><span class="token arrow-head arrow operator">--</span><span class="token label property">a</span><span class="token arrow operator">--></span></span>id2<span class="token text string">((2))</span>
+id1 <span class="token inter-arrow-label"><span class="token arrow-head arrow operator">--</span><span class="token label property">b</span><span class="token arrow operator">--></span></span>id3<span class="token text string">((3))</span></code></pre>
+<p>该状态转换图表示在状态 1 下读 a 转到状态 2，若在状态 1 下读入字符 b，则转到状态 3</p>
+<p>同样的，一个状态转换图可以用于识别一定的字符串，例如 C 语言表视符的转换图：</p>
+<p><img src="https://imgbed-1304793179.cos.ap-nanjing.myqcloud.com/typora/20220929164545.png" alt="image-20220929164545827" style="zoom:80%;" / loading="lazy"></p>
+<p>其中，S 为 <strong>初态</strong>，Z 为 <strong>终态</strong>。这个状态转换图识别（接受）标识符的过程：从初态 S 开始，若编译器扫描到了一个字母或下画线，则读入该字母或下画线，并转入状态 1；在状态 1 下，若编译器又扫描到了一个字母或下画线或数字，则仍然读进，并再次进入状态 1，重复这个过程，直到在状态 1 下发现编译器扫描到的符号不再是字母或下画线或数字时，进入状态 Z。状态 Z 是终态，它意味着到此已识别出一个 C 语言的标识符，识别过程 <strong>宣告终止</strong>。终态 Z 的右上角有一个 <strong>星号</strong>，这表示读进了一个不属于标识符的符号（如界限符、空格等），应把它退还给输入串，用于识别下一个单词</p>
+<h3 id="左线性文法构造状态转移图">左线性文法构造状态转移图</h3>
+<p>正规文法包含左线性文法和右线性文法。词法规则往往可以采用正规文法来构造，而状态转换图恰恰又可用于识别单词，因此它们之间实际存在“等价”关系。所以可以将正规文法转换为状态转换图</p>
+<p>令文法 <span class="math inline">\({G}=({V}_, {V}_, {P}, {Z})\)</span> 是一个左线性文法, 并假设 <span class="math inline">\(|{V}_|={n}\)</span>， 则构造出的状态转换图共有 <span class="math inline">\({n}+1\)</span> 个状态, 其对应的状态转换图构造步骤如下 (其中 <span class="math inline">\(U, B \in V_N, a, c \in V_T\)</span> )</p>
+<ol type="1">
+<li>将每个 <strong>非终结符号</strong> 设置成一个对应的 <strong>状态</strong>, 文法的 <strong>开始符号</strong> <span class="math inline">\(Z\)</span> 所对应的状态为 <strong>终止状态</strong></li>
+<li>在图中增加一个结点 <span class="math inline">\(S\)</span> 作为 <strong>初始状态</strong>，<span class="math inline">\(S\)</span> 并非文法中的符号</li>
+<li>对于 <span class="math inline">\({G}\)</span> 中形如 <span class="math inline">\(U arrow a\)</span> 的规则，从初始状态 <span class="math inline">\(S\)</span> 向状态 <span class="math inline">\(U\)</span> 引一条箭弧，并标记为 <span class="math inline">\(a\)</span></li>
+<li>对于 <span class="math inline">\({G}\)</span> 中形如 <span class="math inline">\({U} arrow {Bc}\)</span> 的规则，从状态 <span class="math inline">\({B}\)</span> 向状态 <span class="math inline">\({U}\)</span> 引一条箭弧，并标记为 <span class="math inline">\({c}\)</span></li>
+</ol>
+<p>栗子：设有左线性文法 <span class="math inline">\(G=(V_N, V_T, P, Z), V_N=\{Z, A, B\}, V_T=\{0,1\}\)</span>，其中 <span class="math inline">\(P\)</span> :</p>
+<p><span class="math display">\[
+{Z} \rightarrow {A} 0|{~B} 1 \quad {~A} \rightarrow {Z} 1| 1 \quad {~B} \rightarrow {Z} 0 \mid 0
+\]</span></p>
+<p>则：</p>
+<p><img src="https://imgbed-1304793179.cos.ap-nanjing.myqcloud.com/typora/20220929165443.png" alt="image-20220929165443620" style="zoom:80%;" / loading="lazy"></p>
+<p>首先明确一点，左线性文法构造状态转移图是根据规则反向（自底向上）进行推理的</p>
+<p>不难发现，首先从 <span class="math inline">\(S\)</span> 出发，利用右部只有终结符的规则 <span class="math inline">\(B \to 0,\ A \to 1\)</span> 得到状态 <span class="math inline">\(A,\ B\)</span>，然后用 <span class="math inline">\(Z \to A0|B1\)</span> 获得 $A ^0 Z, B ^1 Z $。最后根据 <span class="math inline">\(A \to Z1, \ B\to Z0\)</span>，构造剩下两条由 <span class="math inline">\(Z\)</span> 出发的路径</p>
+<p>那么这个具体的用处是什么呢？答曰：识别某个字符串 <span class="math inline">\(x\)</span> 是否为该文法下的合法句子，如果其从初始状态 <span class="math inline">\(S\)</span> 出发，与 <span class="math inline">\(x\)</span> 余留部分中最左字符相匹配的原则，游历状态转换图，直到 <span class="math inline">\(x\)</span> 读入最后一个符号为止。如果这时恰好到达状态 <span class="math inline">\(Z\)</span>(即文法的开始符号），则 x 是该文法所产生的句子（单词）之一，否则不是</p>
+<p>比如识别字符串 <span class="math inline">\(101001\)</span>，其路径如下</p>
+<p><img src="https://imgbed-1304793179.cos.ap-nanjing.myqcloud.com/typora/20220929170235.png" alt="image-20220929170235324" style="zoom:80%;" / loading="lazy"></p>
+<p>通过路径还可以还原其语法树：</p>
+<p><img src="https://imgbed-1304793179.cos.ap-nanjing.myqcloud.com/typora/20220929170323.png" alt="image-20220929170323712" style="zoom:80%;" / loading="lazy"></p>
+<p>可见，这颗树是向左生长的（左线性）。事实上，该文法最终生成的语言为 <span class="math inline">\(\{ 01,10 \}^+\)</span></p>
+<h3 id="右线性文法构造状态转移图">右线性文法构造状态转移图</h3>
+<p>令文法 <span class="math inline">\({G}=({V}_, {V}_, {P}, {Z})\)</span> 是一个右线性文法, 并假设 <span class="math inline">\(|{V}_|={n}\)</span>， 则构造出的状态转换图共有 <span class="math inline">\({n}+1\)</span> 个状态, 其对应的状态转换图构造步骤如下 (其中 <span class="math inline">\(U, B \in V_N, a, c \in V_T\)</span> )</p>
+<ol type="1">
+<li>将每个 <strong>非终结符号</strong> 设置成一个对应的 <strong>状态</strong>, 文法的 <strong>开始符号</strong> <span class="math inline">\(Z\)</span> 所对应的状态为 <strong>终止状态</strong></li>
+<li>在图中增加一个结点 <span class="math inline">\(S\)</span> 作为 <strong>初始状态</strong>，<span class="math inline">\(S\)</span> 并非文法中的符号</li>
+<li>对于 <span class="math inline">\({G}\)</span> 中形如 <span class="math inline">\(U arrow a\)</span> 的规则，从状态 <span class="math inline">\(U\)</span> 向终止状态 <span class="math inline">\(Z\)</span> 引一条箭弧，并标记为 <span class="math inline">\(a\)</span></li>
+<li>对于 <span class="math inline">\({G}\)</span> 中形如 <span class="math inline">\({U} arrow {cB}\)</span> 的规则，从状态 <span class="math inline">\({U}\)</span> 向状态 <span class="math inline">\({B}\)</span> 引一条箭弧，并标记为 <span class="math inline">\({c}\)</span></li>
+</ol>
+<p>不难发现，右线性文法构造时，是顺序（自顶向下）推理的</p>
+<p>栗子，设有右线性文法 <span class="math inline">\({G}[S]=({V}_{N}, {V}_{T}, {P}, S), {V}_{N}=\{S, {A}, {B}, {C}\}, {V}_{T}=\{0,1\}\)</span>, 其中 <span class="math inline">\({P}\)</span> : <span class="math display">\[
+{S} \rightarrow 1 {~A}|0 {~B} \quad {~A} \rightarrow 0 {C}| 0 \quad {~B} \rightarrow 1 {C}|1 \quad {C} \rightarrow 0 {~B}| 1 {~A}
+\]</span> 则</p>
+<p><img src="https://imgbed-1304793179.cos.ap-nanjing.myqcloud.com/typora/20220929173424.png" alt="image-20220929173424164" style="zoom:80%;" / loading="lazy"></p>
+<p>事实上，该文法最终生成的语言同为 <span class="math inline">\(\{ 01,10 \}^+\)</span>，可称其与上文左线性文法为 <strong>左右线性文法等价，不同状态转移图等价，正规文法和状态转移图等价</strong>。换言之，状态转移图，等价左右线性文法是知一求二的关系</p>
+<h2 id="自动词法分析程序">自动词法分析程序</h2>
+<h3 id="正规表达式">正规表达式</h3>
+<p>正规表达式是一种通过符号组成的式子来表达语言（句子集合）的方式。它简单、直观，与 <strong>集合</strong> 的表现形式更为相近，因此应用起来也更为方便</p>
+<p>每一类程序设计语言都有它自己的 <strong>字符集</strong> <span class="math inline">\(\Sigma\)</span>，语言中每一个单词可以是 <span class="math inline">\(\Sigma\)</span> 的单个有意义的字符（如运算符、分隔符等），也可以是 <span class="math inline">\(\Sigma\)</span> 上的字符按一定方式组成的有意义的字符串（如常数、保留字、标识符及关系运算符等）。如果我们把每类单词均视为一种“语言”，那么 <strong>每一类单词都可用一个正规表达式</strong> 来描述。正规表达式表示的“语言”叫作 <strong>正规集</strong></p>
+<p><strong>正则表达式和正规集</strong>：</p>
+<ol type="1">
+<li>定义 <span class="math inline">\(\varepsilon\)</span> 和 <span class="math inline">\(\varnothing\)</span> 是 <span class="math inline">\(\Sigma\)</span> 上的正规表达式，它们所表示的正规集分别为 <span class="math inline">\(\{\varepsilon\}\)</span> 和 <span class="math inline">\(\varnothing\)</span></li>
+<li>对于每一个 <span class="math inline">\(a \in \Sigma\)</span>，<span class="math inline">\(a\)</span> 即为 <span class="math inline">\(\Sigma\)</span> 上的正规表达式，定义它表示的正规集为 <span class="math inline">\(\{a\}\)</span></li>
+<li>反之，如果 <span class="math inline">\(\Sigma\)</span> 上的某些集合 <strong>不能用正规表达式表示</strong>，则该集合不是正规集</li>
+</ol>
+<p><strong>正规表达式和正规集的运算：</strong></p>
+<p>如果 <span class="math inline">\(e_1\)</span> 和 <span class="math inline">\(e_2\)</span> 是 <span class="math inline">\(\Sigma\)</span> 上的正规表达式, 定义它们所表示的正规集分别为 <span class="math inline">\(L(e_1)\)</span> 和 <span class="math inline">\(L(e_2)\)</span>， 则:</p>
+<ol type="1">
+<li><span class="math inline">\(e_1 \mid e_2\)</span> 是正规表达式，<span class="math inline">\(\mid\)</span> 表示选择，其相应正规集为 <span class="math inline">\(L(e_1 \mid e_2)=L(e_1) \cup L(e_2)\)</span></li>
+<li><span class="math inline">\(e_1 \cdot e_2\)</span> 是正规表达式，<span class="math inline">\(\cdot\)</span> 表示连接 其相应正规集为 <span class="math inline">\(L(e_1 \cdot e_2)=L(e_1) L(e_2)\)</span>，通常 <strong>省略</strong> <span class="math inline">\(\cdot\)</span></li>
+<li><span class="math inline">\(({e}_1)^*\)</span> 是正规表达式，<span class="math inline">\(*\)</span> 表示克林闭包，其相应正规集为 <span class="math inline">\({L}(({e}_1)^*)=({L}({e}_1))^*\)</span></li>
+<li><strong>有限次</strong> 使用上述步骤定义的表达式才是 <span class="math inline">\(\Sigma\)</span> 上的正规表达式。仅由这些正规表达式所表示的符号串集合才是 <span class="math inline">\(\Sigma\)</span> 上的正规集</li>
+<li>这三个运算符的运算优先级为 <span class="math inline">\(*,\ \cdot,\ \mid\)</span></li>
+<li>除了这三个运算符之外，还可以使用 <strong>圆括号</strong> 改变运算顺序</li>
+</ol>
+<blockquote>
+<p>栗子：<span class="math inline">\(\Sigma = \{a,b\}\)</span>，求正规表达式对应的正规集</p>
+<p><img src="https://imgbed-1304793179.cos.ap-nanjing.myqcloud.com/typora/20221107160511.png" alt="image-20221107160511115" style="zoom: 80%;" / loading="lazy"></p>
+</blockquote>
+<blockquote>
+<p>栗子 2：</p>
+<ol type="1">
+<li>十进制整数的 RE：<span class="math inline">\((1\mid ...\mid 9)(0\mid ...\mid 9)^*\mid 0\)</span></li>
+<li>C 语言中八进制整数的 RE：<span class="math inline">\(0(1\mid ...\mid 7)(0\mid...\mid 7)^*\)</span></li>
+<li>C 语言中十六进制整数的 RE：<span class="math inline">\(0x(1\mid ...\mid F)(0\mid ...\mid F)\)</span></li>
+</ol>
+</blockquote>
+<p><strong>正规表达式的等价</strong>：若两个正规式所对应的 <strong>正规集</strong> 相同，则认为两者等价</p>
+<blockquote>
+<p>栗子 3： <span class="math inline">\(e_1=b(a b)^* \quad e_2=(b a)^* b\)</span> <span class="math display">\[
+\begin{aligned}
+&amp;L(e_1)=L(b(a b)^*)=L(b)(L(a b))^*=\{b\}\{a b\}^*=\{b, b a b, b a b a b, \ldots\} \\
+&amp;L(e_2)=L((b a)^* b)=(L(b a))^* L(b)=\{b a\}^*\{b\}=\{b, b a b,  babab, , \ldots\}
+\end{aligned}
+\]</span> 所以 <span class="math inline">\(e_1 = e_2\)</span></p>
+</blockquote>
+<p><strong>正规表达式的性质</strong>：</p>
+<ol type="1">
+<li>交换律：<span class="math inline">\(e_1 \vert e_2 = e_2\vert e_1\)</span></li>
+<li>加法结合律：<span class="math inline">\(e_1 \vert (e_2\vert e_3) = (e_1 \vert e_2)\vert e_3\)</span></li>
+<li>乘法结合律：<span class="math inline">\(e_1 (e_2 e_3) = (e_1 e_2) e_3\)</span></li>
+<li>分配律：<span class="math inline">\(e_1 (e_2\vert e_3) = e_1e_2 \vert e_1e_3\)</span></li>
+<li>空串连接：<span class="math inline">\(\varepsilon e_1 = e_1 \varepsilon = e_1\)</span></li>
+<li>空集合积：<span class="math inline">\(\varnothing e_1= e_1 \varnothing =\varnothing\)</span></li>
+<li>循环：<span class="math inline">\((e^*)^* = e^*\)</span></li>
+<li>循环：<span class="math inline">\((\varepsilon \vert e)^* = e^*\)</span></li>
+</ol>
+<p><strong>正规定义</strong>：给给定的正规表达式起一个别名，比如可以用 <span class="math inline">\(hex \to 0x(1\mid ...\mid F)(0\mid ...\mid F)\)</span> 进行 16 进制数的正则定义，记为 <span class="math inline">\(hex\)</span></p>
+<h3 id="有穷自动机">有穷自动机</h3>
+<p>如前所述，使用 <strong>正规文法</strong> 或 <strong>正规表达式</strong> 可以定义语言的词法结构。在 <strong>手动编写方式</strong> 中，我们将正规文法转换成状 <strong>态转换图</strong>，根据状态转换图可以较为方便地编写出词法分析程序。对于计算机而言，状态转换图的描述方式是不易理解的，也不适合用于 <strong>自动生成词法分析程序</strong>。因此需要引入状态转换图的 <strong>形式化描述工具</strong>——<strong>有穷自动机</strong>，从识别语言的角度出发，确定某种模型来判断一个符号串是否是给定语言的句子</p>
+<p>有穷自动机（Finite Automata，FA）也被称为有穷状态自动机或有穷状态系统，它是一种数学模型，这种模型对应的系统 <strong>具有有穷数目的内部状态</strong>，系统的状态概括了对过去输入的处理情况。系统根据当前所处的状态和面临的输入就可以决定后续行为。每当系统处理完当前的输入，系统的内部状态也会发生改变。有穷自动机分为确定的有穷自动机（Deterministic Finite Automata，DFA）和非确定的有穷自动机（Non-Deterministic Finite Automata，NFA），下面分别给出它们的形式化定义。</p>
+<p>FA 定义的语言：给定输入串 <span class="math inline">\(x\)</span>, 如果存在一个对应于串 <span class="math inline">\(x\)</span> 的从初始状态到某个终止状态的转换序列，则称串 <span class="math inline">\(x\)</span> 被该 FA 接收由一个有穷自动机 <span class="math inline">\(M\)</span> 接收的 <strong>所有串构成的集合</strong> 称为是该 FA 定义（或接收）的 <strong>语言</strong>，记为 <span class="math inline">\(L(M)\)</span></p>
+<p>FA 的最长子串匹配原则（贪婪原则）：当输入串的多个前缀与一个或多个模式匹配时，总是选择最长的前缀进行匹配</p>
+<h3 id="确定的有穷自动机">确定的有穷自动机</h3>
+<p>一个确定的有穷自动机（DFA）由一个五元组 <span class="math inline">\(M\)</span> 定义, 即 <span class="math inline">\(M=({K}, {V}_, M, S, Z)\)</span></p>
+<ul>
+<li><p><span class="math inline">\({K}\)</span> 是状态有穷的非空集合，<span class="math inline">\({K}\)</span> 中每一个元素是一个状态</p></li>
+<li><p><span class="math inline">\({V}_\)</span> 是一个有穷输入字母表， <span class="math inline">\({V}_\)</span> 中的每一个元素称为输入字符</p></li>
+<li><p><span class="math inline">\(M\)</span> 是 <span class="math inline">\(K \times V_T\)</span> 到 <span class="math inline">\(K\)</span> 的单值映射（函数），即 <span class="math inline">\(M(q, a)= p, q, p \in K, a \in V_T\)</span> ，它表示：当前状态为 <span class="math inline">\({q}\)</span>，输入字符为 <span class="math inline">\({a}\)</span> 时, 将转到下一状态 <span class="math inline">\({p}\)</span>，<span class="math inline">\({p}\)</span> 是 <span class="math inline">\({q}\)</span> 的一个后继状态。<strong>由于映射是单值, 所以称确定的有穷自动机</strong></p></li>
+<li><p><span class="math inline">\(S\)</span> 为初始状态, 是唯一初态, <span class="math inline">\(S \in {K}\)</span></p></li>
+<li><p><span class="math inline">\({Z}\)</span> 是终止状态集合，<span class="math inline">\({Z}\)</span> 是 <span class="math inline">\({K}\)</span> 的子集</p></li>
+</ul>
+<p><strong>状态转移图</strong>：所以，我们可以通过这个五元组绘制出 <strong>DFA</strong> 的状态转移图。一个 <strong>DFA</strong> 可唯一表示一张确定的状态转换图。假定一 <strong>DFA</strong> 有 <span class="math inline">\(m\)</span> 个状态和 <span class="math inline">\(n\)</span> 个输入字符，则它的状态转换图含有 <span class="math inline">\(m\)</span> 个状态，每个结点最多有 <span class="math inline">\(n\)</span> 条箭弧和别的状态相连接，每条箭弧用 <span class="math inline">\(V_T\)</span> 中的一个输入字符标记，整个图含有唯一的初态和若干个终态。</p>
+<p><strong>状态转移矩阵</strong>：一个 <strong>DFA</strong> 还可以用一个状态转换矩阵来表示，矩阵的 <strong>行表示状态</strong>，<strong>列表示输入字符</strong>，矩阵元素表示映射 <span class="math inline">\(M(q,a)=p\)</span></p>
+<p><strong>DFA 输入符号串</strong>：定义如下：</p>
+<ol type="1">
+<li><p><span class="math inline">\(M({q}, \varepsilon)={q}, {q} \in {K}\)</span>，一个状态输入空符号串回到自身</p></li>
+<li><p><span class="math inline">\(M(q, a t)=M(M(q, a), t)=M(p, t)=\cdots\)</span>, 其中 <span class="math inline">\(a \in V_T, t \in V_T^*\)</span></p>
+<p>当状态为 <span class="math inline">\(q\)</span>，输入字符串为 <span class="math inline">\(at\)</span> 时，利用映射 <span class="math inline">\(M({q}, {a})\)</span> 得到状态 <span class="math inline">\({p}\)</span>，然后利用映射 <span class="math inline">\(M({p}, {t})\)</span>，如此重复。如果对某一字符串 <span class="math inline">\(x\)</span>，有 <span class="math inline">\(M(S, x)=r\)</span>，而 <span class="math inline">\(r \in Z\)</span>，则称字符串 <span class="math inline">\(x\)</span> 被 <span class="math inline">\((DFA)M\)</span> <strong>接受</strong></p></li>
+</ol>
+<p><strong>DFA 接受集</strong>：将可被接受的字符串全体称为自动机 <span class="math inline">\(M\)</span> 的 <strong>接受集</strong> 或 <strong>所接受的语言</strong>，记作 <span class="math inline">\(L(M)\)</span></p>
+<blockquote>
+<p>栗子：(DFA) <span class="math inline">\(M=(\{0,1,2,3\},\{a, b\}, M, 0,\{3\})\)</span>，其中 <span class="math inline">\({K}=\{0,1,2,3\}\)</span>，<span class="math inline">\({V}_=\{a, b\}\)</span></p>
+<p>对于输入字符串 <span class="math inline">\(a b b\)</span>, 因为从初始状态 0 出发, 有 <span class="math display">\[
+\mathrm{M}(0, \mathrm{a})= 1 \quad \mathrm{M}(1, \mathrm{~b})= 2 \quad \mathrm{M}(2, \mathrm{~b})= 3
+\]</span> 当输入完最后一个字符 <span class="math inline">\({b}\)</span> 时, 到达了终止状态 3 , 所以字符串 <span class="math inline">\(a b b\)</span> 能被此 DFA 所接受 (识别)。</p>
+<p>其状态转移图：</p>
+<p><img src="https://imgbed-1304793179.cos.ap-nanjing.myqcloud.com/typora/20221010132005.png" alt="image-20221010132005767" style="zoom:90%;" / loading="lazy"></p>
+<p>其状态转移矩阵：</p>
+<table>
+<thead>
+<tr class="header">
+<th>状态</th>
+<th>a</th>
+<th>b</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>0</td>
+<td>1</td>
+<td>2</td>
+</tr>
+<tr class="even">
+<td>1</td>
+<td>3</td>
+<td>2</td>
+</tr>
+<tr class="odd">
+<td>2</td>
+<td>1</td>
+<td>3</td>
+</tr>
+<tr class="even">
+<td>3</td>
+<td>3</td>
+<td>3</td>
+</tr>
+</tbody>
+</table>
+<p>显然，该自动机所接受的语言 <span class="math inline">\(L(M)\)</span> 为 <span class="math inline">\(\{a,b\}^+\)</span> 且至少含有相继两个 <span class="math inline">\(a\)</span> 或 <span class="math inline">\(b\)</span></p>
+</blockquote>
+<h3 id="非确定的有穷自动机">非确定的有穷自动机</h3>
+<p>非确定的有穷自动机（NFA）与确定的有穷自动机的唯一区别就在于映射 <span class="math inline">\(M\)</span></p>
+<p><span class="math inline">\(M\)</span> 是 <span class="math inline">\(K \times V_T\)</span> 到 <span class="math inline">\({K}\)</span> 的 <strong>幂集</strong>（所有子集的集合）上的映射，即 <span class="math inline">\(\{K \times V_T arrow 2^K\}\)</span></p>
+<p><span class="math inline">\(M(q, a)=\{p_1, p_2, \cdots, p_n\} \in 2^K, {q} \in K, a \in V_T\)</span> ，表示：当前状态为 <span class="math inline">\({q}\)</span>，输入字符为 <span class="math inline">\({a}\)</span> 时，映射 <span class="math inline">\(M\)</span> 将产生一个状态集合 <span class="math inline">\(\{p_1, p_2, \cdots, p_n\}\)</span> （可能是空集），而不是单个状态，所以 <strong>称非确定的有穷自动机</strong></p>
+<p><strong>NFA 输入符号串</strong>：</p>
+<ol type="1">
+<li><span class="math inline">\(M(q, \varepsilon)=\{q\}, q \in K\)</span></li>
+<li></li>
+</ol>
+<p><span class="math display">\[
+\begin{aligned}
+\mathrm{M}(\mathrm{q}, \mathrm{at})
+&amp;=\mathrm{M}(\mathrm{M}(\mathrm{q}, \mathrm{a}), \mathrm{t})\\
+&amp;=\mathrm{M}(\{\mathrm{p}_1, \mathrm{p}_2, \cdots, \mathrm{p}_{\mathrm{n}}\}, \mathrm{t}) \\
+&amp;=\cup \mathrm{M}(\mathrm{p}_{\mathrm{i}}, \mathrm{t})
+\end{aligned}
+\]</span> 其中, <span class="math inline">\({i}\)</span> 从 1 变到 <span class="math inline">\({n}, {p}_i \in M({q}, {a}), {a} \in {V}_T, {t} \in {V}_T^*\)</span> ，如此继续。对于 <span class="math inline">\({V}_{ }^*\)</span> 上的字符串 <span class="math inline">\({x}\)</span>, 令 <span class="math inline">\(S_0 \in S\)</span>，若集合 <span class="math inline">\(M(S_0, {x})\)</span> 含有属于终态集 <span class="math inline">\({Z}\)</span> 的状态，<strong>或者至少存在一条从某一个初态结点到某一个终态结点的路径</strong>，且这条路径上所有箭弧的标记字符连接起来的字符串等于 <span class="math inline">\(x\)</span>, 我们就说 <span class="math inline">\(x\)</span> 为 <span class="math inline">\(N F A(M)\)</span> 所接受 (识别)</p>
+<p><strong>NFA 接受集</strong>：一个 <span class="math inline">\({NFA}(M)\)</span> 所接受的 <span class="math inline">\({V}_{ }^*\)</span> 中的全体字符串称为 <span class="math inline">\(M\)</span> 的接受集或 <span class="math inline">\(M\)</span> 所接受的语言, 记为 <span class="math inline">\({L}(M)\)</span></p>
+<blockquote>
+<p>栗子：</p>
+<p><img src="https://imgbed-1304793179.cos.ap-nanjing.myqcloud.com/typora/20221107161833.png" alt="image-20221107161833337" style="zoom:67%;" / loading="lazy"></p>
+<p>状态转移图：</p>
+<p><img src="https://imgbed-1304793179.cos.ap-nanjing.myqcloud.com/typora/20221010210527.png" alt="image-20221010210527776" style="zoom:80%;" / loading="lazy"></p>
+<p>状态转移矩阵：</p>
+<table>
+<thead>
+<tr class="header">
+<th>状态</th>
+<th>0</th>
+<th>1</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>S0</td>
+<td>{S0, S3}</td>
+<td>{S0, S1}</td>
+</tr>
+<tr class="even">
+<td>S1</td>
+<td><span class="math inline">\(\varnothing\)</span></td>
+<td>{S2}</td>
+</tr>
+<tr class="odd">
+<td>S2</td>
+<td>{S2}</td>
+<td>{S2}</td>
+</tr>
+<tr class="even">
+<td>S3</td>
+<td>{S4}</td>
+<td><span class="math inline">\(\varnothing\)</span></td>
+</tr>
+<tr class="odd">
+<td>S4</td>
+<td>{S4}</td>
+<td>{S4}</td>
+</tr>
+</tbody>
+</table>
+<p>对于此 NFA，若输入字符串 <code>10010</code>，判断其是否为可被识别的符号串： <span class="math display">\[
+\begin{aligned}
+M(S_0, 10010) &amp;=M(S_0, 0010) \cup M(S_1, 0010) \\
+&amp;=M(S_0, 010) \cup M(S_3, 010) \\
+&amp;=M(S_0, 10) \cup M(S_3, 10) \cup M(S_4, 10) \\
+&amp;=M(S_0, 0) \cup M(S_1, 0) \cup M(S_4, 0) \\
+&amp;=\{S_0, {~S}_3, {~S}_4\}
+\end{aligned}
+\]</span> 因为 <span class="math inline">\(M(S_0, 10010)=\{S_0, {~S}_3, {~S}_4\} \cap {Z} \neq \varnothing\)</span>, 所以字符串 10010 为此 NFA 所接受。显然，从状态转换图的初始状态 <span class="math inline">\(S_0\)</span> 出发，有路径至终止状态 <span class="math inline">\(S_4\)</span></p>
+</blockquote>
+<ul>
+<li>显然的，如果一个语言能被 NFA 接受，则一定能被 DFA 接受</li>
+</ul>
+<h4 id="将非确定的有穷自动机确定化的方法">将非确定的有穷自动机确定化的方法</h4>
+<p>上文说到 NFA 之所以不确定，是因为其存在到集合的映射。而将 NFA 转化为 DFA 的关键就在于，将这些 <strong>集合视作新的状态</strong>（其实就是穷举法），下面给出定义：</p>
+<p>设( <span class="math inline">\({NFA}) M=({K}, {V}_, M, S, {Z})\)</span> 是 <span class="math inline">\({V}_\)</span> 上一个 <span class="math inline">\({NFA}\)</span>， 构造一个等价的 <span class="math inline">\((DFA)M^{\prime}=({K}^{\prime}, {V}_, M^{\prime}, S^{\prime}, {Z}^{\prime})\)</span></p>
+<ol type="1">
+<li><p><span class="math inline">\(K^{\prime}\)</span> 由 <span class="math inline">\(K\)</span> 的全部子集组成, 即 <span class="math inline">\(K^{\prime}=2^K\)</span> （一般除去空集 <span class="math inline">\(\{\varepsilon\}\)</span>，所以 <span class="math inline">\(size(K^\prime) = 2^{size(K)}-1\)</span>）</p>
+<p>例如，若 <span class="math inline">\({K}=\{S_1, {~S}_2, {~S}_3\}\)</span>，则 <span class="math inline">\({K}\)</span> 的一个子集 <span class="math inline">\(\{S_1, {~S}_2\}\)</span> 表示 <span class="math inline">\({K}^{\prime}\)</span> 的一个状态，用记号 <span class="math inline">\([S_1, {~S}_2]\)</span> 表示，也可 <strong>重新命名</strong></p></li>
+<li><p><span class="math inline">\({V}_={V}_\)</span></p></li>
+<li><p><span class="math inline">\(S^{\prime}=[S]\)</span> (例如, <span class="math inline">\(S=\{S_1, {~S}_2\}\)</span>, 则 <span class="math inline">\(S^{\prime}=[S_1, {~S}_2]\)</span> )</p></li>
+<li><p><span class="math inline">\({Z}^{\prime}=\{[S_1, {~S}_2, \cdots, S_][[S_1, {~S}_2, \cdots, S_] \in {K}^{\prime}..\)</span> 且 <span class="math inline">\(.\{S_1, {~S}_2, \cdots, S_\} \cap {Z} \neq \varnothing\}\)</span></p></li>
+<li><p><span class="math inline">\(M^{\prime}([S_1, {~S}_2, \cdots, S_], {a})=[{R}_1, {R}_2, \cdots, {R}_], \quad {a} \in {V}_\)</span></p></li>
+</ol>
+<p>简而言之，状态集合变成原本的 <strong>幂集</strong>，输入集合不变，起始状态不变（换了个符号），终止状态变为只要新的状态集合中含有原本的终止状态即是新的终止状态，映射的改变从 NFA 的 <strong>状态到集合</strong> 的映射变为 <strong>集合到集合</strong> 的映射，这一部分可以看看下面栗子辅助理解</p>
+<blockquote>
+<p><span class="math inline">\((NFA)M=(\{S_0, {~S}_1\},\{a, b\}, M,\{S_0\},\{S_1\})\)</span>，其中 ${K}={S_0, {~S}_1}, V_T=<br />
+</p>
+</blockquote>
+</div></section><ul class="post-copyright"><li class="post-copyright-author"><strong>Post author: </strong>Anduin9527</li><li class="post-copyright-link"><strong>Post link: </strong><a href="http://lapras.xyz/2022/11/07/5fc886fa.html" title="编译原理（二）--词法分析">http://lapras.xyz/2022/11/07/5fc886fa.html</a></li><li class="post-copyright-license"><strong>Copyright Notice: </strong>All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank" rel="noopener" title="CC BY-NC-SA 4.0 "><span class="icon iconify" data-icon="ri:creative-commons-line"></span><span class="icon iconify" data-icon="ri:creative-commons-by-line"></span><span class="icon iconify" data-icon="ri:creative-commons-nc-line"></span><span class="icon iconify" data-icon="ri:creative-commons-sa-line"></span></a> unless otherwise stated.</li></ul></article><div class="post-nav"><div class="post-nav-item"></div><div class="post-nav-item"><a class="post-nav-next" href="/2022/10/23/80b4c1fd.html" rel="next" title="汇编语言程序设计（三）"><span class="post-nav-text">汇编语言程序设计（三）</span><span class="icon iconify" data-icon="ri:arrow-right-s-line"></span></a></div></div></div><div class="hty-card" id="comment"><div class="comment-tooltip text-center"><span>如果您有任何关于博客内容的相关讨论，欢迎与我交流。</span><br></div></div></main><footer class="sidebar-translate" id="footer"><div class="beian"><a rel="noopener" href="https://beian.miit.gov.cn/" target="_blank">闽ICP备2021012704号</a></div><div class="copyright"><span>&copy; 2020 – 2022 </span><span class="with-love" id="animate"><span class="icon iconify" data-icon="ri:cloud-line"></span></span><span class="author"> Anduin9527</span></div><div class="powered"><span>Powered by <a href="https://hexo.io" target="_blank" rel="noopener">Hexo</a> v6.2.0</span><span class="footer-separator">|</span><span>Theme - <a rel="noopener" href="https://github.com/YunYouJun/hexo-theme-yun" target="_blank"><span>Yun</span></a> v1.10.6</span></div></footer></div><a class="hty-icon-button" id="back-to-top" aria-label="back-to-top" href="#"><span class="icon iconify" data-icon="ri:arrow-up-s-line"></span><svg class="progress-circle-container" viewBox="0 0 100 100"><circle class="progress-circle" id="progressCircle" cx="50" cy="50" r="48" fill="none" stroke="#66d6ff" stroke-width="2" stroke-linecap="round"></circle></svg></a><a class="popup-trigger hty-icon-button icon-search" id="search" target="_blank" rel="noopener" href="https://www.google.com/search?q=site:lapras.xyz" title="Search"><span class="site-state-item-icon"><span class="icon iconify" data-icon="ri:search-line"></span></span></a><script>function initMourn() {
+  const date = new Date();
+  const today = (date.getMonth() + 1) + "-" + date.getDate()
+  const mourn_days = ["4-4","9-18","5-12","12-13"]
+  if (mourn_days.includes(today)) {
+    document.documentElement.style.filter = "grayscale(1)";
+  }
+}
+initMourn();</script></body></html>
