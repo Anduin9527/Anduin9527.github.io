@@ -208,9 +208,9 @@
     
     
     
-    <category term="Linux" scheme="http://lapras.xyz/tags/Linux/"/>
-    
     <category term="笔记" scheme="http://lapras.xyz/tags/%E7%AC%94%E8%AE%B0/"/>
+    
+    <category term="Linux" scheme="http://lapras.xyz/tags/Linux/"/>
     
   </entry>
   
@@ -482,9 +482,9 @@
     <category term="数学建模" scheme="http://lapras.xyz/categories/%E6%95%B0%E5%AD%A6%E5%BB%BA%E6%A8%A1/"/>
     
     
-    <category term="笔记" scheme="http://lapras.xyz/tags/%E7%AC%94%E8%AE%B0/"/>
-    
     <category term="Python" scheme="http://lapras.xyz/tags/Python/"/>
+    
+    <category term="笔记" scheme="http://lapras.xyz/tags/%E7%AC%94%E8%AE%B0/"/>
     
     <category term="数学" scheme="http://lapras.xyz/tags/%E6%95%B0%E5%AD%A6/"/>
     
